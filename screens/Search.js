@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, Button } from 'react-native';
-import { theme } from '../constants/theme';
+import { StyleSheet, View, TextInput, Text, Alert } from 'react-native';
+import { globalStyles } from '../styles/global';
+import Button from '../components/Button';
 
 export default function Search(props) {
   return (
-    <View style={theme.container}>
+    <View style={globalStyles.container}>
       <TextInput
-        style={theme.input}
+        style={globalStyles.input}
         placeholder='Pokemon Name'
         // onChangeText={props.handleChange('title')}
         // value={props.values.title}
@@ -14,7 +15,7 @@ export default function Search(props) {
       />
       {/* <Text style={theme.errorText}>{props.touched.title && props.errors.title}</Text> */}
 
-      {/* <FlatButton text='submit' onPress={props.handleSubmit} /> */}
+      <Button text='Search' onPress={() => Alert.alert('Search Button Pressed')} />
     </View>
   );
 }

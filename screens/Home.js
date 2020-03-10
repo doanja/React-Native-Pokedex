@@ -1,21 +1,32 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { theme } from '../constants/theme';
+import { StyleSheet, View, Text, Alert } from 'react-native';
+import { globalStyles } from '../styles/global';
+import Button from '../components/Button';
 
 export default function Home() {
   return (
-    <View style={theme.container}>
+    <View style={globalStyles.container}>
       <Text>Home Screen</Text>
       <Button
-        title='Login'
-        color='lightblue'
-        onPress={() => Alert.alert('Button with adjusted color pressed')}
+        text='Login'
+        // TODO: render modal
+        onPress={() => Alert.alert('Login Button Pressed')}
+        style={styles.button}
       />
+
       <Button
-        title='Signup'
-        color='lightblue'
-        onPress={() => Alert.alert('Button with adjusted color pressed')}
+        text='Signup'
+        // TODO: render modal
+        onPress={() => Alert.alert('Signup Button Pressed')}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0
+  }
+});
