@@ -14,7 +14,8 @@ export default function Navigator() {
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold'
-        }
+        },
+        headerShown: false
       }}>
       <Stack.Screen name='Home' component={Home} />
     </Stack.Navigator>

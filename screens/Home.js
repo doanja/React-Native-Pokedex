@@ -6,12 +6,13 @@ import Button from '../components/Button';
 export default function Home() {
   return (
     <View style={globalStyles.container}>
-      <Text>Home Screen</Text>
+      <Text style={styles.textHeader}>Pokedex Home</Text>
 
       <Image source={require('../assets/logo.png')} style={styles.image} />
 
       <View style={styles.buttonGroup}>
         <Button
+          gradient
           text='Login'
           // TODO: render modal
           onPress={() => Alert.alert('Login Button Pressed')}
@@ -27,6 +28,12 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  textHeader: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    alignSelf: 'center',
+    marginTop: '10%'
+  },
   buttonGroup: {
     flex: 1,
     padding: 20,
