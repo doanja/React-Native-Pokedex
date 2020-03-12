@@ -1,26 +1,57 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { colors, sizes, fonts } from '../constants/theme';
+import { colors, sizes } from '../constants/theme';
 
-export default function Button({ text, onPress, gradient, end, start, locations, color, shadow }) {
+export default function CustomButton({
+  style,
+  opacity,
+  gradient,
+  color,
+  startColor,
+  endColor,
+  end,
+  start,
+  locations,
+  shadow,
+  children,
+  ...props
+}) {
+  const buttonStyles = [
+    styles.button,
+    shadow && styles.shadow,
+    color && styles[color], // predefined styles colors for backgroundColor
+    color && !styles[color] && { backgroundColor: color }, // custom backgroundColor
+    style
+  ];
+
   return gradient ? (
-    <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      locations={[0.1, 0.9]}
-      style={styles.button}
-      colors={[colors.primary, colors.secondary]}>
-      <TouchableOpacity onPress={onPress}>
-        <Text style={styles.buttonText}>{text}</Text>
-      </TouchableOpacity>
-    </LinearGradient>
+    <TouchableOpacity style={buttonStyles} activeOpacity={opacity} {...props}>
+      <LinearGradient
+        start={start}
+        end={end}
+        locations={locations}
+        style={buttonStyles}
+        colors={[startColor, endColor]}>
+        {children}
+      </LinearGradient>
+    </TouchableOpacity>
   ) : (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonText}>{text}</Text>
+    <TouchableOpacity style={buttonStyles} activeOpacity={opacity || 0.8} {...props}>
+      {children}
     </TouchableOpacity>
   );
 }
+
+CustomButton.defaultProps = {
+  startColor: colors.primary,
+  endColor: colors.secondary,
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 1 },
+  locations: [0.1, 0.9],
+  opacity: 0.8,
+  color: colors.white
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -29,17 +60,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: sizes.padding / 3
   },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    fontSize: sizes.caption,
-    textAlign: 'center'
-  },
   shadow: {
     shadowColor: colors.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 10
-  }
+  },
+  accent: { backgroundColor: colors.accent },
+  primary: { backgroundColor: colors.primary },
+  secondary: { backgroundColor: colors.secondary },
+  tertiary: { backgroundColor: colors.tertiary },
+  black: { backgroundColor: colors.black },
+  white: { backgroundColor: colors.white },
+  gray: { backgroundColor: colors.gray },
+  gray2: { backgroundColor: colors.gray2 },
+  gray3: { backgroundColor: colors.gray3 },
+  gray4: { backgroundColor: colors.gray4 }
 });

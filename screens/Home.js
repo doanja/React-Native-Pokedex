@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, Alert, Image } from 'react-native';
+import { StyleSheet, View, Alert, Image } from 'react-native';
 import { globalStyles } from '../styles/global';
-import Button from '../components/Button';
+import { Button, Text } from '../components';
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <View style={globalStyles.container}>
       <Text style={styles.textHeader}>Pokedex Home</Text>
@@ -11,17 +11,16 @@ export default function Home() {
       <Image source={require('../assets/logo.png')} style={styles.image} />
 
       <View style={styles.buttonGroup}>
-        <Button
-          gradient
-          text='Login'
-          // TODO: render modal
-          onPress={() => Alert.alert('Login Button Pressed')}
-        />
-        <Button
-          text='Signup'
-          // TODO: render modal
-          onPress={() => Alert.alert('Signup Button Pressed')}
-        />
+        <Button gradient onPress={() => navigation.navigate('Login')}>
+          <Text center semibold white>
+            Login
+          </Text>
+        </Button>
+        <Button shadow onPress={() => navigation.navigate('SignUp')}>
+          <Text center semibold>
+            View Pokedex
+          </Text>
+        </Button>
       </View>
     </View>
   );
