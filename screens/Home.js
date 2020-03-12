@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
             Login
           </Text>
         </Button>
-        <Button shadow onPress={() => navigation.navigate('SignUp')}>
+        <Button shadow onPress={() => navigation.navigate('Pokedex')}>
           <Text center semibold>
             View Pokedex
           </Text>

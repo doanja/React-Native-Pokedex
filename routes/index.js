@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './Home';
 import SearchScreen from './Search';
 import LoginScreen from './Login';
+import PokedexScreen from './Pokedex';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,6 +15,7 @@ export default function RootDrawerNavigator() {
         <Drawer.Screen name='Home' component={HomeScreen} />
         <Drawer.Screen name='Search' component={SearchScreen} />
         <Drawer.Screen name='Login' component={LoginScreen} />
+        <Drawer.Screen name='Pokedex' component={PokedexScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
