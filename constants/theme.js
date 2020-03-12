@@ -1,10 +1,12 @@
 export const colors = {
-  primary: '#EA5363',
-  secondary: '#9B737D',
-  tertiary: '#F37484',
-  black: '#474D56',
-  white: '#E2E9EA',
-  gray: '#333333'
+  accent: '#7a4af3',
+  primary: '#c40a0a',
+  secondary: '#da3c2b',
+  tertiary: '#FFE358',
+  black: '#323643',
+  white: '#FFFFFF',
+  gray: '#9DA3B4',
+  gray2: '#C5CCD6'
 };
 
 export const sizes = {

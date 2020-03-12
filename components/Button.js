@@ -37,7 +37,7 @@ export default function CustomButton({
       </LinearGradient>
     </TouchableOpacity>
   ) : (
-    <TouchableOpacity style={buttonStyles} activeOpacity={opacity || 0.8} {...props}>
+    <TouchableOpacity style={buttonStyles} activeOpacity={opacity} {...props}>
       {children}
     </TouchableOpacity>
   );

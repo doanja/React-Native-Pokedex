@@ -4,12 +4,12 @@ import { colors, sizes, fonts } from '../constants/theme';
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20
+    padding: sizes.padding
   },
   titleText: {},
   paragraph: {
     marginVertical: 8,
-    lineHeight: 20
+    lineHeight: sizes.base
   },
   input: {
     borderWidth: 1,
