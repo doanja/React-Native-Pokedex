@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../screens/Login';
+import { colors } from '../constants/theme';
 
 const Stack = createStackNavigator();
 
@@ -9,7 +10,7 @@ export default function Navigator() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: 'crimson'
+          backgroundColor: colors.primary
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
