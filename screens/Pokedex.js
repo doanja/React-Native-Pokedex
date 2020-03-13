@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import Card from '../components/Card';
+import PokemonCard from '../components/PokemonCard';
 
 export default function Pokedex({ navigation }) {
   const [pokemonList, setPokemonList] = useState([]);
@@ -22,10 +23,12 @@ export default function Pokedex({ navigation }) {
     <View style={globalStyles.container}>
       <FlatList
         data={pokemonList}
+        keyExtractor={item => item.name}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('Pokemon', item)}>
             <Card>
-              <Text style={globalStyles.titleText}>{item.name}</Text>
+              {/* <Text style={globalStyles.titleText}>{item.name}</Text> */}
+              <PokemonCard name={item.name} url={item.url} />
             </Card>
           </TouchableOpacity>
         )}

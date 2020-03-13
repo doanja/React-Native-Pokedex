@@ -5,7 +5,7 @@ import { sizes } from '../constants/theme';
 export default function Card({ children }) {
   return (
     <View style={styles.card}>
-      <View style={styles.cardContent}>{children}</View>
+      <View>{children}</View>
     </View>
   );
 }
