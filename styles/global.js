@@ -6,10 +6,15 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     padding: sizes.padding
   },
-  titleText: {},
+  titleText: {
+    textTransform: 'capitalize',
+    fontSize: 14,
+    color: '#333'
+  },
   paragraph: {
     marginVertical: 8,
-    lineHeight: sizes.base
+    lineHeight: sizes.base,
+    color: 'black'
   },
   input: {
     borderWidth: 1,
