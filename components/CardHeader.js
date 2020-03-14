@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { colors } from '../constants/theme';
 
-export default function CardHeader({ text }) {
+export default function CardHeader({ children }) {
   return (
     <View style={styles.cardHeader}>
-      <Text styles={styles.text}>{text}</Text>
+      <View>{children}</View>
     </View>
   );
 }
@@ -14,11 +14,7 @@ const styles = StyleSheet.create({
   cardHeader: {
     width: '100%',
     height: 25,
-    backgroundColor: colors.tertiary,
+    backgroundColor: colors.black,
     alignItems: 'center'
-  },
-  text: {
-    color: colors.white,
-    textTransform: 'capitalize'
   }
 });

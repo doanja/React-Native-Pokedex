@@ -42,8 +42,5 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start', // if you want to fill rows left to right
     padding: sizes.padding
-  },
-  item: {
-    width: '50%'
   }
 });
