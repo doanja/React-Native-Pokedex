@@ -13,8 +13,9 @@ export default function CardHeader({ children }) {
 const styles = StyleSheet.create({
   cardHeader: {
     width: '100%',
-    height: 25,
+    paddingVertical: 10,
     backgroundColor: colors.black,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
