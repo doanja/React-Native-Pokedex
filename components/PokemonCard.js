@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { globalStyles } from '../styles/global';
+import Card from '../components/Card';
+import CardHeader from './CardHeader';
 
 export default function PokemonCard({ name, url }) {
   const [imageUrl, setImageUrl] = useState('');
@@ -16,21 +18,23 @@ export default function PokemonCard({ name, url }) {
 
   return (
     <View>
-      <Text style={(globalStyles.titleText, styles.cardHeader)}>{name}</Text>
-
-      <Image
-        style={{ width: '25%', height: 75 }}
-        source={{
-          uri: imageUrl
-        }}
-      />
+      <Card>
+        <CardHeader text={name} />
+        <Image
+          style={styles.image}
+          source={{
+            uri: imageUrl
+          }}
+        />
+      </Card>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cardHeader: {
-    backgroundColor: 'lightblue',
-    width: '100%'
+  image: {
+    width: '50%',
+    height: 75,
+    alignSelf: 'center'
   }
 });

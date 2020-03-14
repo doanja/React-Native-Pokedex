@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { sizes } from '../constants/theme';
 
 export default function Card({ children }) {
   return (
@@ -12,7 +11,7 @@ export default function Card({ children }) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 6,
+    width: '50%',
     elevation: 3,
     backgroundColor: '#fff',
     shadowOffset: { width: 1, height: 1 },
@@ -21,9 +20,5 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginHorizontal: 4,
     marginVertical: 6
-  },
-  cardContent: {
-    marginHorizontal: 18,
-    marginVertical: 10
   }
 });

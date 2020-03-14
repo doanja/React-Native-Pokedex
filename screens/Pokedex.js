@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
-import Card from '../components/Card';
+
 import PokemonCard from '../components/PokemonCard';
+import { sizes } from '../constants/theme';
 
 export default function Pokedex({ navigation }) {
   const [pokemonList, setPokemonList] = useState([]);
@@ -20,19 +21,29 @@ export default function Pokedex({ navigation }) {
   }, [offset]);
 
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       <FlatList
         data={pokemonList}
         keyExtractor={item => item.name}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('Pokemon', item)}>
-            <Card>
-              {/* <Text style={globalStyles.titleText}>{item.name}</Text> */}
-              <PokemonCard name={item.name} url={item.url} />
-            </Card>
+            <PokemonCard name={item.name} url={item.url} />
           </TouchableOpacity>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start', // if you want to fill rows left to right
+    padding: sizes.padding
+  },
+  item: {
+    width: '50%'
+  }
+});
