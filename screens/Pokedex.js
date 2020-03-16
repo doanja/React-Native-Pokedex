@@ -26,7 +26,6 @@ export default function Pokedex({ navigation }) {
         data={pokemonList}
         keyExtractor={item => item.name}
         numColumns={2}
-        contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <PokemonCard
             name={item.name}
@@ -39,10 +38,4 @@ export default function Pokedex({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  list: {
-    borderWidth: 1,
-    borderColor: 'red',
-    alignItems: 'center'
-  }
-});
+const styles = StyleSheet.create({});

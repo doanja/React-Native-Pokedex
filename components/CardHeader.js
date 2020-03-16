@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 10,
     backgroundColor: colors.black,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
   }
 });

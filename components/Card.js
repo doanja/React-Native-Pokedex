@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Dimensions } from 'react-native';
 import { sizes } from '../constants/theme';
 
 export default function Card({ children, onPress }) {
@@ -13,7 +13,6 @@ export default function Card({ children, onPress }) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: sizes.radius,
-    width: '40%',
     elevation: 3,
     backgroundColor: '#fff',
     shadowOffset: { width: 1, height: 1 },
@@ -21,6 +20,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     marginHorizontal: 4,
-    marginVertical: 6
+    marginVertical: 6,
+    // justifyContent: 'center',
+    flex: 1,
+    margin: 1,
+    height: Dimensions.get('window').width / 2 // approximate a square
   }
 });
