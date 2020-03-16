@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { sizes } from '../constants/theme';
 
 export default function Card({ children, onPress }) {
   return (
@@ -11,6 +12,7 @@ export default function Card({ children, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
+    borderRadius: sizes.radius,
     width: '40%',
     elevation: 3,
     backgroundColor: '#fff',

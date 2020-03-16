@@ -21,10 +21,12 @@ export default function Pokedex({ navigation }) {
   }, [offset]);
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       <FlatList
         data={pokemonList}
         keyExtractor={item => item.name}
+        numColumns={2}
+        contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <PokemonCard
             name={item.name}
@@ -38,8 +40,9 @@ export default function Pokedex({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row'
+  list: {
+    borderWidth: 1,
+    borderColor: 'red',
+    alignItems: 'center'
   }
 });
