@@ -5,7 +5,7 @@ import { colors } from '../constants/theme';
 import Card from '../components/Card';
 import CardHeader from './CardHeader';
 
-export default function PokemonCard({ name, url }) {
+export default function PokemonCard({ name, url, onPress }) {
   const [imageUrl, setImageUrl] = useState('');
   const [pokemonId, setPokemonId] = useState('');
   const [loading, setLoading] = useState(true);
@@ -18,19 +18,17 @@ export default function PokemonCard({ name, url }) {
   }, [pokemonId]);
 
   return (
-    <View>
-      <Card>
-        <CardHeader>
-          <Text style={styles.text}>{name}</Text>
-        </CardHeader>
-        <Image
-          style={styles.image}
-          source={{
-            uri: imageUrl
-          }}
-        />
-      </Card>
-    </View>
+    <Card onPress={onPress}>
+      <CardHeader>
+        <Text style={styles.text}>{name}</Text>
+      </CardHeader>
+      <Image
+        style={styles.image}
+        source={{
+          uri: imageUrl
+        }}
+      />
+    </Card>
   );
 }
 

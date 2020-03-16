@@ -26,9 +26,11 @@ export default function Pokedex({ navigation }) {
         data={pokemonList}
         keyExtractor={item => item.name}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('Pokemon', item)}>
-            <PokemonCard name={item.name} url={item.url} />
-          </TouchableOpacity>
+          <PokemonCard
+            name={item.name}
+            url={item.url}
+            onPress={() => navigation.navigate('Pokemon', item)}
+          />
         )}
       />
     </View>
@@ -38,9 +40,6 @@ export default function Pokedex({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start', // if you want to fill rows left to right
-    padding: sizes.padding
+    flexDirection: 'row'
   }
 });
