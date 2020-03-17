@@ -3,8 +3,6 @@ import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import API from '../services/pokemonAPI';
-import Text from '../components/Text';
-import Button from '../components/Button';
 import PokemonCard from '../components/PokemonCard';
 
 export default function Pokedex({ navigation }) {
@@ -56,6 +54,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between'
-    // alignItems: 'center'
   }
 });

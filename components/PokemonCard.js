@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Image, Dimensions } from 'react-native';
-import { globalStyles } from '../styles/global';
+import { StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { colors } from '../constants/theme';
 import Card from '../components/Card';
 import CardHeader from './CardHeader';
