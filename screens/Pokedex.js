@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
+import { MaterialIcons } from '@expo/vector-icons';
 import API from '../services/pokemonAPI';
-
+import Text from '../components/Text';
+import Button from '../components/Button';
 import PokemonCard from '../components/PokemonCard';
-import { sizes } from '../constants/theme';
 
 export default function Pokedex({ navigation }) {
   const [pokemonList, setPokemonList] = useState([]);
@@ -34,8 +35,27 @@ export default function Pokedex({ navigation }) {
           />
         )}
       />
+      <View style={styles.icons}>
+        <TouchableOpacity
+          onPress={() => {
+            offset <= 0 ? null : setOffset(offset - 20);
+          }}>
+          <MaterialIcons name='chevron-left' size={24} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setOffset(offset + 20)}>
+          <MaterialIcons name='chevron-right' size={24} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icons: {
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+    // alignItems: 'center'
+  }
+});
