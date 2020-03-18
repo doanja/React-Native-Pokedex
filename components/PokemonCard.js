@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, Dimensions } from 'react-native';
-import { colors } from '../constants/theme';
+import { globalStyles } from '../styles/global';
 import Card from '../components/Card';
 import CardHeader from './CardHeader';
 
@@ -16,9 +16,9 @@ export default function PokemonCard({ name, url, onPress }) {
   }, [pokemonId]);
 
   return (
-    <Card onPress={onPress}>
+    <Card touchable onPress={onPress}>
       <CardHeader>
-        <Text style={styles.text}>{name}</Text>
+        <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
       <Image
         style={styles.image}
@@ -37,9 +37,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginTop: 30
-  },
-  text: {
-    color: colors.white,
-    textTransform: 'capitalize'
   }
 });

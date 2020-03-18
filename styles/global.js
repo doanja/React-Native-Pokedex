@@ -29,5 +29,9 @@ export const globalStyles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 6,
     textAlign: 'center'
+  },
+  headerText: {
+    color: colors.white,
+    textTransform: 'capitalize'
   }
 });
