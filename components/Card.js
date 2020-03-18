@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginHorizontal: 4,
     marginVertical: 6,
-    // justifyContent: 'center',
+
     flex: 1,
     margin: 1,
-    height: Dimensions.get('window').width / 2 // approximate a square
+    height: Dimensions.get('window').width / 2
   }
 });

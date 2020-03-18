@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import API from '../services/pokemonAPI';
@@ -63,7 +63,6 @@ export default function Pokedex({ navigation }) {
 
 const styles = StyleSheet.create({
   icons: {
-    // paddingVertical: 15,
     paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between'

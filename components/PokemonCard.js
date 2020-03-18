@@ -7,7 +7,6 @@ import CardHeader from './CardHeader';
 export default function PokemonCard({ name, url, onPress }) {
   const [imageUrl, setImageUrl] = useState('');
   const [pokemonId, setPokemonId] = useState('');
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setPokemonId(url.split('/')[url.split('/').length - 2]);
