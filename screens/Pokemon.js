@@ -150,6 +150,96 @@ export default function Pokemon({ route }) {
       });
   }, [name, pokemonData.pokemonId]);
 
+  const getEvolutionData = url => {
+    API.getEvolutionData
+      .get(url)
+      .then(res => {
+        const evolutions = []; // array of objects containing each evolution
+        this.getEvolutionLine(res.data.chain, evolutions);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const getEvolutionLine = (evolutionsArr, resultArr) => {
+    if (evolutionsArr.evolves_to.length === 0) {
+      API.getEvolutionSpecies
+        .get(evolutionsArr.species.url)
+        .then(res => {
+          return API.getPokemonData.get(`https://pokeapi.co/api/v2/pokemon/${res.data.id}/`);
+        })
+        .then(res => {
+          resultArr.push({
+            name: evolutionsArr.species.name,
+            url: evolutionsArr.species.url,
+            sprite: res.data.sprites.front_default,
+            method: this.getEvolutionMethod(evolutionsArr.evolution_details[0])
+          });
+
+          this.setState({ evolutions: resultArr });
+          this.props.setFirstEvolution(this.state.evolutions[0]);
+
+          return;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      API.getEvolutionSpecies
+        .get(evolutionsArr.species.url)
+        .then(res => {
+          return API.getPokemonData.get(`https://pokeapi.co/api/v2/pokemon/${res.data.id}/`);
+        })
+        .then(res => {
+          resultArr.push({
+            name: evolutionsArr.species.name,
+            url: evolutionsArr.species.url,
+            sprite: res.data.sprites.front_default,
+            method: this.getEvolutionMethod(evolutionsArr.evolution_details[0])
+          });
+          evolutionsArr.evolves_to.forEach(evolution => {
+            return this.getEvolutionLine(evolution, resultArr);
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
+  const getEvolutionMethod = methods => {
+    const methodsArr = [];
+    // if methods is empty...
+    if (!methods) {
+      return [];
+    }
+
+    // for each method in methods
+    else {
+      for (const method in methods) {
+        if (methods[method]) {
+          const name = method.replace(/_/g, ' ');
+          const condition = methods[method];
+          methodsArr.push({ name, condition });
+        }
+      }
+      return methodsArr;
+    }
+  };
+
+  const getVarietySprite = varieties => {
+    API.getVarietySprites(varieties)
+      .get(variety.url)
+      .then(res => {
+        variety.sprite = res.data.sprites.front_default;
+        this.setState({ varieties });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <ScrollView style={globalStyles.container}>
       <Card>
