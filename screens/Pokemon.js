@@ -69,6 +69,12 @@ export default function Pokemon({ route }) {
     }
   }, [pokemonData.pokemonId]);
 
+  useEffect(() => {
+    if (speciesData.evolutionUrl) {
+      getEvolutionData(speciesData.evolutionUrl);
+    }
+  }, [speciesData.evolutionUrl]);
+
   const getPokemonData = () => {
     API.getPokemonData(name)
       .then(res => {
@@ -201,8 +207,6 @@ export default function Pokemon({ route }) {
           evolutionUrl: res.data.evolution_chain.url
         });
 
-        // getEvolutionData(speciesData.evolutionUrl);
-
         // console.log('speciesData :', speciesData);
       })
       .catch(err => {
@@ -211,8 +215,7 @@ export default function Pokemon({ route }) {
   };
 
   const getEvolutionData = url => {
-    API.getEvolutionData
-      .get(url)
+    API.getEvolutionData(url)
       .then(res => {
         const evolutions = []; // array of objects containing each evolution
         getEvolutionLine(res.data.chain, evolutions);
@@ -224,10 +227,9 @@ export default function Pokemon({ route }) {
 
   const getEvolutionLine = (evolutionsArr, resultArr) => {
     if (evolutionsArr.evolves_to.length === 0) {
-      API.getEvolutionSpecies
-        .get(evolutionsArr.species.url)
+      API.getEvolutionSpecies(evolutionsArr.species.url)
         .then(res => {
-          return API.getPokemonData.get(`https://pokeapi.co/api/v2/pokemon/${res.data.id}/`);
+          return API.getPokemonData(res.data.id);
         })
         .then(res => {
           resultArr.push({
@@ -246,10 +248,9 @@ export default function Pokemon({ route }) {
           console.log(err);
         });
     } else {
-      API.getEvolutionSpecies
-        .get(evolutionsArr.species.url)
+      API.getEvolutionSpecies(evolutionsArr.species.url)
         .then(res => {
-          return API.getPokemonData.get(`https://pokeapi.co/api/v2/pokemon/${res.data.id}/`);
+          return API.getPokemonData(res.data.id);
         })
         .then(res => {
           resultArr.push({
