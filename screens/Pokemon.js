@@ -60,6 +60,16 @@ export default function Pokemon({ route }) {
   });
 
   useEffect(() => {
+    getPokemonData();
+  }, [name]);
+
+  useEffect(() => {
+    if (pokemonData.pokemonId) {
+      getSpeciesData();
+    }
+  }, [pokemonData.pokemonId]);
+
+  const getPokemonData = () => {
     API.getPokemonData(name)
       .then(res => {
         const abilities = [];
@@ -140,22 +150,73 @@ export default function Pokemon({ route }) {
       .catch(err => {
         console.log(err);
       });
+  };
 
+  const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
-        console.log('res.data :', res.data);
+        const eggGroups = [];
+        let description = '';
+        const varieties = [];
+
+        res.data.egg_groups.forEach(group => {
+          eggGroups.push({ name: group.name, url: group.url });
+        });
+
+        res.data.flavor_text_entries.filter(element => {
+          if (element.language.name === 'en') {
+            description = element.flavor_text;
+          }
+        });
+
+        res.data.varieties.filter(variety => {
+          if (!variety.is_default) {
+            varieties.push({
+              name: variety.pokemon.name,
+              url: variety.pokemon.url
+            });
+          }
+        });
+
+        console.log('varieties :', varieties);
+        getVarietySprite(varieties);
+
+        setSpeciesData({
+          pokemonId: res.data.id,
+          baseHappiness: res.data.base_happiness,
+          gender: {
+            genderRatio: res.data.gender_rate,
+            genderRatioFemale: res.data.gender_rate * 12.5,
+            genderRatioMale: 12.5 * (8 - res.data.gender_rate)
+          },
+          growthRate: { name: res.data.growth_rate.name, url: res.data.growth_rate.url },
+          habitat:
+            res.data.habitat === null
+              ? { name: 'None' }
+              : { name: res.data.habitat.name, url: res.data.habitat.url },
+          catchRate: Math.round((100 / 255) * res.data.capture_rate),
+          hatchSteps: 255 * (res.data.hatch_counter + 1),
+          eggGroups,
+          description,
+          shape: { name: res.data.shape.name, url: res.data.shape.url },
+          evolutionUrl: res.data.evolution_chain.url
+        });
+
+        // getEvolutionData(speciesData.evolutionUrl);
+
+        console.log('speciesData :', speciesData);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [name, pokemonData.pokemonId]);
+  };
 
   const getEvolutionData = url => {
     API.getEvolutionData
       .get(url)
       .then(res => {
         const evolutions = []; // array of objects containing each evolution
-        this.getEvolutionLine(res.data.chain, evolutions);
+        getEvolutionLine(res.data.chain, evolutions);
       })
       .catch(err => {
         console.log(err);
@@ -174,11 +235,11 @@ export default function Pokemon({ route }) {
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
             sprite: res.data.sprites.front_default,
-            method: this.getEvolutionMethod(evolutionsArr.evolution_details[0])
+            method: getEvolutionMethod(evolutionsArr.evolution_details[0])
           });
 
-          this.setState({ evolutions: resultArr });
-          this.props.setFirstEvolution(this.state.evolutions[0]);
+          setSpeciesData({ ...speciesData, evolutions: resultArr });
+          // this.props.setFirstEvolution(this.state.evolutions[0]);
 
           return;
         })
@@ -196,10 +257,10 @@ export default function Pokemon({ route }) {
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
             sprite: res.data.sprites.front_default,
-            method: this.getEvolutionMethod(evolutionsArr.evolution_details[0])
+            method: getEvolutionMethod(evolutionsArr.evolution_details[0])
           });
           evolutionsArr.evolves_to.forEach(evolution => {
-            return this.getEvolutionLine(evolution, resultArr);
+            return getEvolutionLine(evolution, resultArr);
           });
         })
         .catch(err => {
@@ -229,11 +290,12 @@ export default function Pokemon({ route }) {
   };
 
   const getVarietySprite = varieties => {
+    console.log('varieties :', varieties);
     API.getVarietySprites(varieties)
       .get(variety.url)
       .then(res => {
         variety.sprite = res.data.sprites.front_default;
-        this.setState({ varieties });
+        setSpeciesData({ ...speciesData, varieties });
       })
       .catch(err => {
         console.log(err);
