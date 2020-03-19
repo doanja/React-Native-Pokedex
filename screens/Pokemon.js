@@ -178,7 +178,6 @@ export default function Pokemon({ route }) {
           }
         });
 
-        console.log('varieties :', varieties);
         getVarietySprite(varieties);
 
         setSpeciesData({
@@ -204,7 +203,7 @@ export default function Pokemon({ route }) {
 
         // getEvolutionData(speciesData.evolutionUrl);
 
-        console.log('speciesData :', speciesData);
+        // console.log('speciesData :', speciesData);
       })
       .catch(err => {
         console.log(err);
@@ -290,16 +289,16 @@ export default function Pokemon({ route }) {
   };
 
   const getVarietySprite = varieties => {
-    console.log('varieties :', varieties);
-    API.getVarietySprites(varieties)
-      .get(variety.url)
-      .then(res => {
-        variety.sprite = res.data.sprites.front_default;
-        setSpeciesData({ ...speciesData, varieties });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    varieties.forEach(variety => {
+      API.getVarietySprites(variety.url)
+        .then(res => {
+          variety.sprite = res.data.sprites.front_default;
+          setSpeciesData({ ...speciesData, varieties });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    });
   };
 
   return (
