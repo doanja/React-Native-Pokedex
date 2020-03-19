@@ -309,6 +309,12 @@ export default function Pokemon({ route }) {
           <Text style={globalStyles.headerText}>{name}</Text>
         </CardHeader>
       </Card>
+      <Card>
+        <CardHeader>
+          <Text style={globalStyles.headerText}>Attack</Text>
+        </CardHeader>
+        <Text>{pokemonData.stats.attack}</Text>
+      </Card>
     </ScrollView>
   );
 }
