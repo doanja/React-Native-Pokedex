@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import { Card, CardHeader } from '../components';
+import PokemonSprite from '../components/Pokemon/PokemonSprite';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -12,7 +13,7 @@ export default function Pokemon({ route }) {
     baseExperience: '',
     name: '',
     spriteDefault: '',
-    sprite_shiny: '',
+    spriteShiny: '',
     weight: '',
     height: '',
     abilities: [],
@@ -141,7 +142,7 @@ export default function Pokemon({ route }) {
           baseExperience: res.data.base_experience,
           name: res.data.name,
           spriteDefault: res.data.sprites.front_default,
-          sprite_shiny: res.data.sprites.front_shiny,
+          spriteShiny: res.data.sprites.front_shiny,
           height: Math.round((res.data.height * 0.328084 + 0.0001) * 100) / 100,
           weight: Math.round((res.data.weight * 0.220462 + 0.0001) * 100) / 100,
           abilities,
@@ -302,11 +303,16 @@ export default function Pokemon({ route }) {
 
   return (
     <ScrollView style={globalStyles.container}>
-      <Card>
+      {/* <Card>
         <CardHeader>
           <Text style={globalStyles.headerText}>{name}</Text>
         </CardHeader>
-      </Card>
+      </Card> */}
+      <PokemonSprite
+        name={name}
+        spriteDefault={pokemonData.spriteDefault}
+        spriteShiny={pokemonData.spriteShiny}
+      />
       <Card>
         <CardHeader>
           <Text style={globalStyles.headerText}>Attack</Text>
