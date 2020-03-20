@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, Dimensions } from 'react-native';
-import { globalStyles } from '../styles/global';
-import Card from '../components/Card';
-import CardHeader from './CardHeader';
+import { globalStyles } from '../../styles/global';
+import { Card, CardHeader } from '../../components';
 
 export default function PokemonCard({ name, url, onPress }) {
   const [imageUrl, setImageUrl] = useState('');

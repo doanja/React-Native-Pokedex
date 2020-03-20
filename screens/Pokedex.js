@@ -3,7 +3,7 @@ import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import API from '../services/pokemonAPI';
-import PokemonCard from '../components/PokemonCard';
+import PokemonCard from '../components/Pokemon/PokemonCard';
 
 export default function Pokedex({ navigation }) {
   const [pokemonList, setPokemonList] = useState([]);

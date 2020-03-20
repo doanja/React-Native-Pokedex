@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
-import Card from '../components/Card';
-import CardHeader from '../components/CardHeader';
-import PokemonCard from '../components/PokemonCard';
+import { Card, CardHeader } from '../components';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
