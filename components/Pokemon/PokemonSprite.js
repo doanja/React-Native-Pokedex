@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, Image, Dimensions, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Card, CardHeader } from '../../components';
 
 export default function PokemonSprite({ name, spriteDefault, spriteShiny }) {
@@ -12,26 +13,50 @@ export default function PokemonSprite({ name, spriteDefault, spriteShiny }) {
   }, [isSpriteDefault]);
 
   return (
-    <Card touchable onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
+    <Card>
       <CardHeader>
         <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
-      <Image
-        style={styles.image}
-        source={{
-          uri: spriteUri
-        }}
-      />
+
+      <View style={styles.icons}>
+        <TouchableOpacity onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
+          <MaterialIcons name='chevron-left' size={24} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.imageContainer}
+          onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: spriteUri
+            }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
+          <MaterialIcons name='chevron-right' size={24} />
+        </TouchableOpacity>
+      </View>
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    width: '40%'
+  },
   image: {
-    width: '40%',
+    width: '100%',
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: 30
+    marginTop: -30
+  },
+  icons: {
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 60
   }
 });
