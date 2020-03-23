@@ -19,15 +19,15 @@ export default function ProgressBar({ amount, label }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 8
   },
   progressBar: {
     flexDirection: 'row',
     height: 20,
-    width: '100%',
+    width: '80%',
     backgroundColor: 'white',
     borderColor: '#000',
     borderWidth: 2,
