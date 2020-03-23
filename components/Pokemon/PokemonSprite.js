@@ -10,7 +10,7 @@ export default function PokemonSprite({ name, spriteDefault, spriteShiny }) {
 
   useEffect(() => {
     isSpriteDefault ? setSpriteUri(spriteDefault) : setSpriteUri(spriteShiny);
-  }, [isSpriteDefault]);
+  }, [isSpriteDefault, spriteDefault, spriteShiny]);
 
   return (
     <Card>
@@ -26,12 +26,14 @@ export default function PokemonSprite({ name, spriteDefault, spriteShiny }) {
         <TouchableOpacity
           style={styles.imageContainer}
           onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: spriteUri
-            }}
-          />
+          {spriteUri ? (
+            <Image
+              style={styles.image}
+              source={{
+                uri: spriteUri
+              }}
+            />
+          ) : null}
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => setIsSpriteDefault(!isSpriteDefault)}>

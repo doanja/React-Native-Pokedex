@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import { Card, CardHeader } from '../components';

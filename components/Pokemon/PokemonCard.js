@@ -19,12 +19,14 @@ export default function PokemonCard({ name, url, onPress }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
-      <Image
-        style={styles.image}
-        source={{
-          uri: imageUrl
-        }}
-      />
+      {imageUrl ? (
+        <Image
+          style={styles.image}
+          source={{
+            uri: imageUrl
+          }}
+        />
+      ) : null}
     </Card>
   );
 }
