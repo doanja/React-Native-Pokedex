@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     flex: 1,
     margin: 1,
-    minHeight: Dimensions.get('window').width / 2
+    minHeight: Dimensions.get('window').width / 2,
+    paddingBottom: 20
   }
 });

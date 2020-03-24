@@ -1,16 +1,20 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Animated } from 'react-native';
 
 export default function ProgressBar({ amount, label }) {
   return (
-    <View style={styles.container}>
-      <Text> {label}: </Text>
+    <View>
+      <View style={styles.container}>
+        <Text> {label}: </Text>
 
-      <View style={styles.progressBar}>
-        <Text styles={styles.text}>{amount}</Text>
-        <Animated.View
-          style={([StyleSheet.absoluteFill], { backgroundColor: '#777', width: amount })}
-        />
+        <View style={styles.progressBar}>
+          <Text style={styles.text}>{amount}</Text>
+          {amount ? (
+            <Animated.View
+              style={([StyleSheet.absoluteFill], { backgroundColor: 'crimson', width: amount })}
+            />
+          ) : null}
+        </View>
       </View>
     </View>
   );
@@ -19,10 +23,10 @@ export default function ProgressBar({ amount, label }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 8
+    padding: 3
   },
   progressBar: {
     flexDirection: 'row',
@@ -34,8 +38,12 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   text: {
-    // flexDirection: 'column',
-    // alignSelf: 'center',
-    color: 'red'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 2,
+    fontWeight: 'bold',
+    color: 'black'
   }
 });
