@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import { Card, CardHeader } from '../components';
@@ -304,43 +304,28 @@ export default function Pokemon({ route }) {
   };
 
   return (
-    <ScrollView style={[globalStyles.container, styles.container]}>
-      {/* <Card>
-        <CardHeader>
-          <Text style={globalStyles.headerText}>{name}</Text>
-        </CardHeader>
-      </Card> */}
-      <PokemonSprite
-        name={name}
-        spriteDefault={pokemonData.spriteDefault}
-        spriteShiny={pokemonData.spriteShiny}
-      />
+    <View style={globalStyles.container}>
+      <ScrollView>
+        <PokemonSprite
+          name={name}
+          spriteDefault={pokemonData.spriteDefault}
+          spriteShiny={pokemonData.spriteShiny}
+        />
 
-      <Card>
-        <CardHeader>
-          <Text style={globalStyles.headerText}>Stats</Text>
-        </CardHeader>
-        <ProgressBar amount={pokemonData.stats.hp} label={'HP'} />
-        <ProgressBar amount={pokemonData.stats.attack} label={'Attack'} />
-        <ProgressBar amount={pokemonData.stats.defense} label={'Defense'} />
-        <ProgressBar amount={pokemonData.stats.specialAttack} label={'Sp. Atk'} />
-        <ProgressBar amount={pokemonData.stats.specialDefense} label={'Sp. Def'} />
-        <ProgressBar amount={pokemonData.stats.speed} label={'Speed'} />
-      </Card>
+        <Card>
+          <CardHeader>
+            <Text style={globalStyles.headerText}>Stats</Text>
+          </CardHeader>
+          <ProgressBar amount={pokemonData.stats.hp} label={'HP'} />
+          <ProgressBar amount={pokemonData.stats.attack} label={'Attack'} />
+          <ProgressBar amount={pokemonData.stats.defense} label={'Defense'} />
+          <ProgressBar amount={pokemonData.stats.specialAttack} label={'Sp. Atk'} />
+          <ProgressBar amount={pokemonData.stats.specialDefense} label={'Sp. Def'} />
+          <ProgressBar amount={pokemonData.stats.speed} label={'Speed'} />
+        </Card>
 
-      <PokemonAbilities abilities={pokemonData.abilities} />
-
-      <PokemonSprite
-        name={name}
-        spriteDefault={pokemonData.spriteDefault}
-        spriteShiny={pokemonData.spriteShiny}
-      />
-    </ScrollView>
+        <PokemonAbilities abilities={pokemonData.abilities} />
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10
-  }
-});
