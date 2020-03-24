@@ -6,6 +6,7 @@ import { Card, CardHeader } from '../components';
 import PokemonSprite from '../components/Pokemon/PokemonSprite';
 import ProgressBar from '../components/ProgressBar';
 import PokemonAbilities from '../components/Pokemon/PokemonAbilities';
+import PokemonHeldItems from '../components/Pokemon/PokemonHeldItems';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -325,6 +326,7 @@ export default function Pokemon({ route }) {
         </Card>
 
         <PokemonAbilities abilities={pokemonData.abilities} />
+        <PokemonHeldItems items={pokemonData.items} />
       </ScrollView>
     </View>
   );
