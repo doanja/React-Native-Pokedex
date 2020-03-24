@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { sizes } from '../constants/theme';
 
 export default function Card({ touchable, children, onPress }) {
@@ -26,8 +26,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginVertical: 6,
     flex: 1,
-    margin: 1,
-    minHeight: Dimensions.get('window').width / 2,
-    paddingBottom: 5
+    margin: 1
   }
 });

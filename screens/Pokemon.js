@@ -5,6 +5,7 @@ import API from '../services/pokemonAPI';
 import { Card, CardHeader } from '../components';
 import PokemonSprite from '../components/Pokemon/PokemonSprite';
 import ProgressBar from '../components/ProgressBar';
+import PokemonAbilities from '../components/Pokemon/PokemonAbilities';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -86,7 +87,7 @@ export default function Pokemon({ route }) {
 
         res.data.abilities.forEach(ability => {
           abilities.push({
-            name: ability.ability.name,
+            name: ability.ability.name.replace(/-/g, ' '),
             url: ability.ability.url
           });
         });
@@ -146,7 +147,7 @@ export default function Pokemon({ route }) {
           spriteShiny: res.data.sprites.front_shiny,
           height: Math.round((res.data.height * 0.328084 + 0.0001) * 100) / 100,
           weight: Math.round((res.data.weight * 0.220462 + 0.0001) * 100) / 100,
-          abilities,
+          abilities: abilities.reverse(),
           items,
           types,
           evs,
@@ -314,11 +315,11 @@ export default function Pokemon({ route }) {
         spriteDefault={pokemonData.spriteDefault}
         spriteShiny={pokemonData.spriteShiny}
       />
+
       <Card>
         <CardHeader>
-          <Text style={globalStyles.headerText}>Attack</Text>
+          <Text style={globalStyles.headerText}>Stats</Text>
         </CardHeader>
-        {/* <Text>{pokemonData.stats.attack}</Text> */}
         <ProgressBar amount={pokemonData.stats.hp} label={'HP'} />
         <ProgressBar amount={pokemonData.stats.attack} label={'Attack'} />
         <ProgressBar amount={pokemonData.stats.defense} label={'Defense'} />
@@ -326,6 +327,9 @@ export default function Pokemon({ route }) {
         <ProgressBar amount={pokemonData.stats.specialDefense} label={'Sp. Def'} />
         <ProgressBar amount={pokemonData.stats.speed} label={'Speed'} />
       </Card>
+
+      <PokemonAbilities abilities={pokemonData.abilities} />
+
       <PokemonSprite
         name={name}
         spriteDefault={pokemonData.spriteDefault}

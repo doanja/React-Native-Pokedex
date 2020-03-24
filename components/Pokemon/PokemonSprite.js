@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 60
+    marginTop: 60,
+    marginBottom: 30
   }
 });
