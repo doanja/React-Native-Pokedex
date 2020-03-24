@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, Dimensions, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
-
 import { Card, CardHeader } from '../../components';
+import { colors, sizes } from '../../constants/theme';
 
 export default function PokemonAbilities({ abilities }) {
   return (
@@ -13,7 +13,7 @@ export default function PokemonAbilities({ abilities }) {
       {abilities.map(ability => (
         <View>
           <TouchableOpacity>
-            <Text style={styles.button}>{ability.name}</Text>
+            <Text style={styles.item}>{ability.name}</Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -23,18 +23,13 @@ export default function PokemonAbilities({ abilities }) {
 
 const styles = StyleSheet.create({
   item: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    borderWidth: 1,
-    padding: 15,
-    borderColor: 'black',
+    color: colors.black,
+    borderColor: colors.black,
+    borderWidth: 0.5,
+    borderRadius: sizes.radius,
+    margin: 3,
+    padding: 10,
     textAlign: 'center',
-    textTransform: 'capitalize',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    textTransform: 'capitalize'
   }
 });
