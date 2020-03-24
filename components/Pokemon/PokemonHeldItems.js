@@ -12,7 +12,7 @@ export default function PokemonHeldItems({ items }) {
       </CardHeader>
       {items.length > 0 ? (
         items.map(item => (
-          <View>
+          <View key={item.name}>
             <TouchableOpacity>
               <Text style={styles.item}>{item.name}</Text>
             </TouchableOpacity>

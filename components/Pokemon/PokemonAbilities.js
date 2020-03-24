@@ -11,7 +11,7 @@ export default function PokemonAbilities({ abilities }) {
         <Text style={globalStyles.headerText}>Abilities</Text>
       </CardHeader>
       {abilities.map(ability => (
-        <View>
+        <View key={ability.name}>
           <TouchableOpacity>
             <Text style={styles.item}>{ability.name}</Text>
           </TouchableOpacity>
