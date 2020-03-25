@@ -10,7 +10,8 @@ import {
   HeldItems,
   Height,
   Weight,
-  Experience
+  Experience,
+  EVs
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -117,7 +118,7 @@ export default function Pokemon({ route }) {
             return false;
           })
           .map(element => {
-            evs.push(`${element.effort} ${element.stat.name}`);
+            evs.push(`${element.effort} ${element.stat.name.replace(/-/g, ' ')}`);
           });
 
         res.data.stats.map(stat => {
@@ -329,6 +330,8 @@ export default function Pokemon({ route }) {
         <Weight weight={pokemonData.weight} />
 
         <Experience experience={pokemonData.baseExperience} />
+
+        <EVs evs={pokemonData.evs} />
       </ScrollView>
     </View>
   );
