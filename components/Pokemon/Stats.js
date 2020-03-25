@@ -5,7 +5,7 @@ import { Card, CardHeader } from '../../components';
 
 import ProgressBar from '../ProgressBar';
 
-export default function HeldItems({ stats }) {
+export default function Stats({ stats }) {
   return (
     <Card>
       <CardHeader>

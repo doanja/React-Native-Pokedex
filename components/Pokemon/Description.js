@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 
-export default function Height({ description }) {
+export default function Description({ description }) {
   return (
     <Card>
       <CardHeader>

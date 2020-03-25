@@ -8,6 +8,7 @@ import Weight from './Weight';
 import Experience from './Experience';
 import EffortValues from './EffortValues';
 import Description from './Description';
+import Evolutions from './Evolutions';
 
 export {
   Abilities,
@@ -19,5 +20,6 @@ export {
   Weight,
   Experience,
   EffortValues,
-  Description
+  Description,
+  Evolutions
 };
