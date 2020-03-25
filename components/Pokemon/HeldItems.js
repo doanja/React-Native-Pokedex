@@ -19,9 +19,7 @@ export default function HeldItems({ items }) {
         ))
       ) : (
         <View>
-          <TouchableOpacity>
-            <Text style={globalStyles.cardItem}>None</Text>
-          </TouchableOpacity>
+          <Text style={globalStyles.cardText}>None</Text>
         </View>
       )}
     </Card>

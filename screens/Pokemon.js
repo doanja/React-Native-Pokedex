@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import { Sprite, Stats, Abilities, HeldItems, Height } from '../components/Pokemon/index';
+import { Sprite, Stats, Abilities, HeldItems, Height, Weight } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -317,6 +317,8 @@ export default function Pokemon({ route }) {
         <HeldItems items={pokemonData.items} />
 
         <Height height={pokemonData.height} />
+
+        <Weight weight={pokemonData.weight} />
       </ScrollView>
     </View>
   );

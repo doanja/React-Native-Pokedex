@@ -4,5 +4,6 @@ import HeldItems from './HeldItems';
 import PokemonCard from './PokemonCard';
 import Sprite from './Sprite';
 import Stats from './Stats';
+import Weight from './Weight';
 
-export { Abilities, Stats, Height, HeldItems, PokemonCard, Sprite };
+export { Abilities, Stats, Height, HeldItems, PokemonCard, Sprite, Weight };
