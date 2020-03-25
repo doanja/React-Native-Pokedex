@@ -6,6 +6,16 @@ import Sprite from './Sprite';
 import Stats from './Stats';
 import Weight from './Weight';
 import Experience from './Experience';
-import EVs from './EVs';
+import EffortValues from './EffortValues';
 
-export { Abilities, Stats, Height, HeldItems, PokemonCard, Sprite, Weight, Experience, EVs };
+export {
+  Abilities,
+  Stats,
+  Height,
+  HeldItems,
+  PokemonCard,
+  Sprite,
+  Weight,
+  Experience,
+  EffortValues
+};

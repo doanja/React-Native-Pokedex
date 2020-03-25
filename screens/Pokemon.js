@@ -11,7 +11,7 @@ import {
   Height,
   Weight,
   Experience,
-  EVs
+  EffortValues
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -157,7 +157,7 @@ export default function Pokemon({ route }) {
           abilities: abilities.reverse(),
           items,
           types,
-          evs,
+          evs: evs.reverse(),
           stats: { hp, attack, defense, speed, specialAttack, specialDefense }
         });
       })
@@ -331,7 +331,7 @@ export default function Pokemon({ route }) {
 
         <Experience experience={pokemonData.baseExperience} />
 
-        <EVs evs={pokemonData.evs} />
+        <EffortValues evs={pokemonData.evs} />
       </ScrollView>
     </View>
   );

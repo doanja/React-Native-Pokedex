@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 
-export default function HeldItems({ evs }) {
-  console.log('evs :', evs);
+export default function EffortValues({ evs }) {
   return (
     <Card>
       <CardHeader>
