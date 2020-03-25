@@ -43,5 +43,12 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
     textTransform: 'capitalize'
+  },
+  cardText: {
+    color: colors.black,
+    margin: 3,
+    padding: 10,
+    textAlign: 'center',
+    textTransform: 'capitalize'
   }
 });
