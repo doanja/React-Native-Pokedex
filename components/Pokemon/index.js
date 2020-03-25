@@ -7,6 +7,7 @@ import Stats from './Stats';
 import Weight from './Weight';
 import Experience from './Experience';
 import EffortValues from './EffortValues';
+import Description from './Description';
 
 export {
   Abilities,
@@ -17,5 +18,6 @@ export {
   Sprite,
   Weight,
   Experience,
-  EffortValues
+  EffortValues,
+  Description
 };

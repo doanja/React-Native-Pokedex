@@ -11,7 +11,8 @@ import {
   Height,
   Weight,
   Experience,
-  EffortValues
+  EffortValues,
+  Description
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -180,6 +181,7 @@ export default function Pokemon({ route }) {
         res.data.flavor_text_entries.filter(element => {
           if (element.language.name === 'en') {
             description = element.flavor_text;
+            console.log('description :', description);
           }
         });
 
@@ -332,6 +334,8 @@ export default function Pokemon({ route }) {
         <Experience experience={pokemonData.baseExperience} />
 
         <EffortValues evs={pokemonData.evs} />
+
+        <Description description={speciesData.description} />
       </ScrollView>
     </View>
   );
