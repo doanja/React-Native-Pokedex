@@ -4,7 +4,7 @@ import { globalStyles } from '../../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card, CardHeader } from '../../components';
 
-export default function PokemonSprite({ name, spriteDefault, spriteShiny }) {
+export default function Sprite({ name, spriteDefault, spriteShiny }) {
   const [isSpriteDefault, setIsSpriteDefault] = useState(true);
   const [spriteUri, setSpriteUri] = useState(spriteDefault);
 

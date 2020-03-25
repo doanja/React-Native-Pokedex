@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
-import { Card, CardHeader } from '../components';
-import PokemonSprite from '../components/Pokemon/PokemonSprite';
-import ProgressBar from '../components/ProgressBar';
-import PokemonAbilities from '../components/Pokemon/PokemonAbilities';
-import PokemonHeldItems from '../components/Pokemon/PokemonHeldItems';
+
+import { Sprite, Stats, Abilities, HeldItems } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -307,26 +304,17 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <PokemonSprite
+        <Sprite
           name={name}
           spriteDefault={pokemonData.spriteDefault}
           spriteShiny={pokemonData.spriteShiny}
         />
 
-        <Card>
-          <CardHeader>
-            <Text style={globalStyles.headerText}>Stats</Text>
-          </CardHeader>
-          <ProgressBar amount={pokemonData.stats.hp} label={'HP'} />
-          <ProgressBar amount={pokemonData.stats.attack} label={'Attack'} />
-          <ProgressBar amount={pokemonData.stats.defense} label={'Defense'} />
-          <ProgressBar amount={pokemonData.stats.specialAttack} label={'Sp. Atk'} />
-          <ProgressBar amount={pokemonData.stats.specialDefense} label={'Sp. Def'} />
-          <ProgressBar amount={pokemonData.stats.speed} label={'Speed'} />
-        </Card>
+        <Stats stats={pokemonData.stats} />
 
-        <PokemonAbilities abilities={pokemonData.abilities} />
-        <PokemonHeldItems items={pokemonData.items} />
+        <Abilities abilities={pokemonData.abilities} />
+
+        <HeldItems items={pokemonData.items} />
       </ScrollView>
     </View>
   );
