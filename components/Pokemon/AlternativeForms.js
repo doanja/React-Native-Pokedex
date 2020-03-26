@@ -6,7 +6,6 @@ import { Card, CardHeader } from '../../components';
 import { colors } from '../../constants/theme';
 
 export default function AlternativeForms({ forms }) {
-  console.log('forms :', forms);
   const navigation = useNavigation();
 
   return (
@@ -20,6 +19,7 @@ export default function AlternativeForms({ forms }) {
             <TouchableOpacity
               style={styles.imageContainer}
               onPress={() =>
+                // TODO change to alternative pokemon component
                 navigation.navigate('Pokemon', {
                   name: form.name,
                   url: form.url

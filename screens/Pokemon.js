@@ -68,8 +68,10 @@ export default function Pokemon({ route }) {
     evolutionUrl: '',
     eggGroups: [],
     evolutions: [],
-    varieties: []
+    alternativeForms: []
   });
+
+  const [forms, setForms] = useState({ alternativeForms: [] });
 
   useEffect(() => {
     getPokemonData();
@@ -87,11 +89,9 @@ export default function Pokemon({ route }) {
     }
   }, [speciesData.evolutionUrl]);
 
-  // useEffect(() => {
-  //   // if (pokemonData.pokemonId) {
-  //   getAlternativeForms();
-  //   // }
-  // }, []);
+  useEffect(() => {
+    getAlternativeForms();
+  }, []);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
@@ -176,32 +176,12 @@ export default function Pokemon({ route }) {
       });
   };
 
-  const getAlternativeForms = () => {
-    API.getSpeciesData(pokemonData.pokemonId)
-      .then(res => {
-        const varieties = [];
-        res.data.varieties.filter(variety => {
-          if (!variety.is_default) {
-            varieties.push({
-              name: variety.pokemon.name,
-              url: variety.pokemon.url
-            });
-          }
-        });
-
-        getVarietySprite(varieties);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
         const eggGroups = [];
         let description = '';
-        const varieties = [];
+        // const alternativeForms = [];
 
         res.data.egg_groups.forEach(group => {
           eggGroups.push({ name: group.name, url: group.url });
@@ -213,16 +193,16 @@ export default function Pokemon({ route }) {
           }
         });
 
-        res.data.varieties.filter(variety => {
-          if (!variety.is_default) {
-            varieties.push({
-              name: variety.pokemon.name,
-              url: variety.pokemon.url
-            });
-          }
-        });
+        // res.data.alternativeForms.filter(variety => {
+        //   if (!variety.is_default) {
+        //     alternativeForms.push({
+        //       name: variety.pokemon.name,
+        //       url: variety.pokemon.url
+        //     });
+        //   }
+        // });
 
-        getVarietySprite(varieties);
+        // getVarietySprite(alternativeForms);
 
         setSpeciesData({
           pokemonId: res.data.id,
@@ -325,12 +305,34 @@ export default function Pokemon({ route }) {
     }
   };
 
-  const getVarietySprite = varieties => {
-    varieties.forEach(variety => {
+  const getAlternativeForms = () => {
+    API.getSpeciesData(pokemonData.pokemonId)
+      .then(res => {
+        const alternativeForms = [];
+        res.data.alternativeForms.filter(form => {
+          if (!form.is_default) {
+            alternativeForms.push({
+              name: form.pokemon.name,
+              url: form.pokemon.url
+            });
+          }
+        });
+
+        getVarietySprite(alternativeForms);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const getVarietySprite = alternativeForms => {
+    alternativeForms.forEach(variety => {
       API.getVarietySprites(variety.url)
         .then(res => {
           variety.sprite = res.data.sprites.front_default;
-          setSpeciesData({ ...speciesData, varieties });
+          setForms({ ...forms, alternativeForms });
+
+          // console.log('forms :', forms);
         })
         .catch(err => {
           console.log(err);
@@ -341,7 +343,7 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        {/* <AlternativeForms forms={speciesData.varieties} /> */}
+        <AlternativeForms forms={forms.alternativeForms} />
 
         <Sprite
           name={name}
