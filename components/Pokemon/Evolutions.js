@@ -1,10 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import { colors } from '../../constants/theme';
 
 export default function Evolutions({ evolutions }) {
+  const navigation = useNavigation();
+
+  // console.log('evolutions :', evolutions);
+
   return (
     <Card>
       <CardHeader>
@@ -13,7 +18,14 @@ export default function Evolutions({ evolutions }) {
       {evolutions
         ? evolutions.map(evolution => (
             <View style={styles.container} key={evolution.name}>
-              <TouchableOpacity style={styles.imageContainer}>
+              <TouchableOpacity
+                style={styles.imageContainer}
+                onPress={() =>
+                  navigation.navigate('Pokemon', {
+                    name: evolution.name,
+                    url: evolution.url
+                  })
+                }>
                 <Image
                   style={styles.image}
                   source={{

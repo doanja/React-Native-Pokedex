@@ -83,7 +83,7 @@ export default function Pokemon({ route }) {
     if (speciesData.evolutionUrl) {
       getEvolutionData(speciesData.evolutionUrl);
     }
-  }, [speciesData.evolutionUrl]);
+  }, [speciesData.evolutionUrl, pokemonData.pokemonId]);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
