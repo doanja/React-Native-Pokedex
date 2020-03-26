@@ -9,7 +9,7 @@ export default function HeldItems({ items }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Held Items</Text>
       </CardHeader>
-      {items.length > 0 ? (
+      {items.length ? (
         items.map(item => (
           <View key={item.name}>
             <TouchableOpacity>

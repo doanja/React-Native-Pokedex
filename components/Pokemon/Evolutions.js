@@ -8,8 +8,6 @@ import { colors } from '../../constants/theme';
 export default function Evolutions({ evolutions }) {
   const navigation = useNavigation();
 
-  // console.log('evolutions :', evolutions);
-
   return (
     <Card>
       <CardHeader>

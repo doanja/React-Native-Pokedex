@@ -9,6 +9,8 @@ import Experience from './Experience';
 import EffortValues from './EffortValues';
 import Description from './Description';
 import Evolutions from './Evolutions';
+import AlternativeForms from './AlternativeForms';
+import EggGroups from './EggGroups';
 
 export {
   Abilities,
@@ -21,5 +23,7 @@ export {
   Experience,
   EffortValues,
   Description,
-  Evolutions
+  Evolutions,
+  AlternativeForms,
+  EggGroups
 };

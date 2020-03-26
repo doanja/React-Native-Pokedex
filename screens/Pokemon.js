@@ -13,7 +13,9 @@ import {
   Experience,
   EffortValues,
   Description,
-  Evolutions
+  Evolutions,
+  AlternativeForms,
+  EggGroups
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -71,19 +73,19 @@ export default function Pokemon({ route }) {
 
   useEffect(() => {
     getPokemonData();
-  }, [name]);
+  }, []);
 
   useEffect(() => {
-    if (pokemonData.pokemonId) {
-      getSpeciesData();
-    }
+    getSpeciesData();
   }, [pokemonData.pokemonId]);
 
   useEffect(() => {
-    if (speciesData.evolutionUrl) {
-      getEvolutionData(speciesData.evolutionUrl);
-    }
-  }, [speciesData.evolutionUrl, pokemonData.pokemonId]);
+    getEvolutionData(speciesData.evolutionUrl);
+  }, [speciesData.evolutionUrl]);
+
+  useEffect(() => {
+    getAlternativeForms();
+  }, [pokemonData.pokemonId]);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
@@ -168,12 +170,32 @@ export default function Pokemon({ route }) {
       });
   };
 
+  const getAlternativeForms = () => {
+    API.getSpeciesData(pokemonData.pokemonId)
+      .then(res => {
+        const varieties = [];
+        res.data.varieties.filter(variety => {
+          if (!variety.is_default) {
+            varieties.push({
+              name: variety.pokemon.name,
+              url: variety.pokemon.url
+            });
+          }
+        });
+
+        getVarietySprite(varieties);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
         const eggGroups = [];
         let description = '';
-        const varieties = [];
+        // const varieties = [];
 
         res.data.egg_groups.forEach(group => {
           eggGroups.push({ name: group.name, url: group.url });
@@ -185,16 +207,14 @@ export default function Pokemon({ route }) {
           }
         });
 
-        res.data.varieties.filter(variety => {
-          if (!variety.is_default) {
-            varieties.push({
-              name: variety.pokemon.name,
-              url: variety.pokemon.url
-            });
-          }
-        });
-
-        getVarietySprite(varieties);
+        // res.data.varieties.filter(variety => {
+        //   if (!variety.is_default) {
+        //     varieties.push({
+        //       name: variety.pokemon.name,
+        //       url: variety.pokemon.url
+        //     });
+        //   }
+        // });
 
         setSpeciesData({
           pokemonId: res.data.id,
@@ -216,8 +236,6 @@ export default function Pokemon({ route }) {
           shape: { name: res.data.shape.name, url: res.data.shape.url },
           evolutionUrl: res.data.evolution_chain.url
         });
-
-        // console.log('speciesData :', speciesData);
       })
       .catch(err => {
         console.log(err);
@@ -315,6 +333,8 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
+        <AlternativeForms forms={speciesData.varieties} />
+
         <Sprite
           name={name}
           spriteDefault={pokemonData.spriteDefault}
@@ -338,6 +358,8 @@ export default function Pokemon({ route }) {
         <Description description={speciesData.description} />
 
         <Evolutions evolutions={speciesData.evolutions} />
+
+        <EggGroups groups={speciesData.eggGroups} />
       </ScrollView>
     </View>
   );
