@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import { colors } from '../../constants/theme';
 
 export default function Evolutions({ evolutions }) {
   return (
@@ -9,44 +10,56 @@ export default function Evolutions({ evolutions }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Evolutions</Text>
       </CardHeader>
-      {evolutions.map(evolution => (
-        <View key={evolution.name}>
-          <TouchableOpacity style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: evolution.sprite
-              }}
-            />
-          </TouchableOpacity>
-          {/* {evolution.method.length === 0
-            ? null
-            : evolution.method.map(method => {
-                return (
-                  <Text key={method.name}>{`${method.name}: ${
-                    typeof method.condition === 'object' ? method.condition.name : method.condition
-                  }`}</Text>
-                );
-              })} */}
-        </View>
-      ))}
+      {evolutions
+        ? evolutions.map(evolution => (
+            <View style={styles.container} key={evolution.name}>
+              <TouchableOpacity style={styles.imageContainer}>
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: evolution.sprite
+                  }}
+                />
+              </TouchableOpacity>
+              {evolution.method.length === 0
+                ? null
+                : evolution.method.map(method => {
+                    return (
+                      <Text style={styles.cardText} key={method.name}>{`${method.name}: ${
+                        typeof method.condition === 'object'
+                          ? method.condition.name
+                          : method.condition
+                      }`}</Text>
+                    );
+                  })}
+            </View>
+          ))
+        : null}
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 5
+  },
   imageContainer: {
     width: '50%',
-    borderWidth: 0.5,
-    borderColor: 'crimson',
     alignSelf: 'center',
-    padding: 10,
-    margin: 10
+    padding: 5,
+    margin: 4
   },
   image: {
-    width: '50%',
+    width: '75%',
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
     justifyContent: 'center'
+  },
+  cardText: {
+    color: colors.black,
+    margin: 0,
+    padding: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize'
   }
 });
