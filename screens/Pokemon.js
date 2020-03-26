@@ -73,19 +73,25 @@ export default function Pokemon({ route }) {
 
   useEffect(() => {
     getPokemonData();
-  }, []);
+  }, [name]);
 
   useEffect(() => {
-    getSpeciesData();
+    if (pokemonData.pokemonId) {
+      getSpeciesData();
+    }
   }, [pokemonData.pokemonId]);
 
   useEffect(() => {
-    getEvolutionData(speciesData.evolutionUrl);
+    if (speciesData.evolutionUrl) {
+      getEvolutionData(speciesData.evolutionUrl);
+    }
   }, [speciesData.evolutionUrl]);
 
-  useEffect(() => {
-    getAlternativeForms();
-  }, [pokemonData.pokemonId]);
+  // useEffect(() => {
+  //   // if (pokemonData.pokemonId) {
+  //   getAlternativeForms();
+  //   // }
+  // }, []);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
@@ -195,7 +201,7 @@ export default function Pokemon({ route }) {
       .then(res => {
         const eggGroups = [];
         let description = '';
-        // const varieties = [];
+        const varieties = [];
 
         res.data.egg_groups.forEach(group => {
           eggGroups.push({ name: group.name, url: group.url });
@@ -207,14 +213,16 @@ export default function Pokemon({ route }) {
           }
         });
 
-        // res.data.varieties.filter(variety => {
-        //   if (!variety.is_default) {
-        //     varieties.push({
-        //       name: variety.pokemon.name,
-        //       url: variety.pokemon.url
-        //     });
-        //   }
-        // });
+        res.data.varieties.filter(variety => {
+          if (!variety.is_default) {
+            varieties.push({
+              name: variety.pokemon.name,
+              url: variety.pokemon.url
+            });
+          }
+        });
+
+        getVarietySprite(varieties);
 
         setSpeciesData({
           pokemonId: res.data.id,
@@ -333,7 +341,7 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <AlternativeForms forms={speciesData.varieties} />
+        {/* <AlternativeForms forms={speciesData.varieties} /> */}
 
         <Sprite
           name={name}
