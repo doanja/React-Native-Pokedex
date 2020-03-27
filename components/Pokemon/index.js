@@ -12,6 +12,7 @@ import Evolutions from './Evolutions';
 import AlternativeForms from './AlternativeForms';
 import EggGroups from './EggGroups';
 import GrowthRate from './GrowthRate';
+import Habitat from './Habitat';
 
 export {
   Abilities,
@@ -27,5 +28,6 @@ export {
   Evolutions,
   AlternativeForms,
   EggGroups,
-  GrowthRate
+  GrowthRate,
+  Habitat
 };

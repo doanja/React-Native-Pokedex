@@ -11,6 +11,7 @@ export default function Abilities({ abilities }) {
       </CardHeader>
       {abilities.map(ability => (
         <View key={ability.name}>
+          {/* TODO: add onPress event */}
           <TouchableOpacity>
             <Text style={globalStyles.cardItem}>{ability.name}</Text>
           </TouchableOpacity>

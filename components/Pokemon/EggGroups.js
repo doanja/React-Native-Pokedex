@@ -11,6 +11,7 @@ export default function EggGroups({ groups }) {
       </CardHeader>
       {groups.map(group => (
         <View key={group.name}>
+          {/* TODO: add onPress event */}
           <TouchableOpacity>
             <Text style={globalStyles.cardItem}>{group.name}</Text>
           </TouchableOpacity>

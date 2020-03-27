@@ -16,7 +16,8 @@ import {
   Evolutions,
   AlternativeForms,
   EggGroups,
-  GrowthRate
+  GrowthRate,
+  Habitat
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -360,6 +361,8 @@ export default function Pokemon({ route }) {
         <EggGroups groups={speciesData.eggGroups} />
 
         <GrowthRate growthRate={speciesData.growthRate} />
+
+        <Habitat habitat={speciesData.habitat} />
       </ScrollView>
     </View>
   );
