@@ -19,7 +19,8 @@ import {
   GrowthRate,
   Habitat,
   Gender,
-  CatchRate
+  CatchRate,
+  HatchSteps
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -369,6 +370,8 @@ export default function Pokemon({ route }) {
         <Gender gender={speciesData.gender} />
 
         <CatchRate catchRate={speciesData.catchRate} />
+
+        <HatchSteps hatchSteps={speciesData.hatchSteps} />
       </ScrollView>
     </View>
   );
