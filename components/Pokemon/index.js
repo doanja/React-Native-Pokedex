@@ -17,6 +17,7 @@ import Gender from './Gender';
 import CatchRate from './CatchRate';
 import HatchSteps from './HatchSteps';
 import Happiness from './Happiness';
+import Shape from './Shape';
 
 export {
   Abilities,
@@ -37,5 +38,6 @@ export {
   Gender,
   CatchRate,
   HatchSteps,
-  Happiness
+  Happiness,
+  Shape
 };

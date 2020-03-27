@@ -21,7 +21,8 @@ import {
   Gender,
   CatchRate,
   HatchSteps,
-  Happiness
+  Happiness,
+  Shape
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -375,6 +376,8 @@ export default function Pokemon({ route }) {
         <HatchSteps hatchSteps={speciesData.hatchSteps} />
 
         <Happiness happiness={speciesData.baseHappiness} />
+
+        <Shape shape={speciesData.shape} />
       </ScrollView>
     </View>
   );
