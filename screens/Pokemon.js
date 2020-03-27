@@ -67,8 +67,7 @@ export default function Pokemon({ route }) {
     },
     evolutionUrl: '',
     eggGroups: [],
-    evolutions: [],
-    alternativeForms: []
+    evolutions: []
   });
 
   const [forms, setForms] = useState({ alternativeForms: [] });
@@ -331,8 +330,6 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <AlternativeForms forms={forms.alternativeForms} />
-
         <Sprite
           name={name}
           spriteDefault={pokemonData.spriteDefault}
@@ -356,6 +353,8 @@ export default function Pokemon({ route }) {
         <Description description={speciesData.description} />
 
         <Evolutions evolutions={speciesData.evolutions} />
+
+        <AlternativeForms forms={forms.alternativeForms} />
 
         <EggGroups groups={speciesData.eggGroups} />
       </ScrollView>
