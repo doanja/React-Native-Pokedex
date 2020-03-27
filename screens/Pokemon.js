@@ -15,7 +15,8 @@ import {
   Description,
   Evolutions,
   AlternativeForms,
-  EggGroups
+  EggGroups,
+  GrowthRate
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -357,6 +358,8 @@ export default function Pokemon({ route }) {
         <AlternativeForms forms={forms.alternativeForms} />
 
         <EggGroups groups={speciesData.eggGroups} />
+
+        <GrowthRate growthRate={speciesData.growthRate} />
       </ScrollView>
     </View>
   );
