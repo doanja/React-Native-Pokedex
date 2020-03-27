@@ -13,6 +13,7 @@ import AlternativeForms from './AlternativeForms';
 import EggGroups from './EggGroups';
 import GrowthRate from './GrowthRate';
 import Habitat from './Habitat';
+import Gender from './Gender';
 
 export {
   Abilities,
@@ -29,5 +30,6 @@ export {
   AlternativeForms,
   EggGroups,
   GrowthRate,
-  Habitat
+  Habitat,
+  Gender
 };

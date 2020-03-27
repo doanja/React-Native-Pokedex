@@ -17,7 +17,8 @@ import {
   AlternativeForms,
   EggGroups,
   GrowthRate,
-  Habitat
+  Habitat,
+  Gender
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -363,6 +364,8 @@ export default function Pokemon({ route }) {
         <GrowthRate growthRate={speciesData.growthRate} />
 
         <Habitat habitat={speciesData.habitat} />
+
+        <Gender gender={speciesData.gender} />
       </ScrollView>
     </View>
   );
