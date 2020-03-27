@@ -14,6 +14,7 @@ import EggGroups from './EggGroups';
 import GrowthRate from './GrowthRate';
 import Habitat from './Habitat';
 import Gender from './Gender';
+import CatchRate from './CatchRate';
 
 export {
   Abilities,
@@ -31,5 +32,6 @@ export {
   EggGroups,
   GrowthRate,
   Habitat,
-  Gender
+  Gender,
+  CatchRate
 };
