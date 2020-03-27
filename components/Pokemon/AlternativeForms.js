@@ -31,8 +31,8 @@ export default function AlternativeForms({ forms }) {
                   uri: form.sprite
                 }}
               />
-              <Text style={globalStyles.cardText}>{form.name}</Text>
             </TouchableOpacity>
+            <Text style={styles.cardText}>{form.name}</Text>
           </View>
         ))
       ) : (
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   imageContainer: {
-    width: '50%',
+    width: '30%',
     alignSelf: 'center',
     padding: 5,
     margin: 4
   },
   image: {
-    width: '75%',
+    width: '100%',
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
     justifyContent: 'center'

@@ -90,8 +90,10 @@ export default function Pokemon({ route }) {
   }, [speciesData.evolutionUrl]);
 
   useEffect(() => {
-    getAlternativeForms();
-  }, []);
+    if (pokemonData.pokemonId) {
+      getAlternativeForms();
+    }
+  }, [pokemonData.pokemonId]);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
@@ -181,7 +183,6 @@ export default function Pokemon({ route }) {
       .then(res => {
         const eggGroups = [];
         let description = '';
-        // const alternativeForms = [];
 
         res.data.egg_groups.forEach(group => {
           eggGroups.push({ name: group.name, url: group.url });
@@ -192,17 +193,6 @@ export default function Pokemon({ route }) {
             description = element.flavor_text;
           }
         });
-
-        // res.data.alternativeForms.filter(variety => {
-        //   if (!variety.is_default) {
-        //     alternativeForms.push({
-        //       name: variety.pokemon.name,
-        //       url: variety.pokemon.url
-        //     });
-        //   }
-        // });
-
-        // getVarietySprite(alternativeForms);
 
         setSpeciesData({
           pokemonId: res.data.id,
@@ -309,30 +299,28 @@ export default function Pokemon({ route }) {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
         const alternativeForms = [];
-        res.data.alternativeForms.filter(form => {
+        res.data.varieties.filter(form => {
           if (!form.is_default) {
             alternativeForms.push({
-              name: form.pokemon.name,
+              name: form.pokemon.name.replace(/-/g, ' '),
               url: form.pokemon.url
             });
           }
         });
 
-        getVarietySprite(alternativeForms);
+        getAlternateFormSprites(alternativeForms);
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  const getVarietySprite = alternativeForms => {
-    alternativeForms.forEach(variety => {
-      API.getVarietySprites(variety.url)
+  const getAlternateFormSprites = alternativeForms => {
+    alternativeForms.forEach(form => {
+      API.getVarietySprites(form.url)
         .then(res => {
-          variety.sprite = res.data.sprites.front_default;
+          form.sprite = res.data.sprites.front_default;
           setForms({ ...forms, alternativeForms });
-
-          // console.log('forms :', forms);
         })
         .catch(err => {
           console.log(err);

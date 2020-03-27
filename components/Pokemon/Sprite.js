@@ -46,7 +46,7 @@ export default function Sprite({ name, spriteDefault, spriteShiny }) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: '40%'
+    width: '30%'
   },
   image: {
     width: '100%',
