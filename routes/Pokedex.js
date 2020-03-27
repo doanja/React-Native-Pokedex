@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Pokedex from '../screens/Pokedex';
+import { Pokedex } from '../screens/';
 import { colors } from '../constants/theme';
 
 const Stack = createStackNavigator();

@@ -1,8 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
-import Pokedex from '../screens/Pokedex';
-import Pokemon from '../screens/Pokemon';
+import { Pokedex, Pokemon, AlternatePokemonForm } from '../screens/';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +29,13 @@ export default function Navigator() {
       <Stack.Screen
         name='Pokemon'
         component={Pokemon}
+        options={{
+          headerShown: true
+        }}
+      />
+      <Stack.Screen
+        name='AlternatePokemonForm'
+        component={AlternatePokemonForm}
         options={{
           headerShown: true
         }}
