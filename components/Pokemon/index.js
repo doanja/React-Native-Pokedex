@@ -18,6 +18,7 @@ import CatchRate from './CatchRate';
 import HatchSteps from './HatchSteps';
 import Happiness from './Happiness';
 import Shape from './Shape';
+import Moveset from './Moveset';
 
 export {
   Abilities,
@@ -39,5 +40,6 @@ export {
   CatchRate,
   HatchSteps,
   Happiness,
-  Shape
+  Shape,
+  Moveset
 };

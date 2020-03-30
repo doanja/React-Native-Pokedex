@@ -22,7 +22,8 @@ import {
   CatchRate,
   HatchSteps,
   Happiness,
-  Shape
+  Shape,
+  Moveset
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -49,6 +50,7 @@ export default function Pokemon({ route }) {
       specialDefense: '',
       speed: ''
     },
+    moveset: { levelUpMoves: [], tmMoves: [], firstEvoMoves: [] },
     isFavorite: false
   });
 
@@ -110,6 +112,10 @@ export default function Pokemon({ route }) {
         const evs = [];
         let { hp, attack, defense, speed, specialAttack, specialDefense } = '';
 
+        const levelUpMoves = [];
+        const tmMoves = [];
+        const firstEvoMoves = [];
+
         res.data.abilities.forEach(ability => {
           abilities.push({
             name: ability.ability.name.replace(/-/g, ' '),
@@ -164,6 +170,56 @@ export default function Pokemon({ route }) {
           }
         });
 
+        res.data.moves.forEach(move => {
+          move.version_group_details.filter(version => {
+            if (version.version_group.name === 'ultra-sun-ultra-moon') {
+              if (version.move_learn_method.name === 'egg') {
+                firstEvoMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name
+                });
+              }
+            }
+          });
+        });
+
+        // sort moves my level up, and move name
+        levelUpMoves.sort((a, b) =>
+          a.level_learned_at > b.level_learned_at
+            ? 1
+            : a.level_learned_at === b.level_learned_at
+            ? a.move_name > b.move_name
+              ? 1
+              : -1
+            : -1
+        );
+        console.log('levelUpMoves :', levelUpMoves);
+        levelUpMoves.forEach(move => console.log(move.level_learned_at + ' ' + move.move_name));
+
+        // sort moves alphabetically
+        tmMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
+
+        res.data.moves.forEach(move => {
+          move.version_group_details.filter(version => {
+            if (version.version_group.name === 'ultra-sun-ultra-moon') {
+              if (version.move_learn_method.name === 'level-up') {
+                levelUpMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name
+                });
+              } else if (version.move_learn_method.name === 'machine') {
+                tmMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name
+                });
+              }
+            }
+          });
+        });
+
         setPokemonData({
           pokemonId: res.data.id,
           baseExperience: res.data.base_experience,
@@ -176,7 +232,12 @@ export default function Pokemon({ route }) {
           items,
           types,
           evs: evs.reverse(),
-          stats: { hp, attack, defense, speed, specialAttack, specialDefense }
+          stats: { hp, attack, defense, speed, specialAttack, specialDefense },
+          moveset: {
+            levelUpMoves,
+            tmMoves,
+            firstEvoMoves: firstEvoMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1))
+          }
         });
       })
       .catch(err => {
@@ -378,6 +439,8 @@ export default function Pokemon({ route }) {
         <Happiness happiness={speciesData.baseHappiness} />
 
         <Shape shape={speciesData.shape} />
+
+        <Moveset moveset={pokemonData.moveset} />
       </ScrollView>
     </View>
   );
