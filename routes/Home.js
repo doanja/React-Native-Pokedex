@@ -16,7 +16,8 @@ export default function Navigator() {
         headerTitleStyle: {
           fontWeight: 'bold'
         },
-        headerShown: false
+        headerShown: false,
+        title: 'Pokedex'
       }}>
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen
