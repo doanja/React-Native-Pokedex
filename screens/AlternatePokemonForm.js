@@ -17,6 +17,8 @@ import {
 export default function AlternatePokemonForm({ route }) {
   const { name, url } = route.params;
 
+  const [pokemonId, setPokemonId] = useState();
+
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
     baseExperience: '',
@@ -42,11 +44,17 @@ export default function AlternatePokemonForm({ route }) {
   });
 
   useEffect(() => {
-    getPokemonData();
-  }, [name]);
+    setPokemonId(url.split('/')[url.split('/').length - 2]);
+  }, []);
+
+  useEffect(() => {
+    if (pokemonId) {
+      getPokemonData();
+    }
+  }, [pokemonId]);
 
   const getPokemonData = () => {
-    API.getPokemonData(name)
+    API.getPokemonData(pokemonId)
       .then(res => {
         const abilities = [];
         const items = [];
