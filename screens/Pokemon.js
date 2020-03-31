@@ -173,6 +173,26 @@ export default function Pokemon({ route }) {
         res.data.moves.forEach(move => {
           move.version_group_details.filter(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
+              if (version.move_learn_method.name === 'level-up') {
+                levelUpMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name
+                });
+              } else if (version.move_learn_method.name === 'machine') {
+                tmMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name
+                });
+              }
+            }
+          });
+        });
+
+        res.data.moves.forEach(move => {
+          move.version_group_details.filter(version => {
+            if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'egg') {
                 firstEvoMoves.push({
                   move_name: move.move.name,
@@ -194,31 +214,12 @@ export default function Pokemon({ route }) {
               : -1
             : -1
         );
-        console.log('levelUpMoves :', levelUpMoves);
-        levelUpMoves.forEach(move => console.log(move.level_learned_at + ' ' + move.move_name));
 
         // sort moves alphabetically
         tmMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
 
-        res.data.moves.forEach(move => {
-          move.version_group_details.filter(version => {
-            if (version.version_group.name === 'ultra-sun-ultra-moon') {
-              if (version.move_learn_method.name === 'level-up') {
-                levelUpMoves.push({
-                  move_name: move.move.name,
-                  level_learned_at: version.level_learned_at,
-                  learn_method: version.move_learn_method.name
-                });
-              } else if (version.move_learn_method.name === 'machine') {
-                tmMoves.push({
-                  move_name: move.move.name,
-                  level_learned_at: version.level_learned_at,
-                  learn_method: version.move_learn_method.name
-                });
-              }
-            }
-          });
-        });
+        // sort moves alphabetically
+        firstEvoMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
 
         setPokemonData({
           pokemonId: res.data.id,
@@ -236,7 +237,7 @@ export default function Pokemon({ route }) {
           moveset: {
             levelUpMoves,
             tmMoves,
-            firstEvoMoves: firstEvoMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1))
+            firstEvoMoves
           }
         });
       })
@@ -404,7 +405,7 @@ export default function Pokemon({ route }) {
           spriteShiny={pokemonData.spriteShiny}
         />
 
-        <Stats stats={pokemonData.stats} />
+        {/* <Stats stats={pokemonData.stats} />
 
         <Abilities abilities={pokemonData.abilities} />
 
@@ -438,7 +439,7 @@ export default function Pokemon({ route }) {
 
         <Happiness happiness={speciesData.baseHappiness} />
 
-        <Shape shape={speciesData.shape} />
+        <Shape shape={speciesData.shape} /> */}
 
         <Moveset moveset={pokemonData.moveset} />
       </ScrollView>

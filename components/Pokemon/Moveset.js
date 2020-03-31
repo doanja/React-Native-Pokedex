@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 
 export default function Moveset({ moveset }) {
-  useEffect(() => {
-    moveset.levelUpMoves.forEach(move => console.log(move.move_name));
-  }, []);
-
   return (
     <Card>
       <CardHeader>
