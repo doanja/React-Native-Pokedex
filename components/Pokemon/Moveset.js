@@ -8,13 +8,15 @@ export default function Moveset({ moveset }) {
   const [currentMoveset, setCurrentMoveset] = useState('');
 
   const handleClick = moveset => {
+    console.log('collapse:', collapse);
+    // console.log('currentMoveset', currentMoveset);
     currentMoveset === moveset ? setCollapse(!collapse) : setCurrentMoveset(moveset);
   };
 
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>Moveset</Text>
+        <Text style={globalStyles.headerText}>Movesets</Text>
       </CardHeader>
 
       <View style={styles.container}>
@@ -62,15 +64,9 @@ export default function Moveset({ moveset }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 1,
-    borderRadius: 2
+    flexDirection: 'row'
   },
   buttonContainer: {
-    flex: 1,
-    paddingHorizontal: 1
+    flex: 1
   }
 });
