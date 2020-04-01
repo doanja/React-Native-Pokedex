@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
 
 export default function EggMoves({ moveset }) {
   const [collapse, setCollapse] = useState(true);
@@ -32,10 +31,7 @@ export default function EggMoves({ moveset }) {
 
 const styles = StyleSheet.create({
   header: {
-    width: '33%'
-  },
-
-  text: {
-    color: 'white'
+    // width: '100%'
+    flex: 1
   }
 });
