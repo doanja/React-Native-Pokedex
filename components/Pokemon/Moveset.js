@@ -8,9 +8,14 @@ export default function Moveset({ moveset }) {
   const [currentMoveset, setCurrentMoveset] = useState('');
 
   const handleClick = moveset => {
-    console.log('collapse:', collapse);
-    // console.log('currentMoveset', currentMoveset);
-    currentMoveset === moveset ? setCollapse(!collapse) : setCurrentMoveset(moveset);
+    if (currentMoveset === moveset) {
+      setCollapse(!collapse);
+    } else if (!collapse && currentMoveset !== moveset) {
+      setCurrentMoveset(moveset);
+    } else {
+      setCollapse(false);
+      setCurrentMoveset(moveset);
+    }
   };
 
   return (
