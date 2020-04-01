@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { FontAwesome } from '@expo/vector-icons';
 import { Card, CardHeader } from '../../components';
 
 export default function TmMoves({ moveset }) {
   const [collapse, setCollapse] = useState(true);
 
   return (
-    <Card>
-      <CardHeader touchable style={styles.header} onPress={() => setCollapse(!collapse)}>
-        <View style={styles.icon}>
-          {collapse ? (
-            <FontAwesome name='plus' size={24} color='white' />
-          ) : (
-            <FontAwesome name='minus' size={24} color='white' />
-          )}
-        </View>
+    <View>
+      {/* header */}
+      <TouchableOpacity style={styles.header} onPress={() => setCollapse(!collapse)}>
+        <Text style={globalStyles.cardItem}>TM Moves</Text>
+      </TouchableOpacity>
 
-        <Text style={styles.text} onPress={() => setCollapse(!collapse)}>
-          {' '}
-          TM Moves
-        </Text>
-      </CardHeader>
+      {/* move information */}
       {collapse ? null : (
         <View>
-          <TouchableOpacity>
-            <Text style={globalStyles.cardItem}>Move Name</Text>
-          </TouchableOpacity>
-          {moveset.tmMoves.map(move => (
-            <View key={move.name}>
+          {moveset.map(move => (
+            <View key={move.move_name}>
               {/* TODO: add onPress event */}
               <TouchableOpacity>
                 <Text style={globalStyles.cardItem}>{move.move_name}</Text>
@@ -38,20 +26,16 @@ export default function TmMoves({ moveset }) {
           ))}
         </View>
       )}
-    </Card>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    width: '33%'
   },
-  icon: {
-    // alignSelf: 'flex-start'
-  },
+
   text: {
-    // alignSelf: 'center',
-    color: 'red'
+    color: 'white'
   }
 });

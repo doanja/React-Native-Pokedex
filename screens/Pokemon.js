@@ -50,7 +50,7 @@ export default function Pokemon({ route }) {
       specialDefense: '',
       speed: ''
     },
-    moveset: { levelUpMoves: [], tmMoves: [], firstEvoMoves: [] },
+    moveset: { levelUpMoves: [], tmMoves: [], eggMoves: [] },
     isFavorite: false
   });
 
@@ -114,7 +114,7 @@ export default function Pokemon({ route }) {
 
         const levelUpMoves = [];
         const tmMoves = [];
-        const firstEvoMoves = [];
+        const eggMoves = [];
 
         res.data.abilities.forEach(ability => {
           abilities.push({
@@ -194,7 +194,7 @@ export default function Pokemon({ route }) {
           move.version_group_details.filter(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'egg') {
-                firstEvoMoves.push({
+                eggMoves.push({
                   move_name: move.move.name,
                   level_learned_at: version.level_learned_at,
                   learn_method: version.move_learn_method.name
@@ -219,7 +219,7 @@ export default function Pokemon({ route }) {
         tmMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
 
         // sort moves alphabetically
-        firstEvoMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
+        eggMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
 
         setPokemonData({
           pokemonId: res.data.id,
@@ -237,7 +237,7 @@ export default function Pokemon({ route }) {
           moveset: {
             levelUpMoves,
             tmMoves,
-            firstEvoMoves
+            eggMoves
           }
         });
       })

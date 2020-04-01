@@ -13,11 +13,11 @@ export default function Moveset({ moveset }) {
         <Text style={globalStyles.headerText}>Moveset</Text>
       </CardHeader>
 
-      <LevelUpMoves moveset={moveset} />
+      <LevelUpMoves moveset={moveset.levelUpMoves} />
 
-      <TmMoves moveset={moveset} />
+      <TmMoves moveset={moveset.tmMoves} />
 
-      {/* <EggMoves moveset={moveset} /> */}
+      <EggMoves moveset={moveset.eggMoves} />
     </Card>
   );
 }
