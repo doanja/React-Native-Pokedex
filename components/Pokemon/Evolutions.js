@@ -6,6 +6,7 @@ import { Card, CardHeader } from '../../components';
 import { colors } from '../../constants/theme';
 
 export default function Evolutions({ evolutions }) {
+  // console.log('evolutions :', evolutions);
   const navigation = useNavigation();
 
   return (

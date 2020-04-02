@@ -82,6 +82,8 @@ export default function Pokemon({ route }) {
 
   const [forms, setForms] = useState({ alternativeForms: [] });
 
+  const [moveset, setMoveset] = useState([]);
+
   useEffect(() => {
     getPokemonData();
   }, [name]);
@@ -315,7 +317,6 @@ export default function Pokemon({ route }) {
           });
 
           setSpeciesData({ ...speciesData, evolutions: resultArr });
-          // this.props.setFirstEvolution(this.state.evolutions[0]);
 
           return;
         })
@@ -397,10 +398,18 @@ export default function Pokemon({ route }) {
     });
   };
 
+  const getMovesets = () => {
+    API.getPokemonData(name)
+      .then(res => {})
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <Sprite
+        {/* <Sprite
           name={name}
           spriteDefault={pokemonData.spriteDefault}
           spriteShiny={pokemonData.spriteShiny}
@@ -422,11 +431,11 @@ export default function Pokemon({ route }) {
 
         <EffortValues evs={pokemonData.evs} />
 
-        <Description description={speciesData.description} />
+        <Description description={speciesData.description} /> */}
 
         <Evolutions evolutions={speciesData.evolutions} />
 
-        <AlternativeForms forms={forms.alternativeForms} />
+        {/* <AlternativeForms forms={forms.alternativeForms} />
 
         <EggGroups groups={speciesData.eggGroups} />
 
@@ -442,7 +451,7 @@ export default function Pokemon({ route }) {
 
         <Happiness happiness={speciesData.baseHappiness} />
 
-        <Shape shape={speciesData.shape} />
+        <Shape shape={speciesData.shape} /> */}
 
         <Moveset moveset={pokemonData.moveset} />
       </ScrollView>

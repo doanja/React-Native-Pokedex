@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
@@ -6,6 +6,12 @@ import { Card, CardHeader } from '../../components';
 export default function Moveset({ moveset }) {
   const [collapse, setCollapse] = useState(true);
   const [currentMoveset, setCurrentMoveset] = useState('');
+
+  useEffect(() => {
+    setCollapse(true);
+    setCurrentMoveset('');
+    console.log('moveset.eggMoves :', moveset.eggMoves[0]);
+  }, [moveset]);
 
   const handleClick = moveset => {
     if (currentMoveset === moveset) {
@@ -52,8 +58,8 @@ export default function Moveset({ moveset }) {
         {/* move information */}
         {collapse ? null : (
           <View>
-            {currentMoveset.map(move => (
-              <View key={move.move_name}>
+            {currentMoveset.map((move, index) => (
+              <View key={index}>
                 {/* TODO: add onPress event */}
                 <TouchableOpacity>
                   <Text style={globalStyles.cardItem}>{move.move_name}</Text>
