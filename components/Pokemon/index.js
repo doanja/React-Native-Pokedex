@@ -19,6 +19,7 @@ import HatchSteps from './HatchSteps';
 import Happiness from './Happiness';
 import Shape from './Shape';
 import Moveset from './Moveset';
+import Types from './Types';
 
 export {
   Abilities,
@@ -41,5 +42,6 @@ export {
   HatchSteps,
   Happiness,
   Shape,
-  Moveset
+  Moveset,
+  Types
 };

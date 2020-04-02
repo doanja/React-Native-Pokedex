@@ -23,7 +23,8 @@ import {
   HatchSteps,
   Happiness,
   Shape,
-  Moveset
+  Moveset,
+  Types
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -405,7 +406,9 @@ export default function Pokemon({ route }) {
           spriteShiny={pokemonData.spriteShiny}
         />
 
-        {/* <Stats stats={pokemonData.stats} />
+        <Types types={pokemonData.types} />
+
+        <Stats stats={pokemonData.stats} />
 
         <Abilities abilities={pokemonData.abilities} />
 
@@ -439,7 +442,7 @@ export default function Pokemon({ route }) {
 
         <Happiness happiness={speciesData.baseHappiness} />
 
-        <Shape shape={speciesData.shape} /> */}
+        <Shape shape={speciesData.shape} />
 
         <Moveset moveset={pokemonData.moveset} />
       </ScrollView>
