@@ -4,19 +4,22 @@ export default {
   getPokemonList: (offset, limit = 20) => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
   },
-  getPokemonData: id => {
+  getPokemonData: (id) => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`);
   },
-  getSpeciesData: id => {
+  getSpeciesData: (id) => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
   },
-  getEvolutionData: url => {
+  getEvolutionData: (url) => {
     return axios.get(url);
   },
-  getEvolutionSpecies: url => {
+  getEvolutionSpecies: (url) => {
     return axios.get(url);
   },
-  getVarietySprites: varieties => {
+  getVarietySprites: (varieties) => {
     return axios.get(varieties);
-  }
+  },
+  getEggMoves: (url) => {
+    return axios.get(url);
+  },
 };

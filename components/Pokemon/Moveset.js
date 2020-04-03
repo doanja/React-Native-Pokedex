@@ -3,17 +3,18 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 
-export default function Moveset({ moveset }) {
+export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
   const [collapse, setCollapse] = useState(true);
   const [currentMoveset, setCurrentMoveset] = useState('');
 
   useEffect(() => {
     setCollapse(true);
     setCurrentMoveset('');
-    console.log('moveset.eggMoves :', moveset.eggMoves[0]);
-  }, [moveset]);
+    console.log('eggMoves :', eggMoves);
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  }, [levelUpMoves, tmMoves, eggMoves]);
 
-  const handleClick = moveset => {
+  const handleClick = (moveset) => {
     if (currentMoveset === moveset) {
       setCollapse(!collapse);
     } else if (!collapse && currentMoveset !== moveset) {
@@ -34,21 +35,21 @@ export default function Moveset({ moveset }) {
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => {
-            handleClick(moveset.levelUpMoves);
+            handleClick(levelUpMoves);
           }}>
           <Text style={globalStyles.cardItem}>Lv Up Moves</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => {
-            handleClick(moveset.tmMoves);
+            handleClick(tmMoves);
           }}>
           <Text style={globalStyles.cardItem}>TM Moves</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => {
-            handleClick(moveset.eggMoves);
+            handleClick(eggMoves);
           }}>
           <Text style={globalStyles.cardItem}>Egg Moves</Text>
         </TouchableOpacity>
@@ -75,9 +76,9 @@ export default function Moveset({ moveset }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   buttonContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

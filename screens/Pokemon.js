@@ -24,7 +24,7 @@ import {
   Happiness,
   Shape,
   Moveset,
-  Types
+  Types,
 } from '../components/Pokemon/index';
 
 export default function Pokemon({ route }) {
@@ -49,10 +49,12 @@ export default function Pokemon({ route }) {
       defense: '',
       specialAttack: '',
       specialDefense: '',
-      speed: ''
+      speed: '',
     },
-    moveset: { levelUpMoves: [], tmMoves: [], eggMoves: [] },
-    isFavorite: false
+    levelUpMoves: [],
+    tmMoves: [],
+    eggMoves: [],
+    isFavorite: false,
   });
 
   const [speciesData, setSpeciesData] = useState({
@@ -62,27 +64,25 @@ export default function Pokemon({ route }) {
     gender: {
       genderRatio: '',
       genderRatioFemale: '',
-      genderRatioMale: ''
+      genderRatioMale: '',
     },
     catchRate: '',
     growthRate: { name: '', url: '' },
     habitat: {
       name: '',
-      url: ''
+      url: '',
     },
     hatchSteps: '',
     shape: {
       name: '',
-      url: ''
+      url: '',
     },
     evolutionUrl: '',
     eggGroups: [],
-    evolutions: []
+    evolutions: [],
   });
 
   const [forms, setForms] = useState({ alternativeForms: [] });
-
-  const [moveset, setMoveset] = useState([]);
 
   useEffect(() => {
     getPokemonData();
@@ -106,9 +106,19 @@ export default function Pokemon({ route }) {
     }
   }, [pokemonData.pokemonId]);
 
+  // useEffect(() => {
+  //   if (speciesData.evolutions) {
+  //     console.log('speciesData.evolutions.length :', speciesData.evolutions.length);
+  //     // console.log('speciesData.evolutions[0].url :', speciesData.evolutions[0].url);
+  //     // const url = speciesData.evolutions[0].url;
+  //     // const id = url.split('/')[url.split('/').length - 2];
+  //     // getEggMoves(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+  //   }
+  // }, [speciesData.evolutions]);
+
   const getPokemonData = () => {
     API.getPokemonData(name)
-      .then(res => {
+      .then((res) => {
         const abilities = [];
         const items = [];
         const types = [];
@@ -117,38 +127,37 @@ export default function Pokemon({ route }) {
 
         const levelUpMoves = [];
         const tmMoves = [];
-        const eggMoves = [];
 
-        res.data.abilities.forEach(ability => {
+        res.data.abilities.forEach((ability) => {
           abilities.push({
             name: ability.ability.name.replace(/-/g, ' '),
-            url: ability.ability.url
+            url: ability.ability.url,
           });
         });
 
-        res.data.held_items.forEach(item => {
+        res.data.held_items.forEach((item) => {
           items.push({
             name: item.item.name,
-            id: item.item.url.split('/')[url.split('/').length - 2]
+            id: item.item.url.split('/')[url.split('/').length - 2],
           });
         });
 
-        res.data.types.forEach(type => {
+        res.data.types.forEach((type) => {
           types.push(type.type.name);
         });
 
         res.data.stats
-          .filter(element => {
+          .filter((element) => {
             if (element.effort > 0) {
               return true;
             }
             return false;
           })
-          .map(element => {
+          .map((element) => {
             evs.push(`${element.effort} ${element.stat.name.replace(/-/g, ' ')}`);
           });
 
-        res.data.stats.map(stat => {
+        res.data.stats.map((stat) => {
           switch (stat.stat.name) {
             case 'hp':
               hp = stat.base_stat;
@@ -173,34 +182,20 @@ export default function Pokemon({ route }) {
           }
         });
 
-        res.data.moves.forEach(move => {
-          move.version_group_details.filter(version => {
+        res.data.moves.forEach((move) => {
+          move.version_group_details.filter((version) => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'level-up') {
                 levelUpMoves.push({
                   move_name: move.move.name,
                   level_learned_at: version.level_learned_at,
-                  learn_method: version.move_learn_method.name
+                  learn_method: version.move_learn_method.name,
                 });
               } else if (version.move_learn_method.name === 'machine') {
                 tmMoves.push({
                   move_name: move.move.name,
                   level_learned_at: version.level_learned_at,
-                  learn_method: version.move_learn_method.name
-                });
-              }
-            }
-          });
-        });
-
-        res.data.moves.forEach(move => {
-          move.version_group_details.filter(version => {
-            if (version.version_group.name === 'ultra-sun-ultra-moon') {
-              if (version.move_learn_method.name === 'egg') {
-                eggMoves.push({
-                  move_name: move.move.name,
-                  level_learned_at: version.level_learned_at,
-                  learn_method: version.move_learn_method.name
+                  learn_method: version.move_learn_method.name,
                 });
               }
             }
@@ -221,9 +216,6 @@ export default function Pokemon({ route }) {
         // sort moves alphabetically
         tmMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
 
-        // sort moves alphabetically
-        eggMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
-
         setPokemonData({
           pokemonId: res.data.id,
           baseExperience: res.data.base_experience,
@@ -237,29 +229,27 @@ export default function Pokemon({ route }) {
           types,
           evs: evs.reverse(),
           stats: { hp, attack, defense, speed, specialAttack, specialDefense },
-          moveset: {
-            levelUpMoves,
-            tmMoves,
-            eggMoves
-          }
+
+          levelUpMoves,
+          tmMoves,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
   const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
-      .then(res => {
+      .then((res) => {
         const eggGroups = [];
         let description = '';
 
-        res.data.egg_groups.forEach(group => {
+        res.data.egg_groups.forEach((group) => {
           eggGroups.push({ name: group.name, url: group.url });
         });
 
-        res.data.flavor_text_entries.filter(element => {
+        res.data.flavor_text_entries.filter((element) => {
           if (element.language.name === 'en') {
             description = element.flavor_text;
           }
@@ -271,7 +261,7 @@ export default function Pokemon({ route }) {
           gender: {
             genderRatio: res.data.gender_rate,
             genderRatioFemale: res.data.gender_rate * 12.5,
-            genderRatioMale: 12.5 * (8 - res.data.gender_rate)
+            genderRatioMale: 12.5 * (8 - res.data.gender_rate),
           },
           growthRate: { name: res.data.growth_rate.name, url: res.data.growth_rate.url },
           habitat:
@@ -283,21 +273,21 @@ export default function Pokemon({ route }) {
           eggGroups,
           description,
           shape: { name: res.data.shape.name, url: res.data.shape.url },
-          evolutionUrl: res.data.evolution_chain.url
+          evolutionUrl: res.data.evolution_chain.url,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const getEvolutionData = url => {
+  const getEvolutionData = (url) => {
     API.getEvolutionData(url)
-      .then(res => {
+      .then((res) => {
         const evolutions = []; // array of objects containing each evolution
         getEvolutionLine(res.data.chain, evolutions);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -305,47 +295,50 @@ export default function Pokemon({ route }) {
   const getEvolutionLine = (evolutionsArr, resultArr) => {
     if (evolutionsArr.evolves_to.length === 0) {
       API.getEvolutionSpecies(evolutionsArr.species.url)
-        .then(res => {
+        .then((res) => {
           return API.getPokemonData(res.data.id);
         })
-        .then(res => {
+        .then((res) => {
           resultArr.push({
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
             sprite: res.data.sprites.front_default,
-            method: getEvolutionMethod(evolutionsArr.evolution_details[0])
+            method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
           });
 
           setSpeciesData({ ...speciesData, evolutions: resultArr });
+          const url = resultArr[0].url;
+          const id = url.split('/')[url.split('/').length - 2];
+          getEggMoves(`https://pokeapi.co/api/v2/pokemon/${id}/`);
 
           return;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     } else {
       API.getEvolutionSpecies(evolutionsArr.species.url)
-        .then(res => {
+        .then((res) => {
           return API.getPokemonData(res.data.id);
         })
-        .then(res => {
+        .then((res) => {
           resultArr.push({
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
             sprite: res.data.sprites.front_default,
-            method: getEvolutionMethod(evolutionsArr.evolution_details[0])
+            method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
           });
-          evolutionsArr.evolves_to.forEach(evolution => {
+          evolutionsArr.evolves_to.forEach((evolution) => {
             return getEvolutionLine(evolution, resultArr);
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
   };
 
-  const getEvolutionMethod = methods => {
+  const getEvolutionMethod = (methods) => {
     const methodsArr = [];
     // if methods is empty...
     if (!methods) {
@@ -367,41 +360,64 @@ export default function Pokemon({ route }) {
 
   const getAlternativeForms = () => {
     API.getSpeciesData(pokemonData.pokemonId)
-      .then(res => {
+      .then((res) => {
         const alternativeForms = [];
-        res.data.varieties.filter(form => {
+        res.data.varieties.filter((form) => {
           if (!form.is_default) {
             alternativeForms.push({
               name: form.pokemon.name.replace(/-/g, ' '),
-              url: form.pokemon.url
+              url: form.pokemon.url,
             });
           }
         });
 
         getAlternateFormSprites(alternativeForms);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const getAlternateFormSprites = alternativeForms => {
-    alternativeForms.forEach(form => {
+  const getAlternateFormSprites = (alternativeForms) => {
+    alternativeForms.forEach((form) => {
       API.getVarietySprites(form.url)
-        .then(res => {
+        .then((res) => {
           form.sprite = res.data.sprites.front_default;
           setForms({ ...forms, alternativeForms });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     });
   };
 
-  const getMovesets = () => {
-    API.getPokemonData(name)
-      .then(res => {})
-      .catch(err => {
+  const getEggMoves = (url) => {
+    API.getEggMoves(url)
+      .then((res) => {
+        const eggMoves = [];
+        res.data.moves.forEach((move) => {
+          move.version_group_details.filter((version) => {
+            if (version.version_group.name === 'ultra-sun-ultra-moon') {
+              if (version.move_learn_method.name === 'egg') {
+                eggMoves.push({
+                  move_name: move.move.name,
+                  level_learned_at: version.level_learned_at,
+                  learn_method: version.move_learn_method.name,
+                });
+              }
+            }
+          });
+        });
+
+        // sort moves alphabetically
+        eggMoves.sort((a, b) => (a.move_name > b.move_name ? 1 : -1));
+
+        setPokemonData({
+          ...pokemonData,
+          eggMoves,
+        });
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -453,7 +469,11 @@ export default function Pokemon({ route }) {
 
         <Shape shape={speciesData.shape} /> */}
 
-        <Moveset moveset={pokemonData.moveset} />
+        <Moveset
+          levelUpMoves={pokemonData.levelUpMoves}
+          tmMoves={pokemonData.tmMoves}
+          eggMoves={pokemonData.eggMoves}
+        />
       </ScrollView>
     </View>
   );
