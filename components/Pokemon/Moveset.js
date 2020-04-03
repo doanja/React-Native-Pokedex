@@ -10,8 +10,7 @@ export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
   useEffect(() => {
     setCollapse(true);
     setCurrentMoveset('');
-    console.log('eggMoves :', eggMoves);
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    // console.log('eggMoves :', eggMoves);
   }, [levelUpMoves, tmMoves, eggMoves]);
 
   const handleClick = (moveset) => {

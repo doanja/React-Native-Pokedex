@@ -77,12 +77,15 @@ export default function Pokemon({ route }) {
       name: '',
       url: '',
     },
-    evolutionUrl: '',
     eggGroups: [],
-    evolutions: [],
   });
 
   const [forms, setForms] = useState({ alternativeForms: [] });
+
+  const [evolutionData, setEvolutionData] = useState({
+    evolutions: [],
+    evolutionUrl: '',
+  });
 
   useEffect(() => {
     getPokemonData();
@@ -95,26 +98,16 @@ export default function Pokemon({ route }) {
   }, [pokemonData.pokemonId]);
 
   useEffect(() => {
-    if (speciesData.evolutionUrl) {
-      getEvolutionData(speciesData.evolutionUrl);
+    if (evolutionData.evolutionUrl) {
+      getEvolutionData(evolutionData.evolutionUrl);
     }
-  }, [speciesData.evolutionUrl]);
+  }, [evolutionData.evolutionUrl, name]);
 
   useEffect(() => {
     if (pokemonData.pokemonId) {
       getAlternativeForms();
     }
   }, [pokemonData.pokemonId]);
-
-  // useEffect(() => {
-  //   if (speciesData.evolutions) {
-  //     console.log('speciesData.evolutions.length :', speciesData.evolutions.length);
-  //     // console.log('speciesData.evolutions[0].url :', speciesData.evolutions[0].url);
-  //     // const url = speciesData.evolutions[0].url;
-  //     // const id = url.split('/')[url.split('/').length - 2];
-  //     // getEggMoves(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-  //   }
-  // }, [speciesData.evolutions]);
 
   const getPokemonData = () => {
     API.getPokemonData(name)
@@ -273,8 +266,9 @@ export default function Pokemon({ route }) {
           eggGroups,
           description,
           shape: { name: res.data.shape.name, url: res.data.shape.url },
-          evolutionUrl: res.data.evolution_chain.url,
         });
+
+        setEvolutionData({ ...evolutionData, evolutionUrl: res.data.evolution_chain.url });
       })
       .catch((err) => {
         console.log(err);
@@ -282,6 +276,7 @@ export default function Pokemon({ route }) {
   };
 
   const getEvolutionData = (url) => {
+    console.log('getEvolutionData()');
     API.getEvolutionData(url)
       .then((res) => {
         const evolutions = []; // array of objects containing each evolution
@@ -293,6 +288,7 @@ export default function Pokemon({ route }) {
   };
 
   const getEvolutionLine = (evolutionsArr, resultArr) => {
+    console.log('getEvolutionLine() ---> getEggMoves()');
     if (evolutionsArr.evolves_to.length === 0) {
       API.getEvolutionSpecies(evolutionsArr.species.url)
         .then((res) => {
@@ -306,7 +302,7 @@ export default function Pokemon({ route }) {
             method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
           });
 
-          setSpeciesData({ ...speciesData, evolutions: resultArr });
+          setEvolutionData({ ...evolutionData, evolutions: resultArr });
           const url = resultArr[0].url;
           const id = url.split('/')[url.split('/').length - 2];
           getEggMoves(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -392,6 +388,7 @@ export default function Pokemon({ route }) {
   };
 
   const getEggMoves = (url) => {
+    console.log('get egg moves called');
     API.getEggMoves(url)
       .then((res) => {
         const eggMoves = [];
@@ -449,7 +446,7 @@ export default function Pokemon({ route }) {
 
         <Description description={speciesData.description} /> */}
 
-        <Evolutions evolutions={speciesData.evolutions} />
+        <Evolutions evolutions={evolutionData.evolutions} />
 
         {/* <AlternativeForms forms={forms.alternativeForms} />
 
