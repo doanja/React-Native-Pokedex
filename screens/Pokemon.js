@@ -111,7 +111,7 @@ export default function Pokemon({ route }) {
 
   const getPokemonData = () => {
     API.getPokemonData(name)
-      .then((res) => {
+      .then(res => {
         const abilities = [];
         const items = [];
         const types = [];
@@ -121,36 +121,36 @@ export default function Pokemon({ route }) {
         const levelUpMoves = [];
         const tmMoves = [];
 
-        res.data.abilities.forEach((ability) => {
+        res.data.abilities.forEach(ability => {
           abilities.push({
             name: ability.ability.name.replace(/-/g, ' '),
             url: ability.ability.url,
           });
         });
 
-        res.data.held_items.forEach((item) => {
+        res.data.held_items.forEach(item => {
           items.push({
             name: item.item.name,
             id: item.item.url.split('/')[url.split('/').length - 2],
           });
         });
 
-        res.data.types.forEach((type) => {
+        res.data.types.forEach(type => {
           types.push(type.type.name);
         });
 
         res.data.stats
-          .filter((element) => {
+          .filter(element => {
             if (element.effort > 0) {
               return true;
             }
             return false;
           })
-          .map((element) => {
+          .map(element => {
             evs.push(`${element.effort} ${element.stat.name.replace(/-/g, ' ')}`);
           });
 
-        res.data.stats.map((stat) => {
+        res.data.stats.map(stat => {
           switch (stat.stat.name) {
             case 'hp':
               hp = stat.base_stat;
@@ -175,8 +175,8 @@ export default function Pokemon({ route }) {
           }
         });
 
-        res.data.moves.forEach((move) => {
-          move.version_group_details.filter((version) => {
+        res.data.moves.forEach(move => {
+          move.version_group_details.filter(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'level-up') {
                 levelUpMoves.push({
@@ -227,22 +227,22 @@ export default function Pokemon({ route }) {
           tmMoves,
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
   const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
-      .then((res) => {
+      .then(res => {
         const eggGroups = [];
         let description = '';
 
-        res.data.egg_groups.forEach((group) => {
+        res.data.egg_groups.forEach(group => {
           eggGroups.push({ name: group.name, url: group.url });
         });
 
-        res.data.flavor_text_entries.filter((element) => {
+        res.data.flavor_text_entries.filter(element => {
           if (element.language.name === 'en') {
             description = element.flavor_text;
           }
@@ -270,29 +270,29 @@ export default function Pokemon({ route }) {
 
         setEvolutionData({ ...evolutionData, evolutionUrl: res.data.evolution_chain.url });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
-  const getEvolutionData = (url) => {
-    API.getEvolutionData(url)
-      .then((res) => {
+  const getEvolutionData = url => {
+    API.getPokeAPI(url)
+      .then(res => {
         const evolutions = []; // array of objects containing each evolution
         getEvolutionLine(res.data.chain, evolutions);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
   const getEvolutionLine = (evolutionsArr, resultArr) => {
     if (evolutionsArr.evolves_to.length === 0) {
-      API.getEvolutionSpecies(evolutionsArr.species.url)
-        .then((res) => {
+      API.getPokeAPI(evolutionsArr.species.url)
+        .then(res => {
           return API.getPokemonData(res.data.id);
         })
-        .then((res) => {
+        .then(res => {
           resultArr.push({
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
@@ -307,32 +307,32 @@ export default function Pokemon({ route }) {
 
           return;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     } else {
-      API.getEvolutionSpecies(evolutionsArr.species.url)
-        .then((res) => {
+      API.getPokeAPI(evolutionsArr.species.url)
+        .then(res => {
           return API.getPokemonData(res.data.id);
         })
-        .then((res) => {
+        .then(res => {
           resultArr.push({
             name: evolutionsArr.species.name,
             url: evolutionsArr.species.url,
             sprite: res.data.sprites.front_default,
             method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
           });
-          evolutionsArr.evolves_to.forEach((evolution) => {
+          evolutionsArr.evolves_to.forEach(evolution => {
             return getEvolutionLine(evolution, resultArr);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     }
   };
 
-  const getEvolutionMethod = (methods) => {
+  const getEvolutionMethod = methods => {
     const methodsArr = [];
     // if methods is empty...
     if (!methods) {
@@ -354,9 +354,9 @@ export default function Pokemon({ route }) {
 
   const getAlternativeForms = () => {
     API.getSpeciesData(pokemonData.pokemonId)
-      .then((res) => {
+      .then(res => {
         const alternativeForms = [];
-        res.data.varieties.filter((form) => {
+        res.data.varieties.filter(form => {
           if (!form.is_default) {
             alternativeForms.push({
               name: form.pokemon.name.replace(/-/g, ' '),
@@ -367,31 +367,31 @@ export default function Pokemon({ route }) {
 
         getAlternateFormSprites(alternativeForms);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
-  const getAlternateFormSprites = (alternativeForms) => {
-    alternativeForms.forEach((form) => {
-      API.getVarietySprites(form.url)
-        .then((res) => {
+  const getAlternateFormSprites = alternativeForms => {
+    alternativeForms.forEach(form => {
+      API.getPokeAPI(form.url)
+        .then(res => {
           form.sprite = res.data.sprites.front_default;
           setForms({ ...forms, alternativeForms });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     });
   };
 
-  const getEggMoves = (url) => {
+  const getEggMoves = url => {
     console.log('get egg moves called');
-    API.getEggMoves(url)
-      .then((res) => {
+    API.getPokeAPI(url)
+      .then(res => {
         const eggMoves = [];
-        res.data.moves.forEach((move) => {
-          move.version_group_details.filter((version) => {
+        res.data.moves.forEach(move => {
+          move.version_group_details.filter(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'egg') {
                 eggMoves.push({
@@ -412,7 +412,7 @@ export default function Pokemon({ route }) {
           eggMoves,
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };

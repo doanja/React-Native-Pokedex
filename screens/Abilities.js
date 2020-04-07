@@ -3,26 +3,30 @@ import { Text, View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
+import { AbilityTitle } from '../components/Abilities/index';
+
 export default function Abilities({ route }) {
   const { name } = route.params;
 
-  const [data, setData] = useState({ effectEntries: '', name: '', learntBy: '' });
+  const [abilityData, setAbilityData] = useState({ effectEntries: '', name: '' });
+  const [learntBy, setLearntBy] = useState([]);
 
   useEffect(() => {
     getAbilityData();
   }, [name]);
 
+  useEffect(() => {
+    console.log('abilityData :', abilityData);
+  }, [abilityData]);
+
   const getAbilityData = () => {
     API.getAbilityData(name)
-      .then((res) => {
+      .then(res => {
         const learntBy = [];
 
-        console.log('res.data :', res.data);
-
-        res.data.pokemon.forEach((pokemon) => {
-          axios
-            .get(pokemon.pokemon.url)
-            .then((res) => {
+        res.data.pokemon.forEach(pokemon => {
+          API.getPokeAPI(pokemon.pokemon.url)
+            .then(res => {
               learntBy.push({
                 hidden: pokemon.is_hidden,
                 name: pokemon.pokemon.name,
@@ -34,29 +38,28 @@ export default function Abilities({ route }) {
               // sort pokemon by id
               learntBy.sort((a, b) => (a.id > b.id ? 1 : -1));
 
-              setData({
-                learnableBy: learntBy,
-              });
+              setLearntBy(learntBy);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log(err);
             });
         });
 
-        setData({
-          ...data,
-          effect_entries: res.data.effect_entries[0].effect,
+        setAbilityData({
+          effectEntries: res.data.effect_entries[0].effect,
           name: res.data.name,
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
   return (
-    <ScrollView>
-      <Text>hello</Text>
-    </ScrollView>
+    <View style={globalStyles.container}>
+      <ScrollView>
+        <AbilityTitle abilityData={abilityData} learntBy={learntBy} />
+      </ScrollView>
+    </View>
   );
 }
