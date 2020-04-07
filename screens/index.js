@@ -6,5 +6,16 @@ import Pokemon from './Pokemon';
 import Search from './Search';
 import Settings from './Settings';
 import Signup from './Signup';
+import Abilities from './Abilities';
 
-export { AlternatePokemonForm, Favorites, Login, Pokedex, Pokemon, Search, Settings, Signup };
+export {
+  AlternatePokemonForm,
+  Favorites,
+  Login,
+  Pokedex,
+  Pokemon,
+  Search,
+  Settings,
+  Signup,
+  Abilities,
+};

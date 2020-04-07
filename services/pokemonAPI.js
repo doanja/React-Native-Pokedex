@@ -10,6 +10,9 @@ export default {
   getSpeciesData: (id) => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
   },
+  getAbilityData: (abilityName) => {
+    return axios.get(`https://pokeapi.co/api/v2/ability/${abilityName}`);
+  },
   getEvolutionData: (url) => {
     return axios.get(url);
   },

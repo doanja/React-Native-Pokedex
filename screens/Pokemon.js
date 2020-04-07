@@ -276,7 +276,6 @@ export default function Pokemon({ route }) {
   };
 
   const getEvolutionData = (url) => {
-    console.log('getEvolutionData()');
     API.getEvolutionData(url)
       .then((res) => {
         const evolutions = []; // array of objects containing each evolution
@@ -288,7 +287,6 @@ export default function Pokemon({ route }) {
   };
 
   const getEvolutionLine = (evolutionsArr, resultArr) => {
-    console.log('getEvolutionLine() ---> getEggMoves()');
     if (evolutionsArr.evolves_to.length === 0) {
       API.getEvolutionSpecies(evolutionsArr.species.url)
         .then((res) => {
@@ -422,7 +420,7 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        {/* <Sprite
+        <Sprite
           name={name}
           spriteDefault={pokemonData.spriteDefault}
           spriteShiny={pokemonData.spriteShiny}
@@ -444,11 +442,11 @@ export default function Pokemon({ route }) {
 
         <EffortValues evs={pokemonData.evs} />
 
-        <Description description={speciesData.description} /> */}
+        <Description description={speciesData.description} />
 
         <Evolutions evolutions={evolutionData.evolutions} />
 
-        {/* <AlternativeForms forms={forms.alternativeForms} />
+        <AlternativeForms forms={forms.alternativeForms} />
 
         <EggGroups groups={speciesData.eggGroups} />
 
@@ -464,7 +462,7 @@ export default function Pokemon({ route }) {
 
         <Happiness happiness={speciesData.baseHappiness} />
 
-        <Shape shape={speciesData.shape} /> */}
+        <Shape shape={speciesData.shape} />
 
         <Moveset
           levelUpMoves={pokemonData.levelUpMoves}
