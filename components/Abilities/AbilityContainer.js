@@ -3,9 +3,8 @@ import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 
-import { AbilityDescription } from './index';
-import LearntNaturally from './LearntNaturally';
-import HiddenAbility from './HiddenAbility';
+import AbilityDescription from './AbilityDescription';
+import LearnableBy from './LearnableBy';
 
 export default function AbilityTitle({ abilityData, learntBy }) {
   return (
@@ -16,8 +15,7 @@ export default function AbilityTitle({ abilityData, learntBy }) {
 
       <AbilityDescription description={abilityData.effectEntries} />
 
-      <LearntNaturally learntBy={learntBy} />
-      <HiddenAbility learntBy={learntBy} />
+      <LearnableBy learntBy={learntBy} />
     </Card>
   );
 }

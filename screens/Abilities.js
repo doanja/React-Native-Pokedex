@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import { AbilityTitle } from '../components/Abilities/index';
+import AbilityContainer from '../components/Abilities/AbilityContainer';
 
 export default function Abilities({ route }) {
   const { name } = route.params;
@@ -14,10 +14,6 @@ export default function Abilities({ route }) {
   useEffect(() => {
     getAbilityData();
   }, [name]);
-
-  useEffect(() => {
-    console.log('abilityData :', abilityData);
-  }, [abilityData]);
 
   const getAbilityData = () => {
     API.getAbilityData(name)
@@ -58,7 +54,7 @@ export default function Abilities({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <AbilityTitle abilityData={abilityData} learntBy={learntBy} />
+        <AbilityContainer abilityData={abilityData} learntBy={learntBy} />
       </ScrollView>
     </View>
   );
