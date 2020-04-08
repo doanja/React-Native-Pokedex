@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 
@@ -17,7 +17,7 @@ export default function AbilityTitle({ abilityData, learntBy }) {
       <AbilityDescription description={abilityData.effectEntries} />
 
       <LearntNaturally learntBy={learntBy} />
-      <HiddenAbility HiddenAbility={learntBy} />
+      <HiddenAbility learntBy={learntBy} />
     </Card>
   );
 }
