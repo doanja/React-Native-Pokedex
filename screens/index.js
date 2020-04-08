@@ -7,6 +7,7 @@ import Search from './Search';
 import Settings from './Settings';
 import Signup from './Signup';
 import Abilities from './Abilities';
+import Items from './Items';
 
 export {
   AlternatePokemonForm,
@@ -18,4 +19,5 @@ export {
   Settings,
   Signup,
   Abilities,
+  Items,
 };

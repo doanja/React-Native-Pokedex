@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-// TODO: import item container
+import ItemContainer from '../components/Items/ItemContainer';
 
 export default function Item({ route }) {
   const { name } = route.params;
@@ -37,5 +37,11 @@ export default function Item({ route }) {
       .catch(err => console.log(err));
   };
 
-  return <View></View>;
+  return (
+    <View style={globalStyles.container}>
+      <ScrollView>
+        <ItemContainer itemData={itemData} />
+      </ScrollView>
+    </View>
+  );
 }

@@ -6,7 +6,7 @@ import { Card, CardHeader } from '..';
 import AbilityDescription from './AbilityDescription';
 import LearnableBy from './LearnableBy';
 
-export default function AbilityTitle({ abilityData, learntBy }) {
+export default function AbilityContainer({ abilityData, learntBy }) {
   return (
     <Card>
       <CardHeader>
