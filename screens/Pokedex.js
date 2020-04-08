@@ -15,9 +15,7 @@ export default function Pokedex({ navigation }) {
       .then(res => {
         setPokemonList(res.data.results);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   }, [offset]);
 
   return (
@@ -65,6 +63,6 @@ const styles = StyleSheet.create({
   icons: {
     paddingHorizontal: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });

@@ -36,9 +36,7 @@ export default function Abilities({ route }) {
 
               setLearntBy(learntBy);
             })
-            .catch(err => {
-              console.log(err);
-            });
+            .catch(err => console.log(err));
         });
 
         setAbilityData({
@@ -46,9 +44,7 @@ export default function Abilities({ route }) {
           name: res.data.name,
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   return (

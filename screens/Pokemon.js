@@ -227,9 +227,7 @@ export default function Pokemon({ route }) {
           tmMoves,
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   const getSpeciesData = () => {
@@ -270,9 +268,7 @@ export default function Pokemon({ route }) {
 
         setEvolutionData({ ...evolutionData, evolutionUrl: res.data.evolution_chain.url });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   const getEvolutionData = url => {
@@ -281,9 +277,7 @@ export default function Pokemon({ route }) {
         const evolutions = []; // array of objects containing each evolution
         getEvolutionLine(res.data.chain, evolutions);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   const getEvolutionLine = (evolutionsArr, resultArr) => {
@@ -367,9 +361,7 @@ export default function Pokemon({ route }) {
 
         getAlternateFormSprites(alternativeForms);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   const getAlternateFormSprites = alternativeForms => {
@@ -386,7 +378,6 @@ export default function Pokemon({ route }) {
   };
 
   const getEggMoves = url => {
-    console.log('get egg moves called');
     API.getPokeAPI(url)
       .then(res => {
         const eggMoves = [];
@@ -412,9 +403,7 @@ export default function Pokemon({ route }) {
           eggMoves,
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   return (

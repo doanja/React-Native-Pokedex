@@ -11,7 +11,7 @@ import {
   Height,
   Weight,
   Experience,
-  EffortValues
+  EffortValues,
 } from '../components/Pokemon/index';
 
 export default function AlternatePokemonForm({ route }) {
@@ -38,9 +38,9 @@ export default function AlternatePokemonForm({ route }) {
       defense: '',
       specialAttack: '',
       specialDefense: '',
-      speed: ''
+      speed: '',
     },
-    isFavorite: false
+    isFavorite: false,
   });
 
   useEffect(() => {
@@ -65,14 +65,14 @@ export default function AlternatePokemonForm({ route }) {
         res.data.abilities.forEach(ability => {
           abilities.push({
             name: ability.ability.name.replace(/-/g, ' '),
-            url: ability.ability.url
+            url: ability.ability.url,
           });
         });
 
         res.data.held_items.forEach(item => {
           items.push({
             name: item.item.name,
-            id: item.item.url.split('/')[url.split('/').length - 2]
+            id: item.item.url.split('/')[url.split('/').length - 2],
           });
         });
 
@@ -128,12 +128,10 @@ export default function AlternatePokemonForm({ route }) {
           items,
           types,
           evs: evs.reverse(),
-          stats: { hp, attack, defense, speed, specialAttack, specialDefense }
+          stats: { hp, attack, defense, speed, specialAttack, specialDefense },
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   };
 
   return (
