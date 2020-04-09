@@ -2,9 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
-
-// import AbilityDescription from './AbilityDescription';
-// import LearnableBy from './LearnableBy';
+import { ItemSprite, ItemDescription, ItemCategory } from './index';
 
 export default function ItemContainer({ itemData, learntBy }) {
   return (
@@ -13,9 +11,11 @@ export default function ItemContainer({ itemData, learntBy }) {
         <Text style={globalStyles.headerText}>{itemData.name}</Text>
       </CardHeader>
 
-      {/* <AbilityDescription description={abilityData.effectEntries} />
+      <ItemSprite spriteUri={itemData.sprite} />
 
-      <LearnableBy learntBy={learntBy} /> */}
+      <ItemDescription description={itemData.effectEntries} />
+
+      <ItemCategory category={itemData.category.name} />
     </Card>
   );
 }
