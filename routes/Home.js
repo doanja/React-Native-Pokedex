@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
-import { Pokedex, Pokemon, AlternatePokemonForm, Abilities, Items } from '../screens/';
+import { Pokedex, Pokemon, AlternatePokemonForm, Abilities, Items, EggGroups } from '../screens/';
 
 const Stack = createStackNavigator();
 
@@ -51,6 +51,13 @@ export default function Navigator() {
       <Stack.Screen
         name='Items'
         component={Items}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='EggGroups'
+        component={EggGroups}
         options={{
           headerShown: true,
         }}
