@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 
-export default function ItemAttribute({ attribute }) {
+export default function ItemAttribute({ attributes }) {
   return (
     <Card>
       <CardHeader>
@@ -11,7 +11,13 @@ export default function ItemAttribute({ attribute }) {
       </CardHeader>
 
       <View>
-        <Text style={globalStyles.cardText}>{attribute}</Text>
+        <Text style={globalStyles.cardText}>
+          {!attributes
+            ? '-'
+            : attributes.map(attribute => {
+                return <p key={attribute.name}>{attribute.name}</p>;
+              })}
+        </Text>
       </View>
     </Card>
   );
