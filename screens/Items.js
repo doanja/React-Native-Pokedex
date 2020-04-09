@@ -53,9 +53,7 @@ export default function Item({ route }) {
               // sort pokemon by id
               heldBy.sort((a, b) => (a.id > b.id ? 1 : -1));
 
-              setHeldBy({
-                heldBy,
-              });
+              setHeldBy(heldBy);
             })
             .catch(err => {
               console.log(err);

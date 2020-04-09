@@ -1,11 +1,19 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '..';
-import { ItemSprite, ItemDescription, ItemCategory, ItemCost } from './index';
-import ItemAttribute from './ItemAttribute';
+import { Card, CardHeader } from '../';
+import {
+  ItemSprite,
+  ItemDescription,
+  ItemCategory,
+  ItemCost,
+  ItemAttribute,
+  ItemFlingEffect,
+  ItemFlingDamage,
+  HeldBy,
+} from './index';
 
-export default function ItemContainer({ itemData, learntBy }) {
+export default function ItemContainer({ itemData, heldBy }) {
   return (
     <Card>
       <CardHeader>
@@ -21,6 +29,12 @@ export default function ItemContainer({ itemData, learntBy }) {
       <ItemCost cost={itemData.cost} />
 
       <ItemAttribute attribute={itemData.attributes} />
+
+      <ItemFlingEffect flingEffect={itemData.flingEffect} />
+
+      <ItemFlingDamage flingDamage={itemData.flingDamage} />
+
+      <HeldBy heldBy={heldBy} />
     </Card>
   );
 }

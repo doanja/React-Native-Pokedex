@@ -11,7 +11,7 @@ export default function ItemFlingDamage({ flingDamage }) {
       </CardHeader>
 
       <View>
-        <Text style={globalStyles.cardText}>{flingDamage}</Text>
+        <Text style={globalStyles.cardText}>{!flingDamage ? '-' : flingDamage}</Text>
       </View>
     </Card>
   );

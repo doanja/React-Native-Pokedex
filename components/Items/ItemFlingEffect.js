@@ -11,7 +11,7 @@ export default function ItemFlingEffect({ flingEffect }) {
       </CardHeader>
 
       <View>
-        <Text style={globalStyles.cardText}>{flingEffect}</Text>
+        <Text style={globalStyles.cardText}>{!flingEffect ? '-' : flingEffect}</Text>
       </View>
     </Card>
   );
