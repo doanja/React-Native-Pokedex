@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import { colors } from '../../constants/theme';
+import Spinner from '../images/Spinner';
 
 export default function Evolutions({ evolutions }) {
   const navigation = useNavigation();
@@ -13,38 +14,40 @@ export default function Evolutions({ evolutions }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Evolutions</Text>
       </CardHeader>
-      {evolutions
-        ? evolutions.map((evolution) => (
-            <View style={styles.container} key={evolution.name}>
-              <TouchableOpacity
-                style={styles.imageContainer}
-                onPress={() =>
-                  navigation.navigate('Pokemon', {
-                    name: evolution.name,
-                    url: evolution.url,
-                  })
-                }>
-                <Image
-                  style={styles.image}
-                  source={{
-                    uri: evolution.sprite,
-                  }}
-                />
-              </TouchableOpacity>
-              {evolution.method.length === 0
-                ? null
-                : evolution.method.map((method) => {
-                    return (
-                      <Text style={styles.cardText} key={method.name}>{`${method.name}: ${
-                        typeof method.condition === 'object'
-                          ? method.condition.name
-                          : method.condition
-                      }`}</Text>
-                    );
-                  })}
-            </View>
-          ))
-        : null}
+      {evolutions ? (
+        evolutions.map(evolution => (
+          <View style={styles.container} key={evolution.name}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={() =>
+                navigation.navigate('Pokemon', {
+                  name: evolution.name,
+                  url: evolution.url,
+                })
+              }>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: evolution.sprite,
+                }}
+              />
+            </TouchableOpacity>
+            {evolution.method.length === 0
+              ? null
+              : evolution.method.map(method => {
+                  return (
+                    <Text style={styles.cardText} key={method.name}>{`${method.name}: ${
+                      typeof method.condition === 'object'
+                        ? method.condition.name
+                        : method.condition
+                    }`}</Text>
+                  );
+                })}
+          </View>
+        ))
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

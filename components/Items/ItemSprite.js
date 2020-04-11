@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
 import { Card } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function ItemSprite({ spriteUri }) {
   return (
@@ -16,7 +17,9 @@ export default function ItemSprite({ spriteUri }) {
                 uri: spriteUri,
               }}
             />
-          ) : null}
+          ) : (
+            <Spinner />
+          )}
         </TouchableOpacity>
       </View>
     </Card>

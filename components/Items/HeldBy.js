@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import PokemonCard from '../Pokemon/PokemonCard';
+import Spinner from '../images/Spinner';
 
 export default function LearnableBy({ heldBy }) {
   const navigation = useNavigation();
@@ -15,7 +16,9 @@ export default function LearnableBy({ heldBy }) {
         <Text style={globalStyles.headerText}>Held By</Text>
       </CardHeader>
 
-      {collapse ? null : (
+      {collapse ? null : !learntBy ? (
+        <Spinner />
+      ) : (
         <View style={globalStyles.container}>
           <FlatList
             data={heldBy}

@@ -5,6 +5,7 @@ import { Card, CardHeader } from '..';
 
 import AbilityDescription from './AbilityDescription';
 import LearnableBy from './LearnableBy';
+import Spinner from '../images/Spinner';
 
 export default function AbilityContainer({ abilityData, learntBy }) {
   return (
@@ -13,9 +14,9 @@ export default function AbilityContainer({ abilityData, learntBy }) {
         <Text style={globalStyles.headerText}>{abilityData.name}</Text>
       </CardHeader>
 
-      <AbilityDescription description={abilityData.effectEntries} />
+      {abilityData ? <AbilityDescription description={abilityData.effectEntries} /> : <Spinner />}
 
-      <LearnableBy learntBy={learntBy} />
+      {learntBy ? <LearnableBy learntBy={learntBy} /> : <Spinner />}
     </Card>
   );
 }

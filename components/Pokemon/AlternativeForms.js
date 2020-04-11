@@ -7,13 +7,13 @@ import { colors } from '../../constants/theme';
 
 export default function AlternativeForms({ forms }) {
   const navigation = useNavigation();
-
+  console.log('forms :', forms);
   return (
     <Card>
       <CardHeader>
         <Text style={globalStyles.headerText}>Alternative Forms</Text>
       </CardHeader>
-      {forms ? (
+      {forms.length ? (
         forms.map(form => (
           <View style={styles.container} key={form.name}>
             <TouchableOpacity
@@ -22,13 +22,13 @@ export default function AlternativeForms({ forms }) {
                 // TODO change to alternative pokemon component
                 navigation.navigate('AlternatePokemonForm', {
                   name: form.name,
-                  url: form.url
+                  url: form.url,
                 })
               }>
               <Image
                 style={styles.image}
                 source={{
-                  uri: form.sprite
+                  uri: form.sprite,
                 }}
               />
             </TouchableOpacity>
@@ -36,7 +36,9 @@ export default function AlternativeForms({ forms }) {
           </View>
         ))
       ) : (
-        <Text styles={globalStyles.cardText}>None</Text>
+        <View>
+          <Text style={globalStyles.cardText}>None</Text>
+        </View>
       )}
     </Card>
   );
@@ -44,25 +46,25 @@ export default function AlternativeForms({ forms }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   imageContainer: {
     width: '30%',
     alignSelf: 'center',
     padding: 5,
-    margin: 4
+    margin: 4,
   },
   image: {
     width: '100%',
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   cardText: {
     color: colors.black,
     margin: 0,
     padding: 5,
     textAlign: 'center',
-    textTransform: 'capitalize'
-  }
+    textTransform: 'capitalize',
+  },
 });

@@ -3,6 +3,7 @@ import { StyleSheet, Text, Image, Dimensions, View, TouchableOpacity } from 'rea
 import { globalStyles } from '../../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Sprite({ name, spriteDefault, spriteShiny }) {
   const [isSpriteDefault, setIsSpriteDefault] = useState(true);
@@ -30,10 +31,12 @@ export default function Sprite({ name, spriteDefault, spriteShiny }) {
             <Image
               style={styles.image}
               source={{
-                uri: spriteUri
+                uri: spriteUri,
               }}
             />
-          ) : null}
+          ) : (
+            <Spinner />
+          )}
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => setIsSpriteDefault(!isSpriteDefault)}>
@@ -46,20 +49,20 @@ export default function Sprite({ name, spriteDefault, spriteShiny }) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: '30%'
+    width: '30%',
   },
   image: {
     width: '100%',
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: -30
+    marginTop: -30,
   },
   icons: {
     paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 60,
-    marginBottom: 30
-  }
+    marginBottom: 30,
+  },
 });

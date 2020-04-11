@@ -88,6 +88,56 @@ export default function Pokemon({ route }) {
   });
 
   useEffect(() => {
+    setPokemonData({
+      pokemonId: '',
+      baseExperience: '',
+      name: '',
+      spriteDefault: '',
+      spriteShiny: '',
+      weight: '',
+      height: '',
+      abilities: [],
+      items: [],
+      moves: [],
+      types: [],
+      evs: [],
+      stats: {
+        hp: '',
+        attack: '',
+        defense: '',
+        specialAttack: '',
+        specialDefense: '',
+        speed: '',
+      },
+      levelUpMoves: [],
+      tmMoves: [],
+      eggMoves: [],
+      isFavorite: false,
+    });
+
+    setSpeciesData({
+      pokemonId: '',
+      baseHappiness: '',
+      description: '',
+      gender: {
+        genderRatio: '',
+        genderRatioFemale: '',
+        genderRatioMale: '',
+      },
+      catchRate: '',
+      growthRate: { name: '', url: '' },
+      habitat: {
+        name: '',
+        url: '',
+      },
+      hatchSteps: '',
+      shape: {
+        name: '',
+        url: '',
+      },
+      eggGroups: [],
+    });
+
     getPokemonData();
   }, [name]);
 
@@ -100,12 +150,19 @@ export default function Pokemon({ route }) {
   useEffect(() => {
     if (evolutionData.evolutionUrl) {
       getEvolutionData(evolutionData.evolutionUrl);
+    } else {
+      setEvolutionData({
+        evolutions: [],
+        evolutionUrl: '',
+      });
     }
   }, [evolutionData.evolutionUrl]);
 
   useEffect(() => {
     if (pokemonData.pokemonId) {
       getAlternativeForms();
+    } else {
+      setForms({ alternativeForms: [] });
     }
   }, [pokemonData.pokemonId]);
 
