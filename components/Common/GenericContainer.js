@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../';
+import { Card, CardHeader } from '..';
 import Species from './Species';
 
-export default function EggGroupsContainer({ groupName, species }) {
+export default function GenericContainer({ name, species }) {
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>{groupName}</Text>
+        <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
 
       <Species species={species} />

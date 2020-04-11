@@ -7,6 +7,7 @@ import PokemonCard from '../Pokemon/PokemonCard';
 
 export default function Species({ species }) {
   const navigation = useNavigation();
+
   return (
     <Card>
       <View style={globalStyles.container}>

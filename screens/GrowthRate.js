@@ -4,16 +4,17 @@ import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import GenericContainer from '../components/Common/GenericContainer';
 
-export default function EggGroups({ route }) {
-  const { groupName } = route.params;
+export default function GrowthRate({ route }) {
+  const { name } = route.params;
+
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
-    getEggGroupData();
-  }, [groupName]);
+    getGrowthRateData();
+  }, [name]);
 
-  const getEggGroupData = () => {
-    API.getEggGroupData(groupName)
+  const getGrowthRateData = () => {
+    API.getGrowthRateData(name)
       .then(res => {
         const species = [];
 
@@ -25,7 +26,9 @@ export default function EggGroups({ route }) {
         // sort pokemon by their id
         species.sort((a, b) => (parseInt(a.id) > parseInt(b.id) ? 1 : -1));
 
-        setSpecies(species);
+        setSpecies({ species });
+
+        console.log('species :', species);
       })
       .catch(err => console.log(err));
   };
@@ -33,7 +36,7 @@ export default function EggGroups({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <GenericContainer name={groupName} species={species} />
+        <GenericContainer name={name} species={species} />
       </ScrollView>
     </View>
   );

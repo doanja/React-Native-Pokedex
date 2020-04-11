@@ -17,8 +17,7 @@ export default function EggGroups({ groups }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate('EggGroups', {
-                name: group.name,
-                url: `/group/${group.name}`,
+                groupName: group.name,
               })
             }>
             <Text style={globalStyles.cardItem}>{group.name}</Text>

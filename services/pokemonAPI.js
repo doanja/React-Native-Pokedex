@@ -16,8 +16,11 @@ export default {
   getItemData: itemName => {
     return axios.get(`https://pokeapi.co/api/v2/item/${itemName}`);
   },
-  getEggData: groupName => {
+  getEggGroupData: groupName => {
     return axios.get(`https://pokeapi.co/api/v2/egg-group/${groupName}/`);
+  },
+  getGrowthRateData: growthName => {
+    return axios.get(`https://pokeapi.co/api/v2/growth-rate/${growthName}/`);
   },
   getPokeAPI: url => {
     return axios.get(url);

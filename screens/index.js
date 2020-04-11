@@ -9,6 +9,7 @@ import Signup from './Signup';
 import Abilities from './Abilities';
 import Items from './Items';
 import EggGroups from './EggGroups';
+import GrowthRate from './GrowthRate';
 
 export {
   AlternatePokemonForm,
@@ -22,4 +23,5 @@ export {
   Abilities,
   Items,
   EggGroups,
+  GrowthRate,
 };

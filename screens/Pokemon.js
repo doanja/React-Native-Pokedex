@@ -101,7 +101,7 @@ export default function Pokemon({ route }) {
     if (evolutionData.evolutionUrl) {
       getEvolutionData(evolutionData.evolutionUrl);
     }
-  }, [evolutionData.evolutionUrl, name]);
+  }, [evolutionData.evolutionUrl]);
 
   useEffect(() => {
     if (pokemonData.pokemonId) {
