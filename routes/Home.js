@@ -10,6 +10,7 @@ import {
   EggGroups,
   GrowthRate,
   Habitat,
+  Shape,
 } from '../screens/';
 
 const Stack = createStackNavigator();
@@ -81,6 +82,13 @@ export default function Navigator() {
       <Stack.Screen
         name='Habitat'
         component={Habitat}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='Shape'
+        component={Shape}
         options={{
           headerShown: true,
         }}

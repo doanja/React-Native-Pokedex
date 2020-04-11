@@ -13,7 +13,7 @@ export default function Habitat({ route }) {
   }, [habitatName]);
 
   const getHabitatData = () => {
-    API.getHabitatName(habitatName)
+    API.getHabitatData(habitatName)
       .then(res => {
         const species = [];
 

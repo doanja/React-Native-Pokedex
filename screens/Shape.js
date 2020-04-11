@@ -4,16 +4,16 @@ import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import GenericContainer from '../components/Common/GenericContainer';
 
-export default function EggGroups({ route }) {
-  const { groupName } = route.params;
+export default function Shape({ route }) {
+  const { shapeName } = route.params;
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
-    getEggGroupData();
-  }, [groupName]);
+    getShapeData();
+  }, [shapeName]);
 
-  const getEggGroupData = () => {
-    API.getShapeData(groupName)
+  const getShapeData = () => {
+    API.getShapeData(shapeName)
       .then(res => {
         const species = [];
 
@@ -33,7 +33,7 @@ export default function EggGroups({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <GenericContainer name={groupName} species={species} />
+        <GenericContainer name={shapeName} species={species} />
       </ScrollView>
     </View>
   );

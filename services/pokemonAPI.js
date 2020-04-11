@@ -16,14 +16,17 @@ export default {
   getItemData: itemName => {
     return axios.get(`https://pokeapi.co/api/v2/item/${itemName}`);
   },
-  getEggGroupData: groupName => {
+  getShapeData: groupName => {
     return axios.get(`https://pokeapi.co/api/v2/egg-group/${groupName}/`);
   },
   getGrowthRateData: growthName => {
     return axios.get(`https://pokeapi.co/api/v2/growth-rate/${growthName}/`);
   },
-  getHabitatName: habitatName => {
+  getHabitatData: habitatName => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon-habitat/${habitatName}/`);
+  },
+  getShapeData: shapeName => {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon-shape/${shapeName}/`);
   },
   getPokeAPI: url => {
     return axios.get(url);
