@@ -9,6 +9,7 @@ import {
   Items,
   EggGroups,
   GrowthRate,
+  Habitat,
 } from '../screens/';
 
 const Stack = createStackNavigator();
@@ -73,6 +74,13 @@ export default function Navigator() {
       <Stack.Screen
         name='GrowthRate'
         component={GrowthRate}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='Habitat'
+        component={Habitat}
         options={{
           headerShown: true,
         }}

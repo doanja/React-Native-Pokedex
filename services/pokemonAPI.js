@@ -22,6 +22,9 @@ export default {
   getGrowthRateData: growthName => {
     return axios.get(`https://pokeapi.co/api/v2/growth-rate/${growthName}/`);
   },
+  getHabitatName: habitatName => {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon-habitat/${habitatName}/`);
+  },
   getPokeAPI: url => {
     return axios.get(url);
   },
