@@ -7,7 +7,7 @@ import { colors } from '../../constants/theme';
 
 export default function AlternativeForms({ forms }) {
   const navigation = useNavigation();
-  console.log('forms :', forms);
+
   return (
     <Card>
       <CardHeader>

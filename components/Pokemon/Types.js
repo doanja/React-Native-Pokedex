@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import { sizes, colors } from '../../constants/theme';
+import Spinner from '../images/Spinner';
 
 export default function Types({ types }) {
   return (
@@ -10,13 +11,17 @@ export default function Types({ types }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Types</Text>
       </CardHeader>
-      <View style={styles.container}>
-        {types.map(type => (
-          <View style={[styles.badge, { backgroundColor: `#${TYPE_COLORS[type]}` }]} key={type}>
-            <Text style={styles.text}>{type}</Text>
-          </View>
-        ))}
-      </View>
+      {types ? (
+        <View style={styles.container}>
+          {types.map(type => (
+            <View style={[styles.badge, { backgroundColor: `#${TYPE_COLORS[type]}` }]} key={type}>
+              <Text style={styles.text}>{type}</Text>
+            </View>
+          ))}
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }
@@ -39,12 +44,12 @@ const TYPE_COLORS = {
   psychic: 'ED4882',
   rock: 'b8a038',
   steel: 'B5B5C3',
-  water: '3295F6'
+  water: '3295F6',
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   badge: {
     flex: 1,
@@ -52,12 +57,12 @@ const styles = StyleSheet.create({
     width: 10,
     height: 30,
     borderRadius: sizes.radius,
-    margin: 3
+    margin: 3,
   },
   text: {
     margin: 3,
     textTransform: 'capitalize',
     color: colors.white,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

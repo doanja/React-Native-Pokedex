@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function EggGroups({ groups }) {
   const navigation = useNavigation();
@@ -12,18 +13,22 @@ export default function EggGroups({ groups }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Egg Groups</Text>
       </CardHeader>
-      {groups.map(group => (
-        <View key={group.name}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('EggGroups', {
-                groupName: group.name,
-              })
-            }>
-            <Text style={globalStyles.cardItem}>{group.name}</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+      {groups ? (
+        groups.map(group => (
+          <View key={group.name}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('EggGroups', {
+                  groupName: group.name,
+                })
+              }>
+              <Text style={globalStyles.cardItem}>{group.name}</Text>
+            </TouchableOpacity>
+          </View>
+        ))
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

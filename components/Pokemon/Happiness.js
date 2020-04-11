@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Happiness({ happiness }) {
   return (
@@ -9,10 +10,13 @@ export default function Happiness({ happiness }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Happiness</Text>
       </CardHeader>
-
-      <View>
-        <Text style={globalStyles.cardText}>{happiness}</Text>
-      </View>
+      {happiness ? (
+        <View>
+          <Text style={globalStyles.cardText}>{happiness}</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

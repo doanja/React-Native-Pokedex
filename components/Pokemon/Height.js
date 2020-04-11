@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Height({ height }) {
   return (
@@ -10,9 +11,13 @@ export default function Height({ height }) {
         <Text style={globalStyles.headerText}>Height</Text>
       </CardHeader>
 
-      <View>
-        <Text style={globalStyles.cardText}>{height} in.</Text>
-      </View>
+      {height ? (
+        <View>
+          <Text style={globalStyles.cardText}>{height} in.</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

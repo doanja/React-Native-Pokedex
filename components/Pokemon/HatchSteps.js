@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function HatchSteps({ hatchSteps }) {
   return (
@@ -10,9 +11,13 @@ export default function HatchSteps({ hatchSteps }) {
         <Text style={globalStyles.headerText}>Hatch Steps</Text>
       </CardHeader>
 
-      <View>
-        <Text style={globalStyles.cardText}>{hatchSteps}</Text>
-      </View>
+      {hatchSteps ? (
+        <View>
+          <Text style={globalStyles.cardText}>{hatchSteps}</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

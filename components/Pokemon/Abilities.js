@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Abilities({ abilities }) {
   const navigation = useNavigation();
@@ -12,18 +13,22 @@ export default function Abilities({ abilities }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Abilities</Text>
       </CardHeader>
-      {abilities.map((ability) => (
-        <View key={ability.name}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('Abilities', {
-                name: ability.name,
-              })
-            }>
-            <Text style={globalStyles.cardItem}>{ability.name}</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+      {abilities ? (
+        abilities.map(ability => (
+          <View key={ability.name}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Abilities', {
+                  name: ability.name,
+                })
+              }>
+              <Text style={globalStyles.cardItem}>{ability.name}</Text>
+            </TouchableOpacity>
+          </View>
+        ))
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Shape({ shape }) {
   const navigation = useNavigation();
@@ -12,15 +13,18 @@ export default function Shape({ shape }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Shape</Text>
       </CardHeader>
-
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('Shape', {
-            shapeName: shape.name,
-          })
-        }>
-        <Text style={globalStyles.cardItem}>{shape.name}</Text>
-      </TouchableOpacity>
+      {shape ? (
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Shape', {
+              shapeName: shape.name,
+            })
+          }>
+          <Text style={globalStyles.cardItem}>{shape.name}</Text>
+        </TouchableOpacity>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

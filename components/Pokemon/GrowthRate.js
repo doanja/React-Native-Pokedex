@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function GrowthRate({ growthRate }) {
   const navigation = useNavigation();
@@ -12,15 +13,18 @@ export default function GrowthRate({ growthRate }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Growth Rate</Text>
       </CardHeader>
-
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('GrowthRate', {
-            name: growthRate.name,
-          })
-        }>
-        <Text style={globalStyles.cardItem}>{growthRate.name}</Text>
-      </TouchableOpacity>
+      {growthRate ? (
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('GrowthRate', {
+              name: growthRate.name,
+            })
+          }>
+          <Text style={globalStyles.cardItem}>{growthRate.name}</Text>
+        </TouchableOpacity>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

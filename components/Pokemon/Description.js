@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Description({ description }) {
   return (
@@ -9,10 +10,13 @@ export default function Description({ description }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Description</Text>
       </CardHeader>
-
-      <View>
-        <Text style={globalStyles.cardText}>{description}</Text>
-      </View>
+      {description ? (
+        <View>
+          <Text style={globalStyles.cardText}>{description}</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

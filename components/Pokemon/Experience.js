@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Height({ experience }) {
   return (
@@ -9,10 +10,13 @@ export default function Height({ experience }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Experience</Text>
       </CardHeader>
-
-      <View>
-        <Text style={globalStyles.cardText}>{experience}</Text>
-      </View>
+      {experience ? (
+        <View>
+          <Text style={globalStyles.cardText}>{experience}</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }

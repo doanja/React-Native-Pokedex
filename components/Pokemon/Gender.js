@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Gender({ gender }) {
   const genderInfo = (
@@ -16,8 +17,7 @@ export default function Gender({ gender }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Gender Ratio</Text>
       </CardHeader>
-
-      <View>{gender.genderRatio === -1 ? 'Genderless' : genderInfo}</View>
+      {gender ? <View>{gender.genderRatio === -1 ? 'Genderless' : genderInfo}</View> : <Spinner />}
     </Card>
   );
 }

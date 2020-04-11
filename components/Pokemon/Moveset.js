@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
   const [collapse, setCollapse] = useState(true);
@@ -55,7 +56,9 @@ export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
 
       <View>
         {/* move information */}
-        {collapse ? null : (
+        {collapse ? null : !currentMoveset ? (
+          <Spinner />
+        ) : (
           <View>
             {currentMoveset.map((move, index) => (
               <View key={index}>

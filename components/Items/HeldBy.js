@@ -16,7 +16,7 @@ export default function LearnableBy({ heldBy }) {
         <Text style={globalStyles.headerText}>Held By</Text>
       </CardHeader>
 
-      {collapse ? null : !learntBy ? (
+      {collapse ? null : !heldBy ? (
         <Spinner />
       ) : (
         <View style={globalStyles.container}>
