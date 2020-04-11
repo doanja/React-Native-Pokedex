@@ -26,9 +26,7 @@ export default function GrowthRate({ route }) {
         // sort pokemon by their id
         species.sort((a, b) => (parseInt(a.id) > parseInt(b.id) ? 1 : -1));
 
-        setSpecies({ species });
-
-        console.log('species :', species);
+        setSpecies(species);
       })
       .catch(err => console.log(err));
   };
