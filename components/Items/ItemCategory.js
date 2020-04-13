@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
+import Spinner from '../images/Spinner';
 
 export default function ItemCategory({ category }) {
   return (
@@ -10,9 +11,13 @@ export default function ItemCategory({ category }) {
         <Text style={globalStyles.headerText}>Category</Text>
       </CardHeader>
 
-      <View>
-        <Text style={[globalStyles.cardText, { textTransform: 'capitalize' }]}>{category}</Text>
-      </View>
+      {category ? (
+        <View>
+          <Text style={[globalStyles.cardText, { textTransform: 'capitalize' }]}>{category}</Text>
+        </View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }
