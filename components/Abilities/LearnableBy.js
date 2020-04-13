@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import PokemonCard from '../Pokemon/PokemonCard';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function LearnableBy({ learntBy }) {
   const navigation = useNavigation();

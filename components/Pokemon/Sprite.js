@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, Dimensions, View, TouchableOpacity } from 'rea
 import { globalStyles } from '../../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card, CardHeader } from '../../components';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function Sprite({ name, spriteDefault, spriteShiny }) {
   const [isSpriteDefault, setIsSpriteDefault] = useState(true);

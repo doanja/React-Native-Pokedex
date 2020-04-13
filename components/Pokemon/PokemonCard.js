@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function PokemonCard({ name, url, onPress, style }) {
   const [imageUrl, setImageUrl] = useState('');

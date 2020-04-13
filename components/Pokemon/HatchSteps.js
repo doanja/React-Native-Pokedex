@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function HatchSteps({ hatchSteps }) {
   return (

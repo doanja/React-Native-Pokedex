@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function EggGroups({ groups }) {
   const navigation = useNavigation();

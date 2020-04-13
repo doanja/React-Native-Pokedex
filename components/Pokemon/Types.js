@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import { sizes, colors } from '../../constants/theme';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function Types({ types }) {
   return (

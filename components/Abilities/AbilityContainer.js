@@ -5,7 +5,7 @@ import { Card, CardHeader } from '..';
 
 import AbilityDescription from './AbilityDescription';
 import LearnableBy from './LearnableBy';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function AbilityContainer({ abilityData, learntBy }) {
   return (

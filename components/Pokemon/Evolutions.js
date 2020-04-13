@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import { colors } from '../../constants/theme';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function Evolutions({ evolutions }) {
   const navigation = useNavigation();

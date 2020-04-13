@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
-import Spinner from '../images/Spinner';
+import Spinner from '../Spinner';
 
 export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
   const [collapse, setCollapse] = useState(true);
