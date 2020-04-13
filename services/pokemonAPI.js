@@ -28,6 +28,9 @@ export default {
   getShapeData: shapeName => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon-shape/${shapeName}/`);
   },
+  getMoveData: moveName => {
+    return axios.get(`https://pokeapi.co/api/v2/move/${moveName}/`);
+  },
   getPokeAPI: url => {
     return axios.get(url);
   },

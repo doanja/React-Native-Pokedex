@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../../components';
 import Spinner from '../Spinner';
 
 export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
+  const navigation = useNavigation();
+
   const [collapse, setCollapse] = useState(true);
   const [currentMoveset, setCurrentMoveset] = useState('');
 
@@ -63,7 +66,12 @@ export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
             {currentMoveset.map((move, index) => (
               <View key={index}>
                 {/* TODO: add onPress event */}
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Move', {
+                      moveName: move.move_name,
+                    })
+                  }>
                   <Text style={globalStyles.cardItem}>{move.move_name}</Text>
                 </TouchableOpacity>
               </View>

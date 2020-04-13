@@ -11,6 +11,7 @@ import {
   GrowthRate,
   Habitat,
   Shape,
+  Move,
 } from '../screens/';
 
 const Stack = createStackNavigator();
@@ -89,6 +90,13 @@ export default function Navigator() {
       <Stack.Screen
         name='Shape'
         component={Shape}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='Move'
+        component={Move}
         options={{
           headerShown: true,
         }}

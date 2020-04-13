@@ -12,6 +12,7 @@ import EggGroups from './EggGroups';
 import GrowthRate from './GrowthRate';
 import Habitat from './Habitat';
 import Shape from './Shape';
+import Move from './Move';
 
 export {
   AlternatePokemonForm,
@@ -28,4 +29,5 @@ export {
   GrowthRate,
   Habitat,
   Shape,
+  Move,
 };
