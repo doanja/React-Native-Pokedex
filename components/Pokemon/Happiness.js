@@ -10,6 +10,7 @@ export default function Happiness({ happiness }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Happiness</Text>
       </CardHeader>
+
       {happiness ? (
         <View>
           <Text style={globalStyles.cardText}>{happiness}</Text>

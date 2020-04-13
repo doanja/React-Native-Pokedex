@@ -67,16 +67,10 @@ export default function Pokemon({ route }) {
       genderRatioMale: '',
     },
     catchRate: '',
-    growthRate: { name: '', url: '' },
-    habitat: {
-      name: '',
-      url: '',
-    },
+    growthRate: '',
+    habitat: '',
     hatchSteps: '',
-    shape: {
-      name: '',
-      url: '',
-    },
+    shape: '',
     eggGroups: [],
   });
 
@@ -88,56 +82,6 @@ export default function Pokemon({ route }) {
   });
 
   useEffect(() => {
-    setPokemonData({
-      pokemonId: '',
-      baseExperience: '',
-      name: '',
-      spriteDefault: '',
-      spriteShiny: '',
-      weight: '',
-      height: '',
-      abilities: [],
-      items: [],
-      moves: [],
-      types: [],
-      evs: [],
-      stats: {
-        hp: '',
-        attack: '',
-        defense: '',
-        specialAttack: '',
-        specialDefense: '',
-        speed: '',
-      },
-      levelUpMoves: [],
-      tmMoves: [],
-      eggMoves: [],
-      isFavorite: false,
-    });
-
-    setSpeciesData({
-      pokemonId: '',
-      baseHappiness: '',
-      description: '',
-      gender: {
-        genderRatio: '',
-        genderRatioFemale: '',
-        genderRatioMale: '',
-      },
-      catchRate: '',
-      growthRate: { name: '', url: '' },
-      habitat: {
-        name: '',
-        url: '',
-      },
-      hatchSteps: '',
-      shape: {
-        name: '',
-        url: '',
-      },
-      eggGroups: [],
-    });
-
     getPokemonData();
   }, [name]);
 
@@ -311,16 +255,13 @@ export default function Pokemon({ route }) {
             genderRatioFemale: res.data.gender_rate * 12.5,
             genderRatioMale: 12.5 * (8 - res.data.gender_rate),
           },
-          growthRate: { name: res.data.growth_rate.name, url: res.data.growth_rate.url },
-          habitat:
-            res.data.habitat === null
-              ? { name: 'None' }
-              : { name: res.data.habitat.name, url: res.data.habitat.url },
+          growthRate: res.data.growth_rate.name,
+          habitat: res.data.habitat === null ? 'None' : res.data.habitat.name,
           catchRate: Math.round((100 / 255) * res.data.capture_rate),
           hatchSteps: 255 * (res.data.hatch_counter + 1),
           eggGroups,
           description,
-          shape: { name: res.data.shape.name, url: res.data.shape.url },
+          shape: res.data.shape.name,
         });
 
         setEvolutionData({ ...evolutionData, evolutionUrl: res.data.evolution_chain.url });

@@ -13,6 +13,7 @@ export default function Abilities({ abilities }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Abilities</Text>
       </CardHeader>
+
       {abilities ? (
         abilities.map(ability => (
           <View key={ability.name}>

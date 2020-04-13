@@ -13,14 +13,15 @@ export default function Habitat({ habitat }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Habitat</Text>
       </CardHeader>
+
       {habitat ? (
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('Habitat', {
-              habitatName: habitat.name,
+              habitatName: habitat,
             })
           }>
-          <Text style={globalStyles.cardItem}>{habitat.name}</Text>
+          <Text style={globalStyles.cardItem}>{habitat}</Text>
         </TouchableOpacity>
       ) : (
         <Spinner />

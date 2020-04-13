@@ -13,14 +13,15 @@ export default function Shape({ shape }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Shape</Text>
       </CardHeader>
+
       {shape ? (
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('Shape', {
-              shapeName: shape.name,
+              shapeName: shape,
             })
           }>
-          <Text style={globalStyles.cardItem}>{shape.name}</Text>
+          <Text style={globalStyles.cardItem}>{shape}</Text>
         </TouchableOpacity>
       ) : (
         <Spinner />

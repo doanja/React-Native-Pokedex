@@ -13,6 +13,7 @@ export default function EggGroups({ groups }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Egg Groups</Text>
       </CardHeader>
+
       {groups ? (
         groups.map(group => (
           <View key={group.name}>

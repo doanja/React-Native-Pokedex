@@ -10,6 +10,7 @@ export default function EffortValues({ evs }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Effort Values</Text>
       </CardHeader>
+
       {evs ? (
         evs.map(ev => (
           <View key={ev}>

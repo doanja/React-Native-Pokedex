@@ -13,14 +13,15 @@ export default function GrowthRate({ growthRate }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Growth Rate</Text>
       </CardHeader>
+
       {growthRate ? (
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('GrowthRate', {
-              name: growthRate.name,
+              name: growthRate,
             })
           }>
-          <Text style={globalStyles.cardItem}>{growthRate.name}</Text>
+          <Text style={globalStyles.cardItem}>{growthRate}</Text>
         </TouchableOpacity>
       ) : (
         <Spinner />

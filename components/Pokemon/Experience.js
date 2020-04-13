@@ -10,6 +10,7 @@ export default function Height({ experience }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Experience</Text>
       </CardHeader>
+
       {experience ? (
         <View>
           <Text style={globalStyles.cardText}>{experience}</Text>

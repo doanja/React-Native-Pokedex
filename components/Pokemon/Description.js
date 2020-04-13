@@ -10,6 +10,7 @@ export default function Description({ description }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Description</Text>
       </CardHeader>
+
       {description ? (
         <View>
           <Text style={globalStyles.cardText}>{description}</Text>
