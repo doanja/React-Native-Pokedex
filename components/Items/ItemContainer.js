@@ -2,17 +2,9 @@ import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../';
-import {
-  ItemSprite,
-  ItemDescription,
-  ItemCategory,
-  ItemCost,
-  ItemAttribute,
-  ItemFlingEffect,
-  ItemFlingDamage,
-  HeldBy,
-} from './index';
-import Description from '../Common/Description';
+import { ItemSprite, HeldBy } from './index';
+import SubCard from '../Common/SubCard';
+import SubCardMultiple from '../Common/SubCardMultiple';
 
 export default function ItemContainer({ itemData, heldBy }) {
   return (
@@ -23,17 +15,17 @@ export default function ItemContainer({ itemData, heldBy }) {
 
       <ItemSprite spriteUri={itemData.sprite} />
 
-      <Description description={itemData.effectEntries} />
+      <SubCard header={'description'} data={itemData.effectEntries} />
 
-      <ItemCategory category={itemData.category.name} />
+      <SubCard header={'category'} data={itemData.category} capitalize />
 
-      <ItemCost cost={itemData.cost} />
+      <SubCard header={'cost'} data={itemData.cost} />
 
-      <ItemAttribute attribute={itemData.attributes} />
+      <SubCardMultiple header={'attributes'} data={itemData.attributes} capitalize />
 
-      <ItemFlingEffect flingEffect={itemData.flingEffect} />
+      <SubCard header={'fling effect'} data={itemData.flingEffect} />
 
-      <ItemFlingDamage flingDamage={itemData.flingDamage} />
+      <SubCard header={'fling damage'} data={itemData.flingDamage} />
 
       <HeldBy heldBy={heldBy} />
     </Card>

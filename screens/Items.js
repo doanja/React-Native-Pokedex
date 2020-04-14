@@ -10,10 +10,7 @@ export default function Item({ route }) {
 
   const [itemData, setItemData] = useState({
     attributes: [],
-    category: {
-      name: '',
-      url: '',
-    },
+    category: '',
     cost: '',
     effectEntries: '',
     flingEffect: '',
@@ -62,7 +59,7 @@ export default function Item({ route }) {
 
         setItemData({
           attributes,
-          category: { name: res.data.category.name.replace(/-/g, ' '), url: res.data.category.url },
+          category: res.data.category.name.replace(/-/g, ' '),
           cost: res.data.cost,
           effectEntries: res.data.effect_entries[0].effect,
           flingEffect: res.data.fling_effect,
