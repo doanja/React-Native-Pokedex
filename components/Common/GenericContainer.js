@@ -4,6 +4,11 @@ import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import Species from './Species';
 
+/**
+ * generic container to display the name of this component and a set of pokemon
+ * @param {string} name, the name for the header of this component
+ * @param {species} array, the array of pokemon
+ */
 export default function GenericContainer({ name, species }) {
   return (
     <Card>
