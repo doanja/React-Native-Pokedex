@@ -4,7 +4,7 @@ import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../';
 import MoveTypes from '../Pokemon/Types';
 import SubCard from '../Common/SubCard';
-import MultipleItemSubCard from '../Common/MultipleItemSubCard';
+import SubCardMultiple from '../Common/SubCardMultiple';
 
 export default function MoveContainer({ moveName, moveData }) {
   return (
@@ -31,7 +31,7 @@ export default function MoveContainer({ moveName, moveData }) {
 
       <SubCard header={'effect chance'} data={moveData.effectChance} />
 
-      <MultipleItemSubCard header={'stat changes'} data={moveData.statChanges} />
+      <SubCardMultiple header={'stat changes'} data={moveData.statChanges} />
 
       <SubCard header={'stat chance'} data={moveData.statChance} />
 

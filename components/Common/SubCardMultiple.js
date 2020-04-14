@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
+import { Card, CardHeader } from '..';
 
-export default function MutipledataubCard({ header, data }) {
+export default function SubCardMultiple({ header, data }) {
   return (
     <Card>
       <CardHeader>
