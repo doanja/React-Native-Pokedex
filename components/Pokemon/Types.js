@@ -9,7 +9,7 @@ export default function Types({ types }) {
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>Types</Text>
+        <Text style={globalStyles.headerText}>Type</Text>
       </CardHeader>
       {types ? (
         <View style={styles.container}>

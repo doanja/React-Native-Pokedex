@@ -7,7 +7,7 @@ import Stats from './Stats';
 import Weight from './Weight';
 import Experience from './Experience';
 import EffortValues from './EffortValues';
-import Description from './Description';
+import Description from '../Common/Description';
 import Evolutions from './Evolutions';
 import AlternativeForms from './AlternativeForms';
 import EggGroups from './EggGroups';
@@ -43,5 +43,5 @@ export {
   Happiness,
   Shape,
   Moveset,
-  Types
+  Types,
 };

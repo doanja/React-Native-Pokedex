@@ -12,6 +12,7 @@ import {
   ItemFlingDamage,
   HeldBy,
 } from './index';
+import Description from '../Common/Description';
 
 export default function ItemContainer({ itemData, heldBy }) {
   return (
@@ -22,7 +23,7 @@ export default function ItemContainer({ itemData, heldBy }) {
 
       <ItemSprite spriteUri={itemData.sprite} />
 
-      <ItemDescription description={itemData.effectEntries} />
+      <Description description={itemData.effectEntries} />
 
       <ItemCategory category={itemData.category.name} />
 
