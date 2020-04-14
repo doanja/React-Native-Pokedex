@@ -2,21 +2,19 @@ import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
+import PokemonSubList from '../Common/PokemonSubList';
+import SubCard from '../Common/SubCard';
 
-import AbilityDescription from './AbilityDescription';
-import LearnableBy from './LearnableBy';
-import Spinner from '../Spinner';
-
-export default function AbilityContainer({ abilityData, learntBy }) {
+export default function AbilityContainer({ abilityData, species }) {
   return (
     <Card>
       <CardHeader>
         <Text style={globalStyles.headerText}>{abilityData.name}</Text>
       </CardHeader>
 
-      {abilityData ? <AbilityDescription description={abilityData.effectEntries} /> : <Spinner />}
+      <SubCard header={'description'} data={abilityData.effectEntries} />
 
-      {learntBy ? <LearnableBy learntBy={learntBy} /> : <Spinner />}
+      <PokemonSubList species={species} />
     </Card>
   );
 }

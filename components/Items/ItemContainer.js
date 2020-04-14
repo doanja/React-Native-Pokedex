@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../';
-import Species from '../Common/Species';
+import PokemonSubList from '../Common/PokemonSubList';
 import ItemSprite from './ItemSprite';
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
@@ -28,7 +28,7 @@ export default function ItemContainer({ itemData, heldBy }) {
 
       <SubCard header={'fling damage'} data={itemData.flingDamage} />
 
-      <Species species={heldBy} />
+      <PokemonSubList species={heldBy} />
     </Card>
   );
 }

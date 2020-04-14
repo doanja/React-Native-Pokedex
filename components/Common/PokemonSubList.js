@@ -6,7 +6,7 @@ import { Card, CardHeader } from '..';
 import PokemonCard from '../Pokemon/PokemonCard';
 import Spinner from '../Spinner';
 
-export default function LearnableBy({ species }) {
+export default function PokemonSubList({ species }) {
   const navigation = useNavigation();
   const [collapse, setCollapse] = useState(false);
 

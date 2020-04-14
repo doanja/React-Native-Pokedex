@@ -9,7 +9,7 @@ export default function Abilities({ route }) {
   const { name } = route.params;
 
   const [abilityData, setAbilityData] = useState({ effectEntries: '', name: '' });
-  const [learntBy, setLearntBy] = useState([]);
+  const [species, setSpecies] = useState([]);
 
   useEffect(() => {
     getAbilityData();
@@ -34,7 +34,7 @@ export default function Abilities({ route }) {
               // sort pokemon by id
               learntBy.sort((a, b) => (a.id > b.id ? 1 : -1));
 
-              setLearntBy(learntBy);
+              setSpecies(learntBy);
             })
             .catch(err => console.log(err));
         });
@@ -50,7 +50,7 @@ export default function Abilities({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <AbilityContainer abilityData={abilityData} learntBy={learntBy} />
+        <AbilityContainer abilityData={abilityData} species={species} />
       </ScrollView>
     </View>
   );
