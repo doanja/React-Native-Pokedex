@@ -6,7 +6,7 @@ import API from '../services/pokemonAPI';
 import ItemContainer from '../components/Items/ItemContainer';
 
 export default function Item({ route }) {
-  const { itemName } = route.params;
+  const { name } = route.params;
 
   const [itemData, setItemData] = useState({
     attributes: [],
@@ -24,16 +24,16 @@ export default function Item({ route }) {
 
   useEffect(() => {
     getItemData();
-  }, [itemName]);
+  }, [name]);
 
   const getItemData = () => {
-    API.getItemData(itemName)
+    API.getItemData(name)
       .then(res => {
         const attributes = [];
         const heldBy = [];
 
         res.data.attributes.forEach(attribute => {
-          attributes.push({ name: attribute.name, url: attribute.url });
+          attributes.push(attribute.name);
         });
 
         res.data.held_by_pokemon.forEach(pokemon => {
@@ -72,9 +72,7 @@ export default function Item({ route }) {
 
   return (
     <View style={globalStyles.container}>
-      <ScrollView>
-        <ItemContainer itemData={itemData} heldBy={heldBy} />
-      </ScrollView>
+      <ScrollView>{<ItemContainer itemData={itemData} heldBy={heldBy} />}</ScrollView>
     </View>
   );
 }

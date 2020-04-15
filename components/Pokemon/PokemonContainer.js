@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../';
 
@@ -19,8 +19,6 @@ import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
 
 export default function ItemContainer({ pokemonData, speciesData, forms, evolutionData }) {
-  const navigation = useNavigation();
-
   return (
     <View>
       <Sprite
@@ -28,9 +26,9 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         spriteDefault={pokemonData.spriteDefault}
         spriteShiny={pokemonData.spriteShiny}
       />
-      {/* <Types types={pokemonData.types} />
+      {/* <Types types={pokemonData.types} /> */}
 
-      <Stats stats={pokemonData.stats} />
+      {/* <Stats stats={pokemonData.stats} />
 
       <Abilities abilities={pokemonData.abilities} />
 
@@ -43,11 +41,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         data={pokemonData.items}
         capitalize
         touchable
-        onPress={() =>
-          navigation.navigate('Items', {
-            itemName: pokemonData.items,
-          })
-        }
+        navigateTo={'Items'}
       />
 
       {/* <SubCard header={'height'} data={`${pokemonData.height} in.`} />
@@ -60,19 +54,31 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <SubCard header={'description'} data={speciesData.description} /> */}
 
-      <SubCardMultiple
+      {/* <SubCardMultiple
         header={'egg groups'}
         data={speciesData.eggGroups}
         capitalize
         touchable
-        onPress={() =>
-          navigation.navigate('EggGroups', {
-            groupName: speciesData.eggGroups,
-          })
-        }
+        navigateTo={'EggGroups'}
+      /> */}
+
+      {/* 
+
+      <SubCard
+        header={'growth rate'}
+        data={speciesData.growthRate}
+        capitalize
+        touchable
+        navigateTo={'GrowthRate'}
       />
 
-      {/* <SubCard header={'growth rate'} data={speciesData.growthRate} capitalize />
+      <SubCard
+        header={'habitat'}
+        data={speciesData.habitat}
+        capitalize
+        touchable
+        navigateTo={'Habitat'}
+      />
 
       <SubCard
         header={'habitat'}

@@ -6,7 +6,7 @@ import API from '../services/pokemonAPI';
 import MoveContainer from '../components/Move/MoveContainer';
 
 export default function Move({ route }) {
-  const { moveName } = route.params;
+  const { name } = route.params;
 
   const [moveData, setMoveData] = useState({
     accuracy: '',
@@ -36,10 +36,10 @@ export default function Move({ route }) {
 
   useEffect(() => {
     getMoveData();
-  }, [moveName]);
+  }, [name]);
 
   const getMoveData = () => {
-    API.getMoveData(moveName)
+    API.getMoveData(name)
       .then(res => {
         let description = '';
         const statChanges = [];
@@ -86,7 +86,7 @@ export default function Move({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <MoveContainer moveName={moveName} moveData={moveData} />
+        <MoveContainer name={name} moveData={moveData} />
       </ScrollView>
     </View>
   );

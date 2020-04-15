@@ -6,11 +6,11 @@ import MoveTypes from '../Pokemon/Types';
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
 
-export default function MoveContainer({ moveName, moveData }) {
+export default function MoveContainer({ name, moveData }) {
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>{moveName}</Text>
+        <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
 
       <MoveTypes types={moveData.type} />

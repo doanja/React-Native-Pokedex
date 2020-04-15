@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '../';
 
-export default function SubCardMultiple({ header, data, capitalize, touchable, onPress }) {
+export default function SubCardMultiple({ header, data, capitalize, touchable, navigateTo }) {
+  const navigation = useNavigation();
+
   const headerStyle = [globalStyles.headerText];
   const bodyStyle = [
     globalStyles.cardText,
@@ -20,7 +23,13 @@ export default function SubCardMultiple({ header, data, capitalize, touchable, o
       {data.length ? (
         data.map(item =>
           touchable ? (
-            <TouchableOpacity key={item} onPress={onPress}>
+            <TouchableOpacity
+              key={item}
+              onPress={() => {
+                navigation.navigate(navigateTo, {
+                  name: item,
+                });
+              }}>
               <Text style={bodyStyle}>{item}</Text>
             </TouchableOpacity>
           ) : (

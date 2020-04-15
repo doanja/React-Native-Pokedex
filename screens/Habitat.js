@@ -5,15 +5,15 @@ import API from '../services/pokemonAPI';
 import GenericContainer from '../components/Common/GenericContainer';
 
 export default function Habitat({ route }) {
-  const { habitatName } = route.params;
+  const { name } = route.params;
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
     getHabitatData();
-  }, [habitatName]);
+  }, [name]);
 
   const getHabitatData = () => {
-    API.getHabitatData(habitatName)
+    API.getHabitatData(name)
       .then(res => {
         const species = [];
 
@@ -33,7 +33,7 @@ export default function Habitat({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <GenericContainer name={habitatName} species={species} />
+        <GenericContainer name={name} species={species} />
       </ScrollView>
     </View>
   );
