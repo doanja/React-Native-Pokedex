@@ -8,12 +8,6 @@ import {
   Sprite,
   Stats,
   Abilities,
-  HeldItems,
-  Height,
-  Weight,
-  Experience,
-  EffortValues,
-  Description,
   Evolutions,
   AlternativeForms,
   Gender,
@@ -40,25 +34,31 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <Abilities abilities={pokemonData.abilities} />
 
-      <HeldItems items={pokemonData.items} />
-
-      <Height height={pokemonData.height} />
-
-      <Weight weight={pokemonData.weight} />
-
-      <Experience experience={pokemonData.baseExperience} />
-
-      <EffortValues evs={pokemonData.evs} />
-
-      <Description description={speciesData.description} />
-
       <Evolutions evolutions={evolutionData.evolutions} />
 
-      <AlternativeForms forms={forms.alternativeForms} />
+      <AlternativeForms forms={forms.alternativeForms} /> */}
 
-      <EggGroups groups={speciesData.eggGroups} /> */}
+      <SubCardMultiple
+        header={'held items'}
+        data={pokemonData.items}
+        capitalize
+        touchable
+        onPress={() =>
+          navigation.navigate('Items', {
+            itemName: pokemonData.items,
+          })
+        }
+      />
 
-      {/*
+      {/* <SubCard header={'height'} data={`${pokemonData.height} in.`} />
+
+      <SubCard header={'weight'} data={`${pokemonData.weight} lbs.`} />
+
+      <SubCard header={'experience'} data={pokemonData.baseExperience} />
+
+      <SubCardMultiple header={'effort values'} data={pokemonData.evs} capitalize />
+
+      <SubCard header={'description'} data={speciesData.description} /> */}
 
       <SubCardMultiple
         header={'egg groups'}
@@ -72,7 +72,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         }
       />
 
-      <SubCard header={'growth rate'} data={speciesData.growthRate} capitalize />
+      {/* <SubCard header={'growth rate'} data={speciesData.growthRate} capitalize />
 
       <SubCard
         header={'habitat'}

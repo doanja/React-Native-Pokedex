@@ -108,10 +108,7 @@ export default function Pokemon({ route }) {
         });
 
         res.data.held_items.forEach(item => {
-          items.push({
-            name: item.item.name,
-            id: item.item.url.split('/')[url.split('/').length - 2],
-          });
+          items.push(item.item.name);
         });
 
         res.data.types.forEach(type => {

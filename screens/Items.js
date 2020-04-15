@@ -6,7 +6,7 @@ import API from '../services/pokemonAPI';
 import ItemContainer from '../components/Items/ItemContainer';
 
 export default function Item({ route }) {
-  const { name } = route.params;
+  const { itemName } = route.params;
 
   const [itemData, setItemData] = useState({
     attributes: [],
@@ -17,7 +17,6 @@ export default function Item({ route }) {
     flingPower: '',
     heldBy: [],
     id: '',
-    name: '',
     sprite: '',
   });
 
@@ -25,10 +24,10 @@ export default function Item({ route }) {
 
   useEffect(() => {
     getItemData();
-  }, [name]);
+  }, [itemName]);
 
   const getItemData = () => {
-    API.getItemData(name)
+    API.getItemData(itemName)
       .then(res => {
         const attributes = [];
         const heldBy = [];
@@ -65,7 +64,6 @@ export default function Item({ route }) {
           flingEffect: res.data.fling_effect,
           flingPower: res.data.fling_power,
           id: res.data.id,
-          name: res.data.name,
           sprite: res.data.sprites.default,
         });
       })

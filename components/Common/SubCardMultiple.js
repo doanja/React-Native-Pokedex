@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '..';
+import { Card, CardHeader } from '../';
 
 export default function SubCardMultiple({ header, data, capitalize, touchable, onPress }) {
   const headerStyle = [globalStyles.headerText];
@@ -31,7 +31,7 @@ export default function SubCardMultiple({ header, data, capitalize, touchable, o
         )
       ) : (
         <View>
-          <Text style={bodyStyle}>None</Text>
+          <Text style={globalStyles.cardText}>None</Text>
         </View>
       )}
     </Card>

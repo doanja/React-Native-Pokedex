@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
+import { Card, CardHeader } from '../';
 
 export default function SubCard({ header, data, capitalize, touchable, onPress }) {
   const headerStyle = [globalStyles.headerText];
@@ -23,7 +23,7 @@ export default function SubCard({ header, data, capitalize, touchable, onPress }
         </TouchableOpacity>
       ) : (
         <View>
-          <Text style={bodyStyle}>{!data ? '-' : data}</Text>
+          <Text style={globalStyles.cardText}>{!data ? '-' : data}</Text>
         </View>
       )}
     </Card>
