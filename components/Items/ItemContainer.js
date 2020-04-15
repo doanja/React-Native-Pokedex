@@ -28,7 +28,7 @@ export default function ItemContainer({ itemData, heldBy }) {
 
       <SubCard header={'fling damage'} data={itemData.flingDamage} />
 
-      <PokemonSubList species={heldBy} />
+      <PokemonSubList header={'held by'} species={heldBy} />
     </Card>
   );
 }

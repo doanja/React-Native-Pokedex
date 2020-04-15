@@ -18,12 +18,10 @@ import {
   AlternativeForms,
   EggGroups,
   GrowthRate,
-  Habitat,
   Gender,
   CatchRate,
   HatchSteps,
   Happiness,
-  Shape,
   Moveset,
   Types,
 } from '../Pokemon/index';
@@ -41,7 +39,6 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         spriteDefault={pokemonData.spriteDefault}
         spriteShiny={pokemonData.spriteShiny}
       />
-
       {/* <Types types={pokemonData.types} />
 
       <Stats stats={pokemonData.stats} />
@@ -68,10 +65,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <GrowthRate growthRate={speciesData.growthRate} /> */}
 
-      {/* <Habitat habitat={speciesData.habitat} />
-       */}
-
-      <SubCard
+      {/* <SubCard
         header={'habitat'}
         data={speciesData.habitat}
         capitalize
@@ -83,15 +77,25 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         }
       />
 
-      {/* <Gender gender={speciesData.gender} />
+      <Gender gender={speciesData.gender} />
 
-      <CatchRate catchRate={speciesData.catchRate} />
+      <SubCard header={'catch rate'} data={speciesData.catchRate} />
 
-      <HatchSteps hatchSteps={speciesData.hatchSteps} />
+      <SubCard header={'hatch steps'} data={speciesData.hatchSteps} />
 
-      <Happiness happiness={speciesData.baseHappiness} />
+      <SubCard header={'happiness'} data={speciesData.baseHappiness} />
 
-      <Shape shape={speciesData.shape} />
+      <SubCard
+        header={'shape'}
+        data={speciesData.shape}
+        capitalize
+        touchable
+        onPress={() =>
+          navigation.navigate('Shape', {
+            shapeName: speciesData.shape,
+          })
+        }
+      />
 
       <Moveset
         levelUpMoves={pokemonData.levelUpMoves}

@@ -16,7 +16,7 @@ export default function GenericContainer({ name, species }) {
         <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
 
-      <PokemonSubList species={species} />
+      <PokemonSubList header={'available to'} species={species} />
     </Card>
   );
 }
