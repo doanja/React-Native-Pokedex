@@ -10,12 +10,7 @@ import EffortValues from './EffortValues';
 import Description from '../Common/Description';
 import Evolutions from './Evolutions';
 import AlternativeForms from './AlternativeForms';
-import EggGroups from './EggGroups';
-import GrowthRate from './GrowthRate';
 import Gender from './Gender';
-import CatchRate from './CatchRate';
-import HatchSteps from './HatchSteps';
-import Happiness from './Happiness';
 import Moveset from './Moveset';
 import Types from './Types';
 
@@ -32,12 +27,7 @@ export {
   Description,
   Evolutions,
   AlternativeForms,
-  EggGroups,
-  GrowthRate,
   Gender,
-  CatchRate,
-  HatchSteps,
-  Happiness,
   Moveset,
   Types,
 };

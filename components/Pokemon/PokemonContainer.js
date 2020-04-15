@@ -16,12 +16,7 @@ import {
   Description,
   Evolutions,
   AlternativeForms,
-  EggGroups,
-  GrowthRate,
   Gender,
-  CatchRate,
-  HatchSteps,
-  Happiness,
   Moveset,
   Types,
 } from '../Pokemon/index';
@@ -61,11 +56,25 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <AlternativeForms forms={forms.alternativeForms} />
 
-      <EggGroups groups={speciesData.eggGroups} />
+      <EggGroups groups={speciesData.eggGroups} /> */}
 
-      <GrowthRate growthRate={speciesData.growthRate} /> */}
+      {/*
 
-      {/* <SubCard
+      <SubCardMultiple
+        header={'egg groups'}
+        data={speciesData.eggGroups}
+        capitalize
+        touchable
+        onPress={() =>
+          navigation.navigate('EggGroups', {
+            groupName: speciesData.eggGroups,
+          })
+        }
+      />
+
+      <SubCard header={'growth rate'} data={speciesData.growthRate} capitalize />
+
+      <SubCard
         header={'habitat'}
         data={speciesData.habitat}
         capitalize

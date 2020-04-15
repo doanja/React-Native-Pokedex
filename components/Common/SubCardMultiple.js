@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 
@@ -20,12 +20,12 @@ export default function SubCardMultiple({ header, data, capitalize, touchable, o
       {data.length ? (
         data.map(item =>
           touchable ? (
-            <TouchableOpacity key={item.name} onPress={onPress}>
-              <Text style={bodyStyle}>{item.name}</Text>
+            <TouchableOpacity key={item} onPress={onPress}>
+              <Text style={bodyStyle}>{item}</Text>
             </TouchableOpacity>
           ) : (
-            <View key={item.name}>
-              <Text style={bodyStyle}>{item.name}</Text>
+            <View key={item}>
+              <Text style={bodyStyle}>{item}</Text>
             </View>
           )
         )

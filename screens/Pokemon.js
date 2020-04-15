@@ -216,7 +216,7 @@ export default function Pokemon({ route }) {
         let description = '';
 
         res.data.egg_groups.forEach(group => {
-          eggGroups.push({ name: group.name, url: group.url });
+          eggGroups.push(group.name);
         });
 
         res.data.flavor_text_entries.filter(element => {
