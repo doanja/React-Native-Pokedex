@@ -94,11 +94,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
         data={speciesData.shape}
         capitalize
         touchable
-        onPress={() =>
-          navigation.navigate('Shape', {
-            shapeName: speciesData.shape,
-          })
-        }
+        navigateTo={'Shape'}
       />
 
       <Moveset

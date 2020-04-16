@@ -19,6 +19,9 @@ export default {
   getShapeData: groupName => {
     return axios.get(`https://pokeapi.co/api/v2/egg-group/${groupName}/`);
   },
+  getEggGroupData: groupName => {
+    return axios.get(`https://pokeapi.co/api/v2/egg-group/${groupName}/`);
+  },
   getGrowthRateData: growthName => {
     return axios.get(`https://pokeapi.co/api/v2/growth-rate/${growthName}/`);
   },

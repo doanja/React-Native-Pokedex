@@ -51,7 +51,7 @@ export default function Move({ route }) {
         });
 
         res.data.stat_changes.forEach(change => {
-          statChanges.push({ change: change.change, name: change.stat.name });
+          statChanges.push(`${change.change} ${change.stat.name}`);
         });
 
         setMoveData({
