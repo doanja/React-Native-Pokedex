@@ -1,11 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
+import { Card, CardHeader } from '../';
 
-export default function SubCard({ header, data, capitalize }) {
+export default function SubCard({ header, data, capitalize, touchable, navigateTo }) {
+  const navigation = useNavigation();
+
   const headerStyle = [globalStyles.headerText];
-  const bodyStyle = [globalStyles.cardText, capitalize && styles.capitalize];
+  const bodyStyle = [
+    globalStyles.cardText,
+    capitalize && styles.capitalize,
+    touchable && globalStyles.cardItem,
+  ];
 
   return (
     <Card>
@@ -13,9 +20,25 @@ export default function SubCard({ header, data, capitalize }) {
         <Text style={headerStyle}>{header}</Text>
       </CardHeader>
 
-      <View>
-        <Text style={bodyStyle}>{!data ? '-' : data}</Text>
-      </View>
+      {touchable ? (
+        <TouchableOpacity
+          key={data}
+          onPress={() =>
+            navigation.navigate(navigateTo, {
+              name: data,
+            })
+          }>
+          <Text style={bodyStyle}>{!data ? '-' : data}</Text>
+        </TouchableOpacity>
+      ) : (
+        <View>
+          {!data ? (
+            <Text style={globalStyles.cardText}>{'-'}</Text>
+          ) : (
+            <Text style={bodyStyle}>{data}</Text>
+          )}
+        </View>
+      )}
     </Card>
   );
 }

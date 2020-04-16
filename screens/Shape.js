@@ -5,15 +5,15 @@ import API from '../services/pokemonAPI';
 import GenericContainer from '../components/Common/GenericContainer';
 
 export default function Shape({ route }) {
-  const { shapeName } = route.params;
+  const { name } = route.params;
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
     getShapeData();
-  }, [shapeName]);
+  }, [name]);
 
   const getShapeData = () => {
-    API.getShapeData(shapeName)
+    API.getShapeData(name)
       .then(res => {
         const species = [];
 
@@ -33,7 +33,7 @@ export default function Shape({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <GenericContainer name={shapeName} species={species} />
+        <GenericContainer name={name} species={species} />
       </ScrollView>
     </View>
   );

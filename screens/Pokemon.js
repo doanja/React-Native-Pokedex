@@ -1,31 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import {
-  Sprite,
-  Stats,
-  Abilities,
-  HeldItems,
-  Height,
-  Weight,
-  Experience,
-  EffortValues,
-  Description,
-  Evolutions,
-  AlternativeForms,
-  EggGroups,
-  GrowthRate,
-  Habitat,
-  Gender,
-  CatchRate,
-  HatchSteps,
-  Happiness,
-  Shape,
-  Moveset,
-  Types,
-} from '../components/Pokemon/index';
+import PokemonContainer from '../components/Pokemon/PokemonContainer';
 
 export default function Pokemon({ route }) {
   const { name, url } = route.params;
@@ -123,17 +101,11 @@ export default function Pokemon({ route }) {
         const tmMoves = [];
 
         res.data.abilities.forEach(ability => {
-          abilities.push({
-            name: ability.ability.name.replace(/-/g, ' '),
-            url: ability.ability.url,
-          });
+          abilities.push(ability.ability.name.replace(/-/g, ' '));
         });
 
         res.data.held_items.forEach(item => {
-          items.push({
-            name: item.item.name,
-            id: item.item.url.split('/')[url.split('/').length - 2],
-          });
+          items.push(item.item.name);
         });
 
         res.data.types.forEach(type => {
@@ -238,7 +210,7 @@ export default function Pokemon({ route }) {
         let description = '';
 
         res.data.egg_groups.forEach(group => {
-          eggGroups.push({ name: group.name, url: group.url });
+          eggGroups.push(group.name);
         });
 
         res.data.flavor_text_entries.filter(element => {
@@ -407,54 +379,11 @@ export default function Pokemon({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <Sprite
-          name={name}
-          spriteDefault={pokemonData.spriteDefault}
-          spriteShiny={pokemonData.spriteShiny}
-        />
-
-        <Types types={pokemonData.types} />
-
-        <Stats stats={pokemonData.stats} />
-
-        <Abilities abilities={pokemonData.abilities} />
-
-        <HeldItems items={pokemonData.items} />
-
-        <Height height={pokemonData.height} />
-
-        <Weight weight={pokemonData.weight} />
-
-        <Experience experience={pokemonData.baseExperience} />
-
-        <EffortValues evs={pokemonData.evs} />
-
-        <Description description={speciesData.description} />
-
-        <Evolutions evolutions={evolutionData.evolutions} />
-
-        <AlternativeForms forms={forms.alternativeForms} />
-
-        <EggGroups groups={speciesData.eggGroups} />
-
-        <GrowthRate growthRate={speciesData.growthRate} />
-
-        <Habitat habitat={speciesData.habitat} />
-
-        <Gender gender={speciesData.gender} />
-
-        <CatchRate catchRate={speciesData.catchRate} />
-
-        <HatchSteps hatchSteps={speciesData.hatchSteps} />
-
-        <Happiness happiness={speciesData.baseHappiness} />
-
-        <Shape shape={speciesData.shape} />
-
-        <Moveset
-          levelUpMoves={pokemonData.levelUpMoves}
-          tmMoves={pokemonData.tmMoves}
-          eggMoves={pokemonData.eggMoves}
+        <PokemonContainer
+          pokemonData={pokemonData}
+          speciesData={speciesData}
+          forms={forms}
+          evolutionData={evolutionData}
         />
       </ScrollView>
     </View>

@@ -19,7 +19,6 @@ export default function AlternativeForms({ forms }) {
             <TouchableOpacity
               style={styles.imageContainer}
               onPress={() =>
-                // TODO change to alternative pokemon component
                 navigation.navigate('AlternatePokemonForm', {
                   name: form.name,
                   url: form.url,

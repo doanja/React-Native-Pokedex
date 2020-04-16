@@ -6,14 +6,14 @@ import { Card, CardHeader } from '..';
 import PokemonCard from '../Pokemon/PokemonCard';
 import Spinner from '../Spinner';
 
-export default function PokemonSubList({ species }) {
+export default function PokemonSubList({ header, species }) {
   const navigation = useNavigation();
   const [collapse, setCollapse] = useState(false);
 
   return (
     <Card>
       <CardHeader touchable onPress={() => setCollapse(!collapse)}>
-        <Text style={globalStyles.headerText}>Held By</Text>
+        <Text style={globalStyles.headerText}>{header}</Text>
       </CardHeader>
 
       {collapse ? null : !species ? (

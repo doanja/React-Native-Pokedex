@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
+import { Card, CardHeader } from '..';
 import { sizes, colors } from '../../constants/theme';
 import Spinner from '../Spinner';
 

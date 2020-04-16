@@ -14,7 +14,7 @@ export default function AbilityContainer({ abilityData, species }) {
 
       <SubCard header={'description'} data={abilityData.effectEntries} />
 
-      <PokemonSubList species={species} />
+      <PokemonSubList header={'learnt by'} species={species} />
     </Card>
   );
 }

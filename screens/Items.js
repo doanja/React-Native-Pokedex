@@ -17,7 +17,6 @@ export default function Item({ route }) {
     flingPower: '',
     heldBy: [],
     id: '',
-    name: '',
     sprite: '',
   });
 
@@ -34,7 +33,7 @@ export default function Item({ route }) {
         const heldBy = [];
 
         res.data.attributes.forEach(attribute => {
-          attributes.push({ name: attribute.name, url: attribute.url });
+          attributes.push(attribute.name);
         });
 
         res.data.held_by_pokemon.forEach(pokemon => {
@@ -65,7 +64,6 @@ export default function Item({ route }) {
           flingEffect: res.data.fling_effect,
           flingPower: res.data.fling_power,
           id: res.data.id,
-          name: res.data.name,
           sprite: res.data.sprites.default,
         });
       })
@@ -74,9 +72,7 @@ export default function Item({ route }) {
 
   return (
     <View style={globalStyles.container}>
-      <ScrollView>
-        <ItemContainer itemData={itemData} heldBy={heldBy} />
-      </ScrollView>
+      <ScrollView>{<ItemContainer itemData={itemData} heldBy={heldBy} />}</ScrollView>
     </View>
   );
 }

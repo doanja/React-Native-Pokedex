@@ -5,15 +5,15 @@ import API from '../services/pokemonAPI';
 import GenericContainer from '../components/Common/GenericContainer';
 
 export default function EggGroups({ route }) {
-  const { groupName } = route.params;
+  const { name } = route.params;
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
     getEggGroupData();
-  }, [groupName]);
+  }, [name]);
 
   const getEggGroupData = () => {
-    API.getShapeData(groupName)
+    API.getShapeData(name)
       .then(res => {
         const species = [];
 
@@ -33,7 +33,7 @@ export default function EggGroups({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <GenericContainer name={groupName} species={species} />
+        <GenericContainer name={name} species={species} />
       </ScrollView>
     </View>
   );
