@@ -1,21 +1,9 @@
-import Abilities from './Abilities';
-import PokemonCard from './PokemonCard';
-import Sprite from './Sprite';
+import PokemonSprite from './PokemonSprite';
 import Stats from './Stats';
 import Evolutions from './Evolutions';
 import AlternativeForms from './AlternativeForms';
 import Gender from './Gender';
 import Moveset from './Moveset';
-import Types from './Types';
+import Types from '../Common/Types';
 
-export {
-  Abilities,
-  Stats,
-  PokemonCard,
-  Sprite,
-  Evolutions,
-  AlternativeForms,
-  Gender,
-  Moveset,
-  Types,
-};
+export { PokemonSprite, Stats, Evolutions, AlternativeForms, Gender, Moveset, Types };

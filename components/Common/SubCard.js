@@ -22,7 +22,7 @@ export default function SubCard({ header, data, capitalize, touchable, navigateT
 
       {touchable ? (
         <TouchableOpacity
-          key={item}
+          key={data}
           onPress={() =>
             navigation.navigate(navigateTo, {
               name: data,

@@ -101,10 +101,7 @@ export default function Pokemon({ route }) {
         const tmMoves = [];
 
         res.data.abilities.forEach(ability => {
-          abilities.push({
-            name: ability.ability.name.replace(/-/g, ' '),
-            url: ability.ability.url,
-          });
+          abilities.push(ability.ability.name.replace(/-/g, ' '));
         });
 
         res.data.held_items.forEach(item => {

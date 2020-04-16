@@ -8,7 +8,6 @@ import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
 
 export default function ItemContainer({ itemData, heldBy }) {
-  console.log('itemData.attributes :', itemData.attributes);
   return (
     <Card>
       <CardHeader>
