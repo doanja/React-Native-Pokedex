@@ -6,6 +6,7 @@ import GenericContainer from '../components/Common/GenericContainer';
 
 export default function EggGroups({ route }) {
   const { name } = route.params;
+
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function EggGroups({ route }) {
   }, [name]);
 
   const getEggGroupData = () => {
-    API.getShapeData(name)
+    API.getEggGroupData(name)
       .then(res => {
         const species = [];
 
