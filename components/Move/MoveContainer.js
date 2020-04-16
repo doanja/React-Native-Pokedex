@@ -31,7 +31,7 @@ export default function MoveContainer({ name, moveData }) {
 
       <SubCard header={'effect chance'} data={moveData.effectChance} />
 
-      <SubCardMultiple header={'stat changes'} data={moveData.statChanges} />
+      <SubCardMultiple header={'stat changes'} data={moveData.statChanges} capitalize />
 
       <SubCard header={'stat chance'} data={moveData.statChance} />
 

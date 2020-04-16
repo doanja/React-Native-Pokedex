@@ -69,7 +69,7 @@ export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate('Move', {
-                      moveName: move.move_name,
+                      name: move.move_name,
                     })
                   }>
                   <Text style={globalStyles.cardItem}>{move.move_name}</Text>
