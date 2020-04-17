@@ -292,6 +292,9 @@ export default function Pokemon({ route }) {
     }
   };
 
+  /**
+   * function to get alternate forms
+   */
   const getAltForms = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
@@ -310,6 +313,10 @@ export default function Pokemon({ route }) {
       .catch(err => console.log(err));
   };
 
+  /**
+   * function to get the alt form sprites
+   * @param {array} forms an array of objects pokemon forms
+   */
   const getAltFormSprites = forms => {
     forms.forEach(form => {
       API.getPokeAPI(form.url)
@@ -321,6 +328,10 @@ export default function Pokemon({ route }) {
     });
   };
 
+  /**
+   * function to get egg moves
+   * @param {string} url the url of the first evolution of the pokemon line
+   */
   const getEggMoves = url => {
     API.getPokeAPI(url)
       .then(res => {
