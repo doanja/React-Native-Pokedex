@@ -29,12 +29,7 @@ export default function Item({ route }) {
   const getItemData = () => {
     API.getItemData(name)
       .then(res => {
-        const attributes = [];
         const heldBy = [];
-
-        res.data.attributes.forEach(attribute => {
-          attributes.push(attribute.name);
-        });
 
         res.data.held_by_pokemon.forEach(pokemon => {
           API.getPokeAPI(pokemon.pokemon.url)
@@ -57,7 +52,7 @@ export default function Item({ route }) {
         });
 
         setItemData({
-          attributes,
+          attributes: res.data.attributes.map(attribute => attribute.name),
           category: res.data.category.name.replace(/-/g, ' '),
           cost: res.data.cost,
           effectEntries: res.data.effect_entries[0].effect,

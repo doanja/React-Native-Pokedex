@@ -42,16 +42,9 @@ export default function Move({ route }) {
     API.getMoveData(name)
       .then(res => {
         let description = '';
-        const statChanges = [];
 
         res.data.flavor_text_entries.filter(element => {
-          if (element.language.name === 'en') {
-            description = element.flavor_text;
-          }
-        });
-
-        res.data.stat_changes.forEach(change => {
-          statChanges.push(`${change.change} ${change.stat.name}`);
+          if (element.language.name === 'en') description = element.flavor_text;
         });
 
         setMoveData({
@@ -63,7 +56,7 @@ export default function Move({ route }) {
           power: res.data.power,
           pp: res.data.pp,
           priority: res.data.priority,
-          statChanges: statChanges,
+          statChanges: res.data.stat_changes.map(change => `${change.change} ${change.stat.name}`),
           target: res.data.target.name.replace(/-/g, ' '),
           type: [res.data.type.name],
           ailment: res.data.meta.ailment.name,
