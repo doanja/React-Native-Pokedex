@@ -4,7 +4,7 @@ import Home from '../screens/Home';
 import {
   Pokedex,
   Pokemon,
-  AlternatePokemonForm,
+  PokemonForms,
   Abilities,
   Items,
   EggGroups,
@@ -47,8 +47,8 @@ export default function Navigator() {
         }}
       />
       <Stack.Screen
-        name='AlternatePokemonForm'
-        component={AlternatePokemonForm}
+        name='PokemonForms'
+        component={PokemonForms}
         options={{
           headerShown: true,
         }}

@@ -302,7 +302,7 @@ export default function Pokemon({ route }) {
         res.data.varieties.forEach(form => {
           if (!form.is_default)
             forms.push({
-              name: form.pokemon.name.replace(/-/g, ' '),
+              name: form.pokemon.name,
               url: form.pokemon.url,
             });
         });

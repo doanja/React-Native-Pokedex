@@ -3,21 +3,13 @@ import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import {
-  Sprite,
-  Stats,
-  Abilities,
-  HeldItems,
-  Height,
-  Weight,
-  Experience,
-  EffortValues,
-} from '../components/Pokemon/index';
+import { PokemonSprite, Stats, Types } from '../components/Pokemon/';
 
-export default function AlternatePokemonForm({ route }) {
+import SubCard from '../components/Common/SubCard';
+import SubCardMultiple from '../components/Common/SubCardMultiple';
+
+export default function PokemonForms({ route }) {
   const { name, url } = route.params;
-
-  const [pokemonId, setPokemonId] = useState();
 
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
@@ -40,56 +32,23 @@ export default function AlternatePokemonForm({ route }) {
       specialDefense: '',
       speed: '',
     },
+    levelUpMoves: [],
+    tmMoves: [],
+    eggMoves: [],
     isFavorite: false,
   });
 
   useEffect(() => {
-    setPokemonId(url.split('/')[url.split('/').length - 2]);
-  }, []);
+    getPokemonData();
+  }, [name]);
 
-  useEffect(() => {
-    if (pokemonId) {
-      getPokemonData();
-    }
-  }, [pokemonId]);
-
+  /**
+   * function to parse the pokemon data
+   */
   const getPokemonData = () => {
-    API.getPokemonData(pokemonId)
+    API.getPokemonData(name)
       .then(res => {
-        const abilities = [];
-        const items = [];
-        const types = [];
-        const evs = [];
         let { hp, attack, defense, speed, specialAttack, specialDefense } = '';
-
-        res.data.abilities.forEach(ability => {
-          abilities.push({
-            name: ability.ability.name.replace(/-/g, ' '),
-            url: ability.ability.url,
-          });
-        });
-
-        res.data.held_items.forEach(item => {
-          items.push({
-            name: item.item.name,
-            id: item.item.url.split('/')[url.split('/').length - 2],
-          });
-        });
-
-        res.data.types.forEach(type => {
-          types.push(type.type.name);
-        });
-
-        res.data.stats
-          .filter(element => {
-            if (element.effort > 0) {
-              return true;
-            }
-            return false;
-          })
-          .map(element => {
-            evs.push(`${element.effort} ${element.stat.name.replace(/-/g, ' ')}`);
-          });
 
         res.data.stats.map(stat => {
           switch (stat.stat.name) {
@@ -124,10 +83,15 @@ export default function AlternatePokemonForm({ route }) {
           spriteShiny: res.data.sprites.front_shiny,
           height: Math.round((res.data.height * 0.328084 + 0.0001) * 100) / 100,
           weight: Math.round((res.data.weight * 0.220462 + 0.0001) * 100) / 100,
-          abilities: abilities.reverse(),
-          items,
-          types,
-          evs: evs.reverse(),
+          abilities: res.data.abilities
+            .map(ability => ability.ability.name.replace(/-/g, ' '))
+            .reverse(),
+          items: res.data.held_items.map(item => item.item.name),
+          types: res.data.types.map(type => type.type.name),
+          evs: res.data.stats
+            .filter(element => (element.effort > 0 ? true : false))
+            .map(element => `${element.effort} ${element.stat.name.replace(/-/g, ' ')}`)
+            .reverse(),
           stats: { hp, attack, defense, speed, specialAttack, specialDefense },
         });
       })
@@ -137,25 +101,39 @@ export default function AlternatePokemonForm({ route }) {
   return (
     <View style={globalStyles.container}>
       <ScrollView>
-        <Sprite
-          name={name}
+        <PokemonSprite
+          name={pokemonData.name}
           spriteDefault={pokemonData.spriteDefault}
           spriteShiny={pokemonData.spriteShiny}
         />
 
+        <Types types={pokemonData.types} />
+
         <Stats stats={pokemonData.stats} />
 
-        <Abilities abilities={pokemonData.abilities} />
+        <SubCardMultiple
+          header={'abilities'}
+          data={pokemonData.abilities}
+          capitalize
+          touchable
+          navigateTo={'Abilities'}
+        />
 
-        <HeldItems items={pokemonData.items} />
+        <SubCardMultiple
+          header={'held items'}
+          data={pokemonData.items}
+          capitalize
+          touchable
+          navigateTo={'Items'}
+        />
 
-        <Height height={pokemonData.height} />
+        <SubCard header={'height'} data={`${pokemonData.height} in.`} />
 
-        <Weight weight={pokemonData.weight} />
+        <SubCard header={'weight'} data={`${pokemonData.weight} lbs.`} />
 
-        <Experience experience={pokemonData.baseExperience} />
+        <SubCard header={'experience'} data={pokemonData.baseExperience} />
 
-        <EffortValues evs={pokemonData.evs} />
+        <SubCardMultiple header={'effort values'} data={pokemonData.evs} capitalize />
       </ScrollView>
     </View>
   );

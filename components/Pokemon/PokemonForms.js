@@ -2,16 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../../components';
+import { Card, CardHeader } from '..';
 import { colors } from '../../constants/theme';
 
-export default function AlternativeForms({ forms }) {
+export default function PokemonForms({ forms }) {
   const navigation = useNavigation();
 
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>Alternative Forms</Text>
+        <Text style={globalStyles.headerText}>Forms</Text>
       </CardHeader>
       {forms.length ? (
         forms.map((form, index) => (
@@ -19,7 +19,7 @@ export default function AlternativeForms({ forms }) {
             <TouchableOpacity
               style={styles.imageContainer}
               onPress={() =>
-                navigation.navigate('AlternatePokemonForm', {
+                navigation.navigate('PokemonForms', {
                   name: form.name,
                   url: form.url,
                 })
@@ -31,7 +31,7 @@ export default function AlternativeForms({ forms }) {
                 }}
               />
             </TouchableOpacity>
-            <Text style={styles.cardText}>{form.name}</Text>
+            <Text style={styles.cardText}>{form.name.replace(/-/g, ' ')}</Text>
           </View>
         ))
       ) : (

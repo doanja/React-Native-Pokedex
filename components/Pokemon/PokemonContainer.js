@@ -5,11 +5,11 @@ import {
   PokemonSprite,
   Stats,
   Evolutions,
-  AlternativeForms,
+  PokemonForms,
   Gender,
   Moveset,
   Types,
-} from '../Pokemon/index';
+} from '../Pokemon/';
 
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
@@ -37,7 +37,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <Evolutions evolutions={evolutionData.evolutions} />
 
-      <AlternativeForms forms={forms} />
+      <PokemonForms forms={forms} />
 
       <SubCardMultiple
         header={'held items'}

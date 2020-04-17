@@ -1,4 +1,4 @@
-import AlternatePokemonForm from './AlternatePokemonForm';
+import PokemonForms from './PokemonForms';
 import Favorites from './Favorites';
 import Login from './Login';
 import Pokedex from './Pokedex';
@@ -16,7 +16,7 @@ import Move from './Move';
 import Types from './Types';
 
 export {
-  AlternatePokemonForm,
+  PokemonForms,
   Favorites,
   Login,
   Pokedex,
