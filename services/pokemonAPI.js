@@ -34,6 +34,9 @@ export default {
   getMoveData: moveName => {
     return axios.get(`https://pokeapi.co/api/v2/move/${moveName}/`);
   },
+  getTypeData: typeName => {
+    return axios.get(`https://pokeapi.co/api/v2/type/${typeName}/`);
+  },
   getPokeAPI: url => {
     return axios.get(url);
   },

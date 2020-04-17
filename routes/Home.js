@@ -12,6 +12,7 @@ import {
   Habitat,
   Shape,
   Move,
+  Types,
 } from '../screens/';
 
 const Stack = createStackNavigator();
@@ -97,6 +98,13 @@ export default function Navigator() {
       <Stack.Screen
         name='Move'
         component={Move}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='Types'
+        component={Types}
         options={{
           headerShown: true,
         }}

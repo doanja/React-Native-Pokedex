@@ -4,6 +4,6 @@ import Evolutions from './Evolutions';
 import AlternativeForms from './AlternativeForms';
 import Gender from './Gender';
 import Moveset from './Moveset';
-import Types from '../Common/Types';
+import Types from '../Types/Types';
 
 export { PokemonSprite, Stats, Evolutions, AlternativeForms, Gender, Moveset, Types };

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import { sizes, colors } from '../../constants/theme';
 import Spinner from '../Spinner';
 
 export default function Types({ types }) {
+  const navigation = useNavigation();
+
   return (
     <Card>
       <CardHeader>
@@ -14,9 +17,17 @@ export default function Types({ types }) {
       {types ? (
         <View style={styles.container}>
           {types.map(type => (
-            <View style={[styles.badge, { backgroundColor: `#${TYPE_COLORS[type]}` }]} key={type}>
+            // TODO: add on click navigation handler
+            <TouchableOpacity
+              style={[styles.badge, { backgroundColor: `#${TYPE_COLORS[type]}` }]}
+              key={type}
+              onPress={() => {
+                navigation.navigate('Types', {
+                  name: type,
+                });
+              }}>
               <Text style={styles.text}>{type}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       ) : (
