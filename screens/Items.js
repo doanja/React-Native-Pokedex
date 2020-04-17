@@ -46,9 +46,7 @@ export default function Item({ route }) {
 
               setHeldBy(heldBy);
             })
-            .catch(err => {
-              console.log(err);
-            });
+            .catch(err => console.log(err));
         });
 
         setItemData({

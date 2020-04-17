@@ -43,7 +43,7 @@ export default function Move({ route }) {
       .then(res => {
         let description = '';
 
-        res.data.flavor_text_entries.filter(element => {
+        res.data.flavor_text_entries.forEach(element => {
           if (element.language.name === 'en') description = element.flavor_text;
         });
 

@@ -88,6 +88,9 @@ export default function Pokemon({ route }) {
     }
   }, [pokemonData.pokemonId]);
 
+  /**
+   * function to parse the pokemon data
+   */
   const getPokemonData = () => {
     API.getPokemonData(name)
       .then(res => {
@@ -121,7 +124,7 @@ export default function Pokemon({ route }) {
         });
 
         res.data.moves.forEach(move => {
-          move.version_group_details.filter(version => {
+          move.version_group_details.forEach(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'level-up') {
                 levelUpMoves.push({
@@ -179,20 +182,16 @@ export default function Pokemon({ route }) {
       .catch(err => console.log(err));
   };
 
+  /**
+   * function to call the pokemon species data and parse the information
+   */
   const getSpeciesData = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
-        const eggGroups = [];
         let description = '';
 
-        res.data.egg_groups.forEach(group => {
-          eggGroups.push(group.name);
-        });
-
-        res.data.flavor_text_entries.filter(element => {
-          if (element.language.name === 'en') {
-            description = element.flavor_text;
-          }
+        res.data.flavor_text_entries.forEach(element => {
+          if (element.language.name === 'en') description = element.flavor_text;
         });
 
         setSpeciesData({
@@ -207,7 +206,7 @@ export default function Pokemon({ route }) {
           habitat: res.data.habitat === null ? 'None' : res.data.habitat.name,
           catchRate: Math.round((100 / 255) * res.data.capture_rate),
           hatchSteps: 255 * (res.data.hatch_counter + 1),
-          eggGroups,
+          eggGroups: res.data.egg_groups.map(group => group.name),
           description,
           shape: res.data.shape.name,
         });
@@ -217,78 +216,79 @@ export default function Pokemon({ route }) {
       .catch(err => console.log(err));
   };
 
+  /**
+   * function to get the evolution data of a pokemon
+   * @param {string} url the pokemon's evolution url
+   */
   const getEvolutionData = url => {
     API.getPokeAPI(url)
-      .then(res => {
-        const evolutions = []; // array of objects containing each evolution
-        getEvolutionLine(res.data.chain, evolutions);
-      })
+      .then(res => getEvolutionLine(res.data.chain, []))
       .catch(err => console.log(err));
   };
 
-  const getEvolutionLine = (evolutionsArr, resultArr) => {
-    if (evolutionsArr.evolves_to.length === 0) {
-      API.getPokeAPI(evolutionsArr.species.url)
+  /**
+   * function to parse the evolution tree
+   * @param {array} evolutions array of objects containing evolution line info from the API
+   * @param {array} evolutionLine array of object containing the filtered evolution line
+   * @return {array} a parsed evolution tree
+   */
+  const getEvolutionLine = (evolutions, evolutionLine) => {
+    if (evolutions.evolves_to.length === 0) {
+      API.getPokeAPI(evolutions.species.url)
+        .then(res => API.getPokemonData(res.data.id))
         .then(res => {
-          return API.getPokemonData(res.data.id);
-        })
-        .then(res => {
-          resultArr.push({
-            name: evolutionsArr.species.name,
-            url: evolutionsArr.species.url,
+          evolutionLine.push({
+            name: evolutions.species.name,
+            url: evolutions.species.url,
             sprite: res.data.sprites.front_default,
-            method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
+            method: getEvolutionMethod(evolutions.evolution_details[0]),
           });
 
-          setEvolutionData({ ...evolutionData, evolutions: resultArr });
-          const url = resultArr[0].url;
+          setEvolutionData({ ...evolutionData, evolutions: evolutionLine });
+
+          // setting up egg moves for the rest of the evolution line
+          const url = evolutionLine[0].url;
           const id = url.split('/')[url.split('/').length - 2];
           getEggMoves(`https://pokeapi.co/api/v2/pokemon/${id}/`);
 
           return;
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     } else {
-      API.getPokeAPI(evolutionsArr.species.url)
+      API.getPokeAPI(evolutions.species.url)
+        .then(res => API.getPokemonData(res.data.id))
         .then(res => {
-          return API.getPokemonData(res.data.id);
-        })
-        .then(res => {
-          resultArr.push({
-            name: evolutionsArr.species.name,
-            url: evolutionsArr.species.url,
+          evolutionLine.push({
+            name: evolutions.species.name,
+            url: evolutions.species.url,
             sprite: res.data.sprites.front_default,
-            method: getEvolutionMethod(evolutionsArr.evolution_details[0]),
+            method: getEvolutionMethod(evolutions.evolution_details[0]),
           });
-          evolutionsArr.evolves_to.forEach(evolution => {
-            return getEvolutionLine(evolution, resultArr);
-          });
+          evolutions.evolves_to.forEach(evolution => getEvolutionLine(evolution, evolutionLine));
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     }
   };
 
-  const getEvolutionMethod = methods => {
-    const methodsArr = [];
+  /**
+   * function to get the evolution method of a pokemon
+   * @param {array} evolutionMethods methods used to evolove a pokemon
+   * @return {array} the evolution methods parsed
+   */
+  const getEvolutionMethod = evolutionMethods => {
+    const results = [];
     // if methods is empty...
-    if (!methods) {
-      return [];
-    }
-
+    if (!evolutionMethods) return [];
     // for each method in methods
     else {
-      for (const method in methods) {
-        if (methods[method]) {
+      for (const method in evolutionMethods) {
+        if (evolutionMethods[method]) {
           const name = method.replace(/_/g, ' ');
-          const condition = methods[method];
-          methodsArr.push({ name, condition });
+          const condition = evolutionMethods[method];
+          results.push({ name, condition });
         }
       }
-      return methodsArr;
+      return results;
     }
   };
 
@@ -296,7 +296,7 @@ export default function Pokemon({ route }) {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
         const forms = [];
-        res.data.varieties.filter(form => {
+        res.data.varieties.forEach(form => {
           if (!form.is_default) {
             forms.push({
               name: form.pokemon.name.replace(/-/g, ' '),
@@ -326,7 +326,7 @@ export default function Pokemon({ route }) {
       .then(res => {
         const eggMoves = [];
         res.data.moves.forEach(move => {
-          move.version_group_details.filter(version => {
+          move.version_group_details.forEach(version => {
             if (version.version_group.name === 'ultra-sun-ultra-moon') {
               if (version.move_learn_method.name === 'egg') {
                 eggMoves.push({
