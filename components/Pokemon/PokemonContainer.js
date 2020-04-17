@@ -37,7 +37,7 @@ export default function ItemContainer({ pokemonData, speciesData, forms, evoluti
 
       <Evolutions evolutions={evolutionData.evolutions} />
 
-      <AlternativeForms forms={forms.alternativeForms} />
+      <AlternativeForms forms={forms} />
 
       <SubCardMultiple
         header={'held items'}

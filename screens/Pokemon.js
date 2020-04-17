@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
 import PokemonContainer from '../components/Pokemon/PokemonContainer';
 
 export default function Pokemon({ route }) {
-  const { name, url } = route.params;
+  const { name } = route.params;
 
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
@@ -52,7 +52,7 @@ export default function Pokemon({ route }) {
     eggGroups: [],
   });
 
-  const [forms, setForms] = useState({ alternativeForms: [] });
+  const [forms, setForms] = useState([]);
 
   const [evolutionData, setEvolutionData] = useState({
     evolutions: [],
@@ -81,10 +81,10 @@ export default function Pokemon({ route }) {
   }, [evolutionData.evolutionUrl]);
 
   useEffect(() => {
+    setForms([]);
+
     if (pokemonData.pokemonId) {
-      getAlternativeForms();
-    } else {
-      setForms({ alternativeForms: [] });
+      getAltForms();
     }
   }, [pokemonData.pokemonId]);
 
@@ -316,34 +316,32 @@ export default function Pokemon({ route }) {
     }
   };
 
-  const getAlternativeForms = () => {
+  const getAltForms = () => {
     API.getSpeciesData(pokemonData.pokemonId)
       .then(res => {
-        const alternativeForms = [];
+        const forms = [];
         res.data.varieties.filter(form => {
           if (!form.is_default) {
-            alternativeForms.push({
+            forms.push({
               name: form.pokemon.name.replace(/-/g, ' '),
               url: form.pokemon.url,
             });
           }
         });
 
-        getAlternateFormSprites(alternativeForms);
+        getAltFormSprites(forms);
       })
       .catch(err => console.log(err));
   };
 
-  const getAlternateFormSprites = alternativeForms => {
-    alternativeForms.forEach(form => {
+  const getAltFormSprites = forms => {
+    forms.forEach(form => {
       API.getPokeAPI(form.url)
         .then(res => {
           form.sprite = res.data.sprites.front_default;
-          setForms({ ...forms, alternativeForms });
+          setForms([...forms, forms]);
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     });
   };
 
