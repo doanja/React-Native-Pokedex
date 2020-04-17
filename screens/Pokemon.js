@@ -91,37 +91,9 @@ export default function Pokemon({ route }) {
   const getPokemonData = () => {
     API.getPokemonData(name)
       .then(res => {
-        const abilities = [];
-        const items = [];
-        const types = [];
-        const evs = [];
         let { hp, attack, defense, speed, specialAttack, specialDefense } = '';
-
         const levelUpMoves = [];
         const tmMoves = [];
-
-        res.data.abilities.forEach(ability => {
-          abilities.push(ability.ability.name.replace(/-/g, ' '));
-        });
-
-        res.data.held_items.forEach(item => {
-          items.push(item.item.name);
-        });
-
-        res.data.types.forEach(type => {
-          types.push(type.type.name);
-        });
-
-        res.data.stats
-          .filter(element => {
-            if (element.effort > 0) {
-              return true;
-            }
-            return false;
-          })
-          .map(element => {
-            evs.push(`${element.effort} ${element.stat.name.replace(/-/g, ' ')}`);
-          });
 
         res.data.stats.map(stat => {
           switch (stat.stat.name) {
@@ -190,12 +162,16 @@ export default function Pokemon({ route }) {
           spriteShiny: res.data.sprites.front_shiny,
           height: Math.round((res.data.height * 0.328084 + 0.0001) * 100) / 100,
           weight: Math.round((res.data.weight * 0.220462 + 0.0001) * 100) / 100,
-          abilities: abilities.reverse(),
-          items,
-          types,
-          evs: evs.reverse(),
+          abilities: res.data.abilities
+            .map(ability => ability.ability.name.replace(/-/g, ' '))
+            .reverse(),
+          items: res.data.held_items.map(item => item.item.name),
+          types: res.data.types.map(type => type.type.name),
+          evs: res.data.stats
+            .filter(element => (element.effort > 0 ? true : false))
+            .map(element => `${element.effort} ${element.stat.name.replace(/-/g, ' ')}`)
+            .reverse(),
           stats: { hp, attack, defense, speed, specialAttack, specialDefense },
-
           levelUpMoves,
           tmMoves,
         });
