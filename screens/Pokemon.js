@@ -300,14 +300,12 @@ export default function Pokemon({ route }) {
       .then(res => {
         const forms = [];
         res.data.varieties.forEach(form => {
-          if (!form.is_default) {
+          if (!form.is_default)
             forms.push({
               name: form.pokemon.name.replace(/-/g, ' '),
               url: form.pokemon.url,
             });
-          }
         });
-
         getAltFormSprites(forms);
       })
       .catch(err => console.log(err));
@@ -322,7 +320,7 @@ export default function Pokemon({ route }) {
       API.getPokeAPI(form.url)
         .then(res => {
           form.sprite = res.data.sprites.front_default;
-          setForms([...forms, forms]);
+          setForms(forms);
         })
         .catch(err => console.log(err));
     });

@@ -14,8 +14,8 @@ export default function AlternativeForms({ forms }) {
         <Text style={globalStyles.headerText}>Alternative Forms</Text>
       </CardHeader>
       {forms.length ? (
-        forms.map(form => (
-          <View style={styles.container} key={form.name}>
+        forms.map((form, index) => (
+          <View style={styles.container} key={index}>
             <TouchableOpacity
               style={styles.imageContainer}
               onPress={() =>
