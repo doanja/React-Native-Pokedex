@@ -2,13 +2,15 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { sizes } from '../constants/theme';
 
-export default function Card({ touchable, children, onPress }) {
+export default function Card({ children, touchable, onPress, style }) {
+  const cardStyles = [styles.card, style];
+
   return touchable ? (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={cardStyles} onPress={onPress}>
       <View>{children}</View>
     </TouchableOpacity>
   ) : (
-    <View style={styles.card}>
+    <View style={cardStyles}>
       <View>{children}</View>
     </View>
   );
@@ -26,6 +28,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginVertical: 6,
     flex: 1,
-    margin: 1
-  }
+    margin: 1,
+  },
 });
