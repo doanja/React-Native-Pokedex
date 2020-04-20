@@ -83,9 +83,7 @@ export default function PokemonForms({ route }) {
           spriteShiny: res.data.sprites.front_shiny,
           height: Math.round((res.data.height * 0.328084 + 0.0001) * 100) / 100,
           weight: Math.round((res.data.weight * 0.220462 + 0.0001) * 100) / 100,
-          abilities: res.data.abilities
-            .map(ability => ability.ability.name.replace(/-/g, ' '))
-            .reverse(),
+          abilities: res.data.abilities.map(ability => ability.ability.name).reverse(),
           items: res.data.held_items.map(item => item.item.name),
           types: res.data.types.map(type => type.type.name),
           evs: res.data.stats
@@ -97,6 +95,8 @@ export default function PokemonForms({ route }) {
       })
       .catch(err => console.log(err));
   };
+
+  console.log('pokemonData.abilities :', pokemonData.abilities);
 
   return (
     <View style={globalStyles.container}>
