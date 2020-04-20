@@ -17,7 +17,11 @@ export default function Gender({ gender }) {
       <CardHeader>
         <Text style={globalStyles.headerText}>Gender Ratio</Text>
       </CardHeader>
-      {gender ? <View>{gender.genderRatio === -1 ? 'Genderless' : genderInfo}</View> : <Spinner />}
+      {gender ? (
+        <View>{gender.genderRatio === -1 ? <Text>'Genderless'</Text> : genderInfo}</View>
+      ) : (
+        <Spinner />
+      )}
     </Card>
   );
 }
