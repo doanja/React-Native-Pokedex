@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
@@ -7,6 +7,11 @@ import PokemonContainer from '../components/Pokemon/PokemonContainer';
 
 export default function Pokemon({ route }) {
   const { name } = route.params;
+  const scrollViewRef = useRef();
+
+  const scrollToTop = () => {
+    scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+  };
 
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
@@ -60,6 +65,7 @@ export default function Pokemon({ route }) {
   });
 
   useEffect(() => {
+    scrollToTop();
     getPokemonData();
   }, [name]);
 
@@ -359,7 +365,7 @@ export default function Pokemon({ route }) {
 
   return (
     <View style={globalStyles.container}>
-      <ScrollView>
+      <ScrollView ref={scrollViewRef}>
         <PokemonContainer
           pokemonData={pokemonData}
           speciesData={speciesData}
