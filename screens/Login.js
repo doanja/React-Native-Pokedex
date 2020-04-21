@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import LoginContainer from '../components/Login/LoginContainer';
-// import API from '../services/pokemonAPI';
+// import API from '../services/authAPI';
 
 export default function Login() {
   return (
-    <View style={globalStyles.container}>
-      <LoginContainer />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={globalStyles.container}>
+        <LoginContainer />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
