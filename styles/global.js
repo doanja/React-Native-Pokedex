@@ -27,8 +27,6 @@ export const globalStyles = StyleSheet.create({
   errorText: {
     color: colors.primary,
     fontWeight: 'bold',
-    marginBottom: 10,
-    marginTop: 6,
     textAlign: 'center',
   },
   headerText: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '../';
 import { Formik } from 'formik';
@@ -28,19 +28,28 @@ export default function LoginContainer() {
               placeholder='Email Address'
               onChangeText={props.handleChange('email')}
               value={props.values.email}
-              //   onBlur={props.handleBlur('title')}
+              onBlur={props.handleBlur('email')}
             />
-            {/* <Text style={globalStyles.errorText}>{props.touched.title && props.errors.title}</Text> */}
+
+            {props.errors.email ? (
+              <Text style={globalStyles.errorText}>
+                {props.touched.email && props.errors.email}
+              </Text>
+            ) : null}
             <Text semibold>Password</Text>
             <TextInput
               style={globalStyles.input}
               placeholder='Password'
               onChangeText={props.handleChange('password')}
               value={props.values.password}
-              //   onBlur={props.handleBlur('body')}
+              onBlur={props.handleBlur('password')}
               secureTextEntry
             />
-
+            {props.errors.password ? (
+              <Text style={globalStyles.errorText}>
+                {props.touched.password && props.errors.password}
+              </Text>
+            ) : null}
             <Button gradient onPress={props.handleSubmit}>
               <Text center semibold white>
                 Login
