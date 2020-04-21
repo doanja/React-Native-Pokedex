@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Dimensions } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '../';
 import { Formik } from 'formik';
@@ -12,7 +12,11 @@ export default function LoginContainer() {
   });
 
   return (
-    <Card style={{ padding: 15 }}>
+    <Card
+      style={{
+        padding: 15,
+        flex: 0,
+      }}>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
