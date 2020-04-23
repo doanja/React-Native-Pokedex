@@ -17,7 +17,7 @@ export default function PokemonCard({ name, url, onPress, style }) {
   }, [pokemonId]);
 
   return (
-    <Card touchable onPress={onPress}>
+    <Card style={{ minHeight: 175 }} touchable onPress={onPress}>
       <CardHeader>
         <Text style={globalStyles.headerText}>{name}</Text>
       </CardHeader>
