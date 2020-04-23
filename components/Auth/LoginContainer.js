@@ -62,7 +62,12 @@ export default function LoginContainer({ login }) {
                 Login
               </Text>
             </Button>
-            <Button shadow onPress={() => navigation.navigate('Signup')}>
+            <Button
+              shadow
+              onPress={() => {
+                // console.log('to signup');
+                navigation.navigate('Signup');
+              }}>
               <Text center semibold>
                 Not enrolled? Signup now.
               </Text>

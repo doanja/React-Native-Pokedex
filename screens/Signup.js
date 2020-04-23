@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
-import LoginContainer from '../components/Auth/LoginContainer';
+import SignupContainer from '../components/Auth/SignupContainer';
 import API from '../services/authAPI';
 
 export default function Signup() {
@@ -13,6 +13,7 @@ export default function Signup() {
     // API.register(email, password)
     //   .then(res => {
     //     console.log(res);
+    // // TODO: redirect to to login
     //   })
     //   .catch(err => console.log(err));
   };
@@ -20,7 +21,7 @@ export default function Signup() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={globalStyles.container}>
-        <LoginContainer login={login} signup={signup} />
+        <SignupContainer signup={signup} />
       </View>
     </TouchableWithoutFeedback>
   );
