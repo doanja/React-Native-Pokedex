@@ -22,7 +22,7 @@ export default function CustomButton({
     shadow && styles.shadow,
     color && styles[color], // predefined styles colors for backgroundColor
     color && !styles[color] && { backgroundColor: color }, // custom backgroundColor
-    style
+    style,
   ];
 
   return gradient ? (
@@ -50,7 +50,7 @@ CustomButton.defaultProps = {
   end: { x: 1, y: 1 },
   locations: [0.1, 0.9],
   opacity: 0.8,
-  color: colors.white
+  color: colors.white,
 };
 
 const styles = StyleSheet.create({
@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     borderRadius: sizes.radius,
     height: sizes.base * 3,
     justifyContent: 'center',
-    marginVertical: sizes.padding / 3
+    marginVertical: sizes.padding / 3,
   },
   shadow: {
     shadowColor: colors.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 10
+    shadowRadius: 10,
   },
   accent: { backgroundColor: colors.accent },
   primary: { backgroundColor: colors.primary },
@@ -75,5 +75,5 @@ const styles = StyleSheet.create({
   gray: { backgroundColor: colors.gray },
   gray2: { backgroundColor: colors.gray2 },
   gray3: { backgroundColor: colors.gray3 },
-  gray4: { backgroundColor: colors.gray4 }
+  gray4: { backgroundColor: colors.gray4 },
 });

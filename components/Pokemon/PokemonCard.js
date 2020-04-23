@@ -7,7 +7,6 @@ import Spinner from '../Spinner';
 export default function PokemonCard({ name, url, onPress, style }) {
   const [imageUrl, setImageUrl] = useState('');
   const [pokemonId, setPokemonId] = useState('');
-
   const cardStyle = [styles.image, style];
 
   useEffect(() => {
