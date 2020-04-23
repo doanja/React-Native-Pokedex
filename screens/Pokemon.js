@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
+import UserAPI from '../services/userAPI';
 
 import PokemonContainer from '../components/Pokemon/PokemonContainer';
+import FavoriteIcon from '../components/Pokemon/FavoriteIcon';
 
 export default function Pokemon({ route }) {
   const { name } = route.params;
@@ -12,6 +14,8 @@ export default function Pokemon({ route }) {
   const scrollToTop = () => {
     scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
   };
+
+  const [saved, setSaved] = useState(false);
 
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
@@ -37,7 +41,6 @@ export default function Pokemon({ route }) {
     levelUpMoves: [],
     tmMoves: [],
     eggMoves: [],
-    isFavorite: false,
   });
 
   const [speciesData, setSpeciesData] = useState({
@@ -93,6 +96,23 @@ export default function Pokemon({ route }) {
       getAltForms();
     }
   }, [pokemonData.pokemonId]);
+
+  const setSavedAPI = status => {
+    // saved
+    //   ? UserAPI.addToFavorites(pokemonData.id)
+    //       .then(res => {
+    //         setSaved(true);
+    //         console.log('TODO: save', res);
+    //       })
+    //       .catch(err => console.log(err))
+    //   : UserAPI.removeFromFavorites(pokemonData.id)
+    //       .then(res => {
+    //         setSaved(false);
+    //         console.log('TODO: unsave', res);
+    //       })
+    //       .catch(err => console.log(err));
+    status ? setSaved(true) : setSaved(false);
+  };
 
   /**
    * function to parse the pokemon data
@@ -373,6 +393,7 @@ export default function Pokemon({ route }) {
           evolutionData={evolutionData}
         />
       </ScrollView>
+      <FavoriteIcon saved={saved} setSaved={setSavedAPI} />
     </View>
   );
 }

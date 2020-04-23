@@ -1,28 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Dimensions } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { StyleSheet, TouchableHighlight } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { colors } from '../../constants/theme';
 
-export default function FavoriteIcon() {
-  return (
-    <View style={styles.icons}>
-      <TouchableOpacity onPress={() => console.log('TODO: save pokemon')}>
-        <FontAwesome5 name='save' size={30} />
-      </TouchableOpacity>
-    </View>
+export default function FavoriteIcon({ saved, setSaved }) {
+  return saved ? (
+    <TouchableHighlight
+      style={styles.icons}
+      underlayColor={colors.primary}
+      onPress={() => setSaved(!saved)}>
+      <MaterialIcons name='delete' size={25} />
+    </TouchableHighlight>
+  ) : (
+    <TouchableHighlight
+      style={styles.icons}
+      underlayColor={colors.primary}
+      onPress={() => setSaved(!saved)}>
+      <MaterialIcons name='save' size={25} />
+    </TouchableHighlight>
   );
 }
 
 const styles = StyleSheet.create({
   icons: {
-    backgroundColor: '#ee1515',
+    backgroundColor: colors.secondary,
     position: 'absolute',
     elevation: 4,
     zIndex: 1,
-    padding: 8,
+    padding: 12,
     borderRadius: 100,
-    borderColor: 'red',
-    borderWidth: 1,
-    top: Dimensions.get('window').width * 1.4,
-    left: Dimensions.get('window').width / 1.4,
+    bottom: 20,
+    right: 20,
   },
 });

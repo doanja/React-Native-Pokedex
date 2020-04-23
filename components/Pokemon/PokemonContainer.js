@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import {
   PokemonSprite,
   Stats,
@@ -12,13 +12,10 @@ import {
 
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
-import FavoriteIcon from './FavoriteIcon';
 
 export default function ItemContainer({ pokemonData, speciesData, forms, evolutionData }) {
   return (
     <View>
-      <FavoriteIcon />
-
       <PokemonSprite
         name={pokemonData.name}
         spriteDefault={pokemonData.spriteDefault}
