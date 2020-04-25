@@ -10,12 +10,12 @@ export default function Navigator() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.primary
+          backgroundColor: colors.primary,
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-          fontWeight: 'bold'
-        }
+          fontWeight: 'bold',
+        },
       }}>
       <Stack.Screen name='Pokedex' component={Pokedex} />
     </Stack.Navigator>
