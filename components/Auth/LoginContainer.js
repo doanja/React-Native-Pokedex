@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '..';
@@ -14,12 +14,7 @@ export default function LoginContainer({ login }) {
   });
 
   return (
-    <Card
-      style={{
-        padding: 15,
-        flex: 0,
-        backgroundColor: '#f0f0f0',
-      }}>
+    <Card style={styles.card}>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
@@ -29,34 +24,39 @@ export default function LoginContainer({ login }) {
         }}>
         {props => (
           <View>
-            <Text semibold>Email Address</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Email Address'
-              onChangeText={props.handleChange('email')}
-              value={props.values.email}
-              onBlur={props.handleBlur('email')}
-            />
+            {/* email */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Email Address</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Email Address'
+                onChangeText={props.handleChange('email')}
+                value={props.values.email}
+                onBlur={props.handleBlur('email')}
+              />
 
-            {props.errors.email ? (
               <Text style={globalStyles.errorText}>
                 {props.touched.email && props.errors.email}
               </Text>
-            ) : null}
-            <Text semibold>Password</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Password'
-              onChangeText={props.handleChange('password')}
-              value={props.values.password}
-              onBlur={props.handleBlur('password')}
-              secureTextEntry
-            />
-            {props.errors.password ? (
+            </View>
+
+            {/* password */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Password</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Password'
+                onChangeText={props.handleChange('password')}
+                value={props.values.password}
+                onBlur={props.handleBlur('password')}
+                secureTextEntry
+              />
+
               <Text style={globalStyles.errorText}>
                 {props.touched.password && props.errors.password}
               </Text>
-            ) : null}
+            </View>
+
             <Button gradient endColor='#d16456' onPress={props.handleSubmit}>
               <Text center semibold white>
                 Login
@@ -78,3 +78,11 @@ export default function LoginContainer({ login }) {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    padding: 15,
+    flex: 0,
+    backgroundColor: '#f0f0f0',
+  },
+});

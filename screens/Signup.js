@@ -12,6 +12,7 @@ export default function Signup() {
     // TODO: test this
     // API.register(email, password)
     //   .then(res => {
+    // // TODO: check if email = confirmed email, etc
     //     console.log(res);
     // // TODO: redirect to to login
     //   })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '..';
 import { Formik } from 'formik';
@@ -14,78 +14,81 @@ export default function SignupContainer({ signup }) {
   });
 
   return (
-    <Card
-      style={{
-        padding: 15,
-        flex: 0,
-        backgroundColor: '#f0f0f0',
-      }}>
+    <Card style={styles.card}>
       <Formik
         initialValues={{ email: '', confirmEmail: '', password: '', confirmPassword: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          login(values);
+          signup(values);
           actions.resetForm();
         }}>
         {props => (
           <View>
-            <Text semibold>Email Address</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Email Address'
-              onChangeText={props.handleChange('email')}
-              value={props.values.email}
-              onBlur={props.handleBlur('email')}
-            />
-            {props.errors.email ? (
+            {/* email */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Email Address</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Email Address'
+                onChangeText={props.handleChange('email')}
+                value={props.values.email}
+                onBlur={props.handleBlur('email')}
+              />
+
               <Text style={globalStyles.errorText}>
                 {props.touched.email && props.errors.email}
               </Text>
-            ) : null}
+            </View>
 
-            <Text semibold>Confirm Email Address</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Confirm Email Address'
-              onChangeText={props.handleChange('confirmEmail')}
-              value={props.values.confirmEmail}
-              onBlur={props.handleBlur('confirmEmail')}
-            />
-            {props.errors.confirmEmail ? (
+            {/* confirm email */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Confirm Email Address</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Confirm Email Address'
+                onChangeText={props.handleChange('confirmEmail')}
+                value={props.values.confirmEmail}
+                onBlur={props.handleBlur('confirmEmail')}
+              />
+
               <Text style={globalStyles.errorText}>
                 {props.touched.confirmEmail && props.errors.confirmEmail}
               </Text>
-            ) : null}
+            </View>
 
-            <Text semibold>Password</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Password'
-              onChangeText={props.handleChange('password')}
-              value={props.values.password}
-              onBlur={props.handleBlur('password')}
-              secureTextEntry
-            />
-            {props.errors.password ? (
+            {/* password */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Password</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Password'
+                onChangeText={props.handleChange('password')}
+                value={props.values.password}
+                onBlur={props.handleBlur('password')}
+                secureTextEntry
+              />
+
               <Text style={globalStyles.errorText}>
                 {props.touched.password && props.errors.password}
               </Text>
-            ) : null}
+            </View>
 
-            <Text semibold>Confirm Password</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder='Confirm Password'
-              onChangeText={props.handleChange('confirmPassword')}
-              value={props.values.confirmPassword}
-              onBlur={props.handleBlur('confirmPassword')}
-              secureTextEntry
-            />
-            {props.errors.confirmPassword ? (
+            {/* confirm password */}
+            <View style={{ paddingBottom: 10 }}>
+              <Text style={globalStyles.labelText}>Confirm Password</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder='Confirm Password'
+                onChangeText={props.handleChange('confirmPassword')}
+                value={props.values.confirmPassword}
+                onBlur={props.handleBlur('confirmPassword')}
+                secureTextEntry
+              />
+
               <Text style={globalStyles.errorText}>
                 {props.touched.confirmPassword && props.errors.confirmPassword}
               </Text>
-            ) : null}
+            </View>
 
             <Button gradient endColor='#d16456' onPress={props.handleSubmit}>
               <Text center semibold white>
@@ -98,3 +101,11 @@ export default function SignupContainer({ signup }) {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    padding: 15,
+    flex: 0,
+    backgroundColor: '#f0f0f0',
+  },
+});
