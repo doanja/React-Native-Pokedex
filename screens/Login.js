@@ -12,13 +12,11 @@ export default function Login() {
   const login = values => {
     const { email, password } = values;
 
-    console.log('email :>> ', email);
-    console.log('password :>> ', password);
-
     API.login(email, password)
       .then(res => {
         // TODO: set authroization token in header
         // TODO: update redux store
+        console.log('res.data :>> ', res.data.token);
         navigation.navigate('Favorites');
       })
       .catch(err => alertMsg('Error', err.response.data.error.message));

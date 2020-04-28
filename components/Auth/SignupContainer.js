@@ -7,7 +7,6 @@ import * as yup from 'yup';
 import { alertMsg } from '../../constants/helper';
 
 export default function SignupContainer({ signup }) {
-  console.log('alertMsg :>> ', alertMsg);
   const checkValues = values => {
     const { email, confirmEmail, password, confirmPassword } = values;
 
