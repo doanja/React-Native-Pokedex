@@ -1,21 +1,27 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
 import LoginContainer from '../components/Auth/LoginContainer';
 import API from '../services/authAPI';
+import { alertMsg } from '../constants/helper';
 
 export default function Login() {
+  const navigation = useNavigation();
+
   const login = values => {
     const { email, password } = values;
+
     console.log('email :>> ', email);
     console.log('password :>> ', password);
-    // TODO: test this
-    // API.login(email, password)
-    //   .then(res => {
-    //     console.log(res);
-    // // TODO: redirect to favorites
-    //   })
-    //   .catch(err => console.log(err));
+
+    API.login(email, password)
+      .then(res => {
+        // TODO: set authroization token in header
+        // TODO: update redux store
+        navigation.navigate('Favorites');
+      })
+      .catch(err => alertMsg('Error', err.response.data.error.message));
   };
 
   return (
