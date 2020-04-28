@@ -1,25 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '..';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { alertMsg } from '../../constants/helper';
 
 export default function SignupContainer({ signup }) {
-  const alertMsg = (title, message) =>
-    Alert.alert(
-      title,
-      message,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        { text: 'OK' },
-      ],
-      { cancelable: false }
-    );
-
+  console.log('alertMsg :>> ', alertMsg);
   const checkValues = values => {
     const { email, confirmEmail, password, confirmPassword } = values;
 
