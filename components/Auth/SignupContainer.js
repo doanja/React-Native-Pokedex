@@ -1,11 +1,39 @@
 import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, Button, Text } from '..';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 export default function SignupContainer({ signup }) {
+  const alertMsg = (title, message) =>
+    Alert.alert(
+      title,
+      message,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        { text: 'OK' },
+      ],
+      { cancelable: false }
+    );
+
+  const checkValues = values => {
+    const { email, confirmEmail, password, confirmPassword } = values;
+
+    if (email !== confirmEmail) {
+      alertMsg('There was a problem with your email address.', 'Emails addresses must match');
+      return false;
+    } else if (password !== confirmPassword) {
+      alertMsg('There was a problem with your password.', 'Passwords must match.');
+      return false;
+    }
+
+    return true;
+  };
+
   const validationSchema = yup.object({
     email: yup.string().required().email(),
     confirmEmail: yup.string().required().email(),
@@ -19,8 +47,10 @@ export default function SignupContainer({ signup }) {
         initialValues={{ email: '', confirmEmail: '', password: '', confirmPassword: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          signup(values);
-          actions.resetForm();
+          if (checkValues(values)) {
+            signup(values);
+            actions.resetForm();
+          }
         }}>
         {props => (
           <View>

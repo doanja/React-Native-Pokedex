@@ -65,7 +65,6 @@ export default function LoginContainer({ login }) {
             <Button
               shadow
               onPress={() => {
-                // console.log('to signup');
                 navigation.navigate('Signup');
               }}>
               <Text center semibold>
