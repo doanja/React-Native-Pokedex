@@ -98,19 +98,24 @@ export default function Pokemon({ route }) {
   }, [pokemonData.pokemonId]);
 
   const setSavedAPI = status => {
-    // saved
-    //   ? UserAPI.addToFavorites(pokemonData.id)
-    //       .then(res => {
-    //         setSaved(true);
-    //         console.log('TODO: save', res);
-    //       })
-    //       .catch(err => console.log(err))
-    //   : UserAPI.removeFromFavorites(pokemonData.id)
-    //       .then(res => {
-    //         setSaved(false);
-    //         console.log('TODO: unsave', res);
-    //       })
-    //       .catch(err => console.log(err));
+    saved
+      ? UserAPI.removeFromFavorites({
+          name,
+          url: `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`,
+        })
+          .then(res => {
+            setSaved(false);
+            console.log('pokemon removed', res.data);
+          })
+          .catch(err => console.log(err))
+      : UserAPI.addToFavorites({
+          name,
+          url: `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`,
+        }).then(res => {
+          setSaved(true);
+          console.log('pokemon added', res.data);
+        });
+
     status ? setSaved(true) : setSaved(false);
   };
 

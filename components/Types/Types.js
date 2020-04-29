@@ -17,7 +17,6 @@ export default function Types({ types }) {
       {types ? (
         <View style={styles.container}>
           {types.map(type => (
-            // TODO: add on click navigation handler
             <TouchableOpacity
               style={[styles.badge, { backgroundColor: `#${TYPE_COLORS[type]}` }]}
               key={type}
