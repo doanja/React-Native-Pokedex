@@ -1,3 +1,4 @@
+import Home from './Home';
 import PokemonForms from './PokemonForms';
 import Favorites from './Favorites';
 import Login from './Login';
@@ -15,6 +16,7 @@ import Move from './Move';
 import Types from './Types';
 
 export {
+  Home,
   PokemonForms,
   Favorites,
   Login,

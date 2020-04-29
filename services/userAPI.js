@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export default {
-  addToFavorites: pokemonId => {
-    return axios.put(`https://doanja-pokedex-server.herokuapp.com/favorites/add`, { pokemonId });
+  addToFavorites: (name, url) => {
+    return axios.put(`https://doanja-pokedex-server.herokuapp.com/favorites/add`, { name, url });
   },
 
-  removeFromFavorites: pokemonId => {
-    return axios.put(`https://doanja-pokedex-server.herokuapp.com/favorites/remove`, { pokemonId });
+  removeFromFavorites: (name, url) => {
+    return axios.put(`https://doanja-pokedex-server.herokuapp.com/favorites/remove`, { name, url });
   },
 
   getFavorites: () => {

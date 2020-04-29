@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert, AsyncStorage } from 'react-native';
 
 export const alertMsg = (title, message) =>
   Alert.alert(
@@ -13,3 +13,25 @@ export const alertMsg = (title, message) =>
     ],
     { cancelable: false }
   );
+
+export const setToken = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (error) {
+    // Error saving data
+    console.log(error);
+  }
+};
+
+export const getToken = async key => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    if (value !== null) {
+      // We have data!!
+      console.log(value);
+    }
+  } catch (error) {
+    // Error retrieving data
+    console.log(error);
+  }
+};

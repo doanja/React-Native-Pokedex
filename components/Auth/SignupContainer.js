@@ -24,8 +24,8 @@ export default function SignupContainer({ signup }) {
   const validationSchema = yup.object({
     email: yup.string().required().email(),
     confirmEmail: yup.string().required().email(),
-    password: yup.string().required().min(8), // TODO: check backend for this
-    confirmPassword: yup.string().required().min(8), // TODO: check backend for this
+    password: yup.string().required().min(8),
+    confirmPassword: yup.string().required().min(8),
   });
 
   return (

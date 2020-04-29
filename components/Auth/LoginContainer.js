@@ -10,7 +10,7 @@ export default function LoginContainer({ login }) {
   const navigation = useNavigation();
   const validationSchema = yup.object({
     email: yup.string().required().email(),
-    password: yup.string().required().min(8), // TODO: check backend for this
+    password: yup.string().required().min(8),
   });
 
   return (
