@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './Home';
@@ -8,17 +8,26 @@ import FavoritesScreen from './Favorites';
 
 const Drawer = createDrawerNavigator();
 
+import { useSelector } from 'react-redux';
+
 export default function RootDrawerNavigator() {
-  return (
+  // redux hooks
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+
+  return isLoggedIn ? (
     <NavigationContainer>
-      {/* initialRouteName set to favorites if you're logged in */}
+      <Drawer.Navigator initialRouteName='Favorites'>
+        <Drawer.Screen name='Home' component={FavoritesScreen} />
+        <Drawer.Screen name='Pokedex' component={PokedexScreen} />
+        {/* TODO: show signout? */}
+      </Drawer.Navigator>
+    </NavigationContainer>
+  ) : (
+    <NavigationContainer>
       <Drawer.Navigator initialRouteName='Home'>
         <Drawer.Screen name='Home' component={HomeScreen} />
         <Drawer.Screen name='Pokedex' component={PokedexScreen} />
-        {/* TODO: show login if not logged in else, show favorites & signout? */}
         <Drawer.Screen name='Login' component={LoginScreen} />
-        {/* TODO: show favorites only if they're logged in */}
-        <Drawer.Screen name='Favorites' component={FavoritesScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

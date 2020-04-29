@@ -65,7 +65,6 @@ export default function Moveset({ levelUpMoves, tmMoves, eggMoves }) {
           <View>
             {currentMoveset.map((move, index) => (
               <View key={index}>
-                {/* TODO: add onPress event */}
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate('Move', {

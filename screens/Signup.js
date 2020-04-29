@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
@@ -6,8 +6,17 @@ import SignupContainer from '../components/Auth/SignupContainer';
 import API from '../services/authAPI';
 import { alertMsg } from '../constants/helper';
 
+import { useSelector } from 'react-redux';
+
 export default function Signup() {
   const navigation = useNavigation();
+
+  // redux hooks
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+
+  useEffect(() => {
+    isLoggedIn ? navigation.navigate('Favorites') : navigation.navigate('Signup');
+  }, []);
 
   const signup = values => {
     const { email, password } = values;
