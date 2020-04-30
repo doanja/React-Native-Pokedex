@@ -96,8 +96,6 @@ export default function PokemonForms({ route }) {
       .catch(err => console.log(err));
   };
 
-  console.log('pokemonData.abilities :', pokemonData.abilities);
-
   return (
     <View style={globalStyles.container}>
       <ScrollView>

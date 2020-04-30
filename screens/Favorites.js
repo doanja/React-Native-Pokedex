@@ -14,6 +14,7 @@ export default function Favorite() {
         .then(res => {
           console.log('TODO: update favoritePokemon state', res.data);
           // TODO: SORT LIST BY URL ID SPLIT
+          console.log('res.data :>> ', res.data);
           setFavoritePokemon(res.data);
         })
         .catch(err => console.log(err));
