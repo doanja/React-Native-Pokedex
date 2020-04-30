@@ -11,6 +11,7 @@ export default function Favorite() {
     API.getFavorites()
       .then(res => {
         console.log('TODO: update favoritePokemon state', res.data);
+        // TODO: SORT LIST BY URL ID SPLIT
         setFavoritePokemon(res.data);
       })
       .catch(err => console.log(err));

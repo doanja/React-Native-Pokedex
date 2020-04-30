@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
@@ -7,7 +8,14 @@ import UserAPI from '../services/userAPI';
 import PokemonContainer from '../components/Pokemon/PokemonContainer';
 import FavoriteIcon from '../components/Pokemon/FavoriteIcon';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 export default function Pokemon({ route }) {
+  const navigation = useNavigation();
+
+  // redux hooks
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+
   const { name } = route.params;
   const scrollViewRef = useRef();
 
@@ -15,7 +23,7 @@ export default function Pokemon({ route }) {
     scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
   };
 
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(true);
 
   const [pokemonData, setPokemonData] = useState({
     pokemonId: '',
@@ -73,6 +81,18 @@ export default function Pokemon({ route }) {
   }, [name]);
 
   useEffect(() => {
+    if (isLoggedIn) {
+      UserAPI.getFavorites()
+        .then(res => {
+          res.data.forEach(pokemon => {
+            pokemon.name === name ? setSaved(true) : setSaved(false);
+          });
+        })
+        .catch(err => console.log(err));
+    }
+  }, [name]);
+
+  useEffect(() => {
     if (pokemonData.pokemonId) {
       getSpeciesData();
     }
@@ -98,27 +118,31 @@ export default function Pokemon({ route }) {
   }, [pokemonData.pokemonId]);
 
   const setSavedAPI = status => {
-    if (saved) {
-      UserAPI.removeFromFavorites(
-        name,
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.pokemonId}/`
-      )
-        .then(res => {
-          setSaved(false);
-          console.log('pokemon removed', res.data);
-        })
-        .catch(err => console.log(err));
-    } else {
-      UserAPI.addToFavorites(
-        name,
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.pokemonId}/`
-      ).then(res => {
-        setSaved(true);
-        console.log('pokemon added', res.data);
-      });
-    }
+    if (isLoggedIn) {
+      if (saved) {
+        UserAPI.removeFromFavorites(
+          name,
+          `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.pokemonId}/`
+        )
+          .then(res => {
+            setSaved(false);
+            console.log('pokemon removed', res.data);
+          })
+          .catch(err => console.log(err));
+      } else {
+        UserAPI.addToFavorites(
+          name,
+          `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.pokemonId}/`
+        ).then(res => {
+          setSaved(true);
+          console.log('pokemon added', res.data);
+        });
+      }
 
-    status ? setSaved(true) : setSaved(false);
+      status ? setSaved(true) : setSaved(false);
+    } else {
+      navigation.navigate('Login');
+    }
   };
 
   /**

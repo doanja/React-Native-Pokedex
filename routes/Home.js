@@ -13,6 +13,7 @@ import {
   Shape,
   Move,
   Types,
+  Favorites,
 } from '../screens/';
 
 const Stack = createStackNavigator();
@@ -104,6 +105,13 @@ export default function Navigator() {
       />
       <Stack.Screen
         name='Types'
+        component={Types}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name='Favorites'
         component={Types}
         options={{
           headerShown: true,
