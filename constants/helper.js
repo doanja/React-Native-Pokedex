@@ -17,9 +17,9 @@ export const alertMsg = (title, message) =>
 export const setToken = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, value);
-  } catch (error) {
+  } catch (err) {
     // Error saving data
-    console.log(error);
+    console.log('error setting token', err);
   }
 };
 
@@ -30,8 +30,8 @@ export const getToken = async key => {
       // We have data!!
       console.log(value);
     }
-  } catch (error) {
+  } catch (err) {
     // Error retrieving data
-    console.log(error);
+    console.log('error getting token', err);
   }
 };

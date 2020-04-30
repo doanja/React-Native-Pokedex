@@ -8,14 +8,19 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function Favorite() {
   const [favoritePokemon, setFavoritePokemon] = useState([]);
 
+  const getIdFromURL = url => {
+    return url.split('/')[url.split('/').length - 2];
+  };
+
   useFocusEffect(
     useCallback(() => {
       API.getFavorites()
         .then(res => {
-          console.log('TODO: update favoritePokemon state', res.data);
-          // TODO: SORT LIST BY URL ID SPLIT
-          console.log('res.data :>> ', res.data);
-          setFavoritePokemon(res.data);
+          let pokemon = res.data.sort((a, b) =>
+            getIdFromURL(a.url) > getIdFromURL(b.url) ? 1 : -1
+          );
+
+          setFavoritePokemon(pokemon);
         })
         .catch(err => console.log(err));
     }, [])

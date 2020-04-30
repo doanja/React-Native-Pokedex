@@ -15,7 +15,8 @@ function savetoStorage(state) {
 function loadFromStorage() {
   try {
     const serializedState = getToken('state');
-
+    console.log('getToken("state") :>> ', getToken('state'));
+    console.log('getToken("token") :>> ', getToken('token'));
     if (serializedState === null) {
       return undefined;
     }
@@ -28,6 +29,7 @@ function loadFromStorage() {
 
     return JSON.parse(serializedState);
   } catch (err) {
+    // console.log('TODO: THROWING ERROR WHEN NOT LOGGED IN');
     console.log('Error loading from local storage in store:', err);
     return undefined;
   }
