@@ -126,7 +126,6 @@ export default function Pokemon({ route }) {
         )
           .then(res => {
             setSaved(false);
-            console.log('pokemon removed', res.data);
           })
           .catch(err => console.log(err));
       } else {
@@ -135,7 +134,6 @@ export default function Pokemon({ route }) {
           `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.pokemonId}/`
         ).then(res => {
           setSaved(true);
-          console.log('pokemon added', res.data);
         });
       }
 
