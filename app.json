@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Doanja Pokedex",
     "slug": "React-Native-Pokedex",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Pokedex for built using React Native for Mobile.",
+    "githubUrl": "https://github.com/doanja/React-Native-Pokedex"
   }
 }
