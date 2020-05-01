@@ -4,17 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import { sizes, colors } from '../../constants/theme';
-import Spinner from '../Spinner';
 
-export default function Types({ types }) {
+export default function Types({ types, header = 'Types' }) {
   const navigation = useNavigation();
 
   return (
     <Card>
       <CardHeader>
-        <Text style={globalStyles.headerText}>Type</Text>
+        <Text style={globalStyles.headerText}>{header}</Text>
       </CardHeader>
-      {types ? (
+      {types.length ? (
         <View style={styles.container}>
           {types.map(type => (
             <TouchableOpacity
@@ -30,7 +29,7 @@ export default function Types({ types }) {
           ))}
         </View>
       ) : (
-        <Spinner />
+        <Text style={globalStyles.cardText}>N/A</Text>
       )}
     </Card>
   );
