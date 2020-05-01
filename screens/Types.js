@@ -8,6 +8,7 @@ export default function Types({ route }) {
   const { name } = route.params;
 
   const [species, setSpecies] = useState([]);
+  // TODO: display these
   const [typeData, setTypeData] = useState({
     doubleDamageFrom: [],
     doubleDamageTo: [],
@@ -19,7 +20,7 @@ export default function Types({ route }) {
   });
 
   useEffect(() => {
-    getTypeData();
+    if (name) getTypeData();
   }, [name]);
 
   const getTypeData = () => {

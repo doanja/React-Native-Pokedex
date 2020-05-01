@@ -8,7 +8,7 @@ import UserAPI from '../services/userAPI';
 import PokemonContainer from '../components/Pokemon/PokemonContainer';
 import FavoriteIcon from '../components/Pokemon/FavoriteIcon';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Pokemon({ route }) {
   const navigation = useNavigation();

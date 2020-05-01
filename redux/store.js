@@ -1,39 +1,37 @@
 import { createStore } from 'redux';
 import rootReducer from './rootReducer';
 import axios from 'axios';
-import { setToken, getToken } from '../constants/helper';
+import { setToken } from '../constants/helper';
+import { AsyncStorage } from 'react-native';
 
-function savetoStorage(state) {
+const savetoStorage = state => {
   try {
     const serializedState = JSON.stringify(state);
     setToken('state', serializedState);
   } catch (err) {
     console.log('Error saving to storage in store:', err);
   }
-}
+};
 
-function loadFromStorage() {
-  try {
-    const serializedState = getToken('state');
-    console.log('getToken("state") :>> ', getToken('state'));
-    console.log('getToken("token") :>> ', getToken('token'));
-    if (serializedState === null) {
-      return undefined;
-    }
+const loadFromStorage = () => {
+  AsyncStorage.getItem('state')
+    .then(value => {
+      const serializedState = value;
 
-    const token = JSON.parse(serializedState).login.token;
+      if (serializedState === null) {
+        return undefined;
+      }
 
-    token
-      ? (axios.defaults.headers.common.Authorization = `Bearer ${token}`)
-      : (axios.defaults.headers.common.Authorization = '');
+      const token = JSON.parse(serializedState).login.token;
 
-    return JSON.parse(serializedState);
-  } catch (err) {
-    // console.log('TODO: THROWING ERROR WHEN NOT LOGGED IN');
-    console.log('Error loading from local storage in store:', err);
-    return undefined;
-  }
-}
+      token
+        ? (axios.defaults.headers.common.Authorization = `Bearer ${token}`)
+        : (axios.defaults.headers.common.Authorization = '');
+
+      return JSON.parse(serializedState);
+    })
+    .catch(err => console.log(err));
+};
 
 const persistedState = loadFromStorage();
 

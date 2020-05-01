@@ -31,16 +31,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     alignSelf: 'center',
-    marginTop: '10%'
+    marginTop: '10%',
   },
   buttonGroup: {
     flex: 1,
     padding: 20,
     paddingBottom: 50,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   image: {
     alignSelf: 'center',
-    marginTop: '40%'
-  }
+    marginTop: '40%',
+  },
 });

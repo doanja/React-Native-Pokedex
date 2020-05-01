@@ -23,15 +23,15 @@ export const setToken = async (key, value) => {
   }
 };
 
-export const getToken = async key => {
-  try {
-    const value = await AsyncStorage.getItem(key);
-    if (value !== null) {
-      // We have data!!
-      console.log(value);
-    }
-  } catch (err) {
-    // Error retrieving data
-    console.log('error getting token', err);
-  }
-};
+// export const getToken = async key => {
+//   try {
+//     const value = await AsyncStorage.getItem(key);
+//     if (value !== null) {
+//       // W
+//       // console.log('POKEMON IS THE BEST', value);
+//     }
+//   } catch (err) {
+//     // Error retrieving data
+//     console.log('error getting token', err);
+//   }
+// };
