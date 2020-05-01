@@ -1,11 +1,22 @@
 import React, { useState, useCallback } from 'react';
 import { View, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
 import API from '../services/userAPI';
 import FavoritesContainer from '../components/Favorites/FavoritesContainer';
 import { useFocusEffect } from '@react-navigation/native';
 
+// redux
+import { useDispatch } from 'react-redux';
+import { resetState } from '../redux/login/loginActions';
+
+import { clearStorage } from '../constants/helper';
+import { Button, Text } from '../components';
+
 export default function Favorite() {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const [favoritePokemon, setFavoritePokemon] = useState([]);
 
   const getIdFromURL = url => {
@@ -26,8 +37,19 @@ export default function Favorite() {
     }, [])
   );
 
+  const signout = () => {
+    dispatch(resetState());
+    clearStorage();
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={globalStyles.container}>
+      <Button gradient onPress={signout}>
+        <Text center white semibold>
+          Signout
+        </Text>
+      </Button>
       <ScrollView>
         <FavoritesContainer favoritePokemon={favoritePokemon} />
       </ScrollView>

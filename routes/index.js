@@ -19,7 +19,6 @@ export default function RootDrawerNavigator() {
       <Drawer.Navigator initialRouteName='Favorites'>
         <Drawer.Screen name='Home' component={FavoritesScreen} />
         <Drawer.Screen name='Pokedex' component={PokedexScreen} />
-        {/* TODO: show signout? */}
       </Drawer.Navigator>
     </NavigationContainer>
   ) : (

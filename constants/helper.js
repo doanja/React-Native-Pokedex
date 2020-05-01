@@ -19,19 +19,15 @@ export const setToken = async (key, value) => {
     await AsyncStorage.setItem(key, value);
   } catch (err) {
     // Error saving data
-    console.log('error setting token', err);
+    console.log('Error setting token', err);
   }
 };
 
-// export const getToken = async key => {
-//   try {
-//     const value = await AsyncStorage.getItem(key);
-//     if (value !== null) {
-//       // W
-//       // console.log('POKEMON IS THE BEST', value);
-//     }
-//   } catch (err) {
-//     // Error retrieving data
-//     console.log('error getting token', err);
-//   }
-// };
+export const clearStorage = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    await AsyncStorage.multiRemove(keys);
+  } catch (err) {
+    console.error('Error clearing app data', err);
+  }
+};
