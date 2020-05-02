@@ -5,6 +5,7 @@ import HomeScreen from './Home';
 import LoginScreen from './Login';
 import PokedexScreen from './Pokedex';
 import FavoritesScreen from './Favorites';
+import SearchSCreen from './Search';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,7 @@ export default function RootDrawerNavigator() {
       <Drawer.Navigator initialRouteName='Favorites'>
         <Drawer.Screen name='Home' component={FavoritesScreen} />
         <Drawer.Screen name='Pokedex' component={PokedexScreen} />
+        <Drawer.Screen name='Search' component={SearchSCreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   ) : (
@@ -26,6 +28,7 @@ export default function RootDrawerNavigator() {
       <Drawer.Navigator initialRouteName='Home'>
         <Drawer.Screen name='Home' component={HomeScreen} />
         <Drawer.Screen name='Pokedex' component={PokedexScreen} />
+        <Drawer.Screen name='Search' component={SearchSCreen} />
         <Drawer.Screen name='Login' component={LoginScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

@@ -13,7 +13,6 @@ import {
   Shape,
   Move,
   Types,
-  Favorites,
 } from '../screens/';
 
 const Stack = createStackNavigator();
