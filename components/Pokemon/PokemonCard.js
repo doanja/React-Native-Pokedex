@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width / 4,
     alignSelf: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
   },

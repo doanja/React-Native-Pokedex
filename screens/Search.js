@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
@@ -9,10 +9,12 @@ import { alertMsg } from '../constants/helper';
 export default function Search() {
   const navigation = useNavigation();
 
+  const [pokemon, setPokemon] = useState({ name: '', url: '' });
+
   // TODO: make api call, redirect to the pokemon component
   const search = values => {
-    // const { name, url } = values;
-    console.log('values :>> ', values);
+    const { pokemon } = values;
+    console.log('pokemon :>> ', pokemon);
     // API.getPokemonData(name)
     //   .then(res => console.log('res.data', res.data))
     //   .catch(err => console.log(err));

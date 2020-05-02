@@ -18,7 +18,7 @@ export default function SearchContainer({ search }) {
         initialValues={{ pokemon: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          login(values);
+          search(values);
           actions.resetForm();
         }}>
         {props => (
@@ -36,12 +36,6 @@ export default function SearchContainer({ search }) {
               {/* <Text style={globalStyles.errorText}>
                 {props.touched.pokemon && props.errors.pokemon}
               </Text> */}
-
-              {/* <Button gradient endColor='#d16456' onPress={props.handleSubmit}>
-                <Text center semibold white>
-                  Search
-                </Text>
-              </Button> */}
 
               <TouchableOpacity style={styles.icons} onPress={props.handleSubmit}>
                 <FontAwesome name='search' size={20} />
@@ -62,9 +56,6 @@ const styles = StyleSheet.create({
   },
   form: {
     flexDirection: 'row',
-    borderBottomLeftRadius: 10,
-    alignSelf: 'stretch',
-    // textAlign: 'center',
   },
   input: {
     borderRadius: 0,
