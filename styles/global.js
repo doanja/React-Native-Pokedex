@@ -24,6 +24,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 6,
     marginTop: 2,
     marginBottom: 2,
+    backgroundColor: '#fff',
   },
   labelText: {
     color: colors.black,

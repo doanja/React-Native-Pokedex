@@ -24,6 +24,8 @@ export default function FavoriteIcon({ saved, setSaved }) {
 const styles = StyleSheet.create({
   icons: {
     backgroundColor: colors.secondary,
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'absolute',
     elevation: 4,
     zIndex: 1,

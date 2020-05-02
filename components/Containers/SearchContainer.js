@@ -1,22 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
+
 import { globalStyles } from '../../styles/global';
-import { Card, Button, Text } from '..';
+import { Card, Button, Text } from '../';
+import { FontAwesome } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-export default function SearchContainer({ login }) {
-  const navigation = useNavigation();
+export default function SearchContainer({ search }) {
   const validationSchema = yup.object({
-    email: yup.string().required().email(),
-    password: yup.string().required().min(8),
+    pokemon: yup.string().required(),
   });
 
   return (
     <Card style={styles.card}>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ pokemon: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           login(values);
@@ -24,53 +23,30 @@ export default function SearchContainer({ login }) {
         }}>
         {props => (
           <View>
-            {/* email */}
-            <View style={{ paddingBottom: 10 }}>
-              <Text style={globalStyles.labelText}>Email Address</Text>
+            {/* pomemon */}
+            <View style={styles.form}>
               <TextInput
-                style={globalStyles.input}
-                placeholder='Email Address'
-                onChangeText={props.handleChange('email')}
-                value={props.values.email}
-                onBlur={props.handleBlur('email')}
+                style={[globalStyles.input, styles.input]}
+                placeholder='Search Pokemon'
+                onChangeText={props.handleChange('pokemon')}
+                value={props.values.pokemon}
+                onBlur={props.handleBlur('pokemon')}
               />
 
-              <Text style={globalStyles.errorText}>
-                {props.touched.email && props.errors.email}
-              </Text>
+              {/* <Text style={globalStyles.errorText}>
+                {props.touched.pokemon && props.errors.pokemon}
+              </Text> */}
+
+              {/* <Button gradient endColor='#d16456' onPress={props.handleSubmit}>
+                <Text center semibold white>
+                  Search
+                </Text>
+              </Button> */}
+
+              <TouchableOpacity style={styles.icons} onPress={props.handleSubmit}>
+                <FontAwesome name='search' size={20} />
+              </TouchableOpacity>
             </View>
-
-            {/* password */}
-            <View style={{ paddingBottom: 10 }}>
-              <Text style={globalStyles.labelText}>Password</Text>
-              <TextInput
-                style={globalStyles.input}
-                placeholder='Password'
-                onChangeText={props.handleChange('password')}
-                value={props.values.password}
-                onBlur={props.handleBlur('password')}
-                secureTextEntry
-              />
-
-              <Text style={globalStyles.errorText}>
-                {props.touched.password && props.errors.password}
-              </Text>
-            </View>
-
-            <Button gradient endColor='#d16456' onPress={props.handleSubmit}>
-              <Text center semibold white>
-                Login
-              </Text>
-            </Button>
-            <Button
-              shadow
-              onPress={() => {
-                navigation.navigate('Signup');
-              }}>
-              <Text center semibold>
-                Not enrolled? Signup now.
-              </Text>
-            </Button>
           </View>
         )}
       </Formik>
@@ -83,5 +59,22 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 0,
     backgroundColor: '#f0f0f0',
+  },
+  form: {
+    flexDirection: 'row',
+    borderBottomLeftRadius: 10,
+    alignSelf: 'stretch',
+    // textAlign: 'center',
+  },
+  input: {
+    borderRadius: 0,
+    flex: 1,
+  },
+  icons: {
+    backgroundColor: 'crimson',
+    padding: 12,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
