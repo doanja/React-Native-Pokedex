@@ -9,15 +9,19 @@ import { alertMsg } from '../constants/helper';
 export default function Search() {
   const navigation = useNavigation();
 
-  const [pokemon, setPokemon] = useState({ name: '', url: '' });
-
   // TODO: make api call, redirect to the pokemon component
   const search = values => {
     const { search } = values;
-    console.log('search :>> ', search);
-    // API.getPokemonData(name)
-    //   .then(res => console.log('res.data', res.data))
-    //   .catch(err => console.log(err));
+
+    API.getPokemonData(search)
+      .then(res => {
+        // TODO: validate pokemon being searched, load search suggestions with pokemon image
+
+        navigation.navigate('Pokemon', {
+          name: res.data.name,
+        });
+      })
+      .catch(err => alertMsg('Error', err));
   };
 
   return (

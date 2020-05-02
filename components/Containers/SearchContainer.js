@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 
 import { globalStyles } from '../../styles/global';
-import { Card, Button, Text } from '../';
+import { Card, Text } from '../';
 import { FontAwesome } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -23,7 +23,6 @@ export default function SearchContainer({ search }) {
         }}>
         {props => (
           <View>
-            {/* pomemon */}
             <View style={[styles.form, { paddingTop: 16 }]}>
               <TextInput
                 style={[globalStyles.input, styles.input]}
