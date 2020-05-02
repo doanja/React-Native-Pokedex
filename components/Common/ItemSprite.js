@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
-import { Card } from '../../components';
+import { Card } from '..';
 import Spinner from '../Spinner';
 
 export default function ItemSprite({ spriteUri }) {
