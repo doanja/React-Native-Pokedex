@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
-import LoginContainer from '../components/Auth/LoginContainer';
+import LoginContainer from '../components/Containers/LoginContainer';
 import API from '../services/authAPI';
 import { alertMsg, setToken } from '../constants/helper';
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
-import SignupContainer from '../components/Auth/SignupContainer';
+import SignupContainer from '../components/Containers/SignupContainer';
 import API from '../services/authAPI';
 import { alertMsg } from '../constants/helper';
 
