@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
 import API from '../services/userAPI';
-import FavoritesContainer from '../components/Favorites/FavoritesContainer';
+import FavoritesContainer from '../components/Containers/FavoritesContainer';
 import { useFocusEffect } from '@react-navigation/native';
 
 // redux

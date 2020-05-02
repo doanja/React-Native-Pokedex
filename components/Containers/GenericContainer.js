@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
-import PokemonSubList from './PokemonSubList';
+import PokemonSubList from '../Common/PokemonSubList';
 
 /**
  * generic container to display the name of this component and a set of pokemon

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../';
+import { Card, CardHeader } from '..';
 import MoveTypes from '../Types/Types';
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';

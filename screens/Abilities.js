@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import AbilityContainer from '../components/Abilities/AbilityContainer';
+import AbilityContainer from '../components/Containers/AbilityContainer';
 
 export default function Abilities({ route }) {
   const { name } = route.params;

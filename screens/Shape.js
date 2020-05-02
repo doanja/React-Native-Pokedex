@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
-import GenericContainer from '../components/Common/GenericContainer';
+import GenericContainer from '../components/Containers/GenericContainer';
 
 export default function Shape({ route }) {
   const { name } = route.params;

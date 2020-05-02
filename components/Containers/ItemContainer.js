@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, CardHeader } from '../';
+import { Card, CardHeader } from '..';
 import PokemonSubList from '../Common/PokemonSubList';
-import ItemSprite from './ItemSprite';
+import ItemSprite from '../Items/ItemSprite';
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
 

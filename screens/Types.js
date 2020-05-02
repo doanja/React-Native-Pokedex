@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
-import TypesContainer from '../components/Types/TypesContainer';
+import TypesContainer from '../components/Containers/TypesContainer';
 
 export default function Types({ route }) {
   const { name } = route.params;

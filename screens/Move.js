@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 
-import MoveContainer from '../components/Move/MoveContainer';
+import MoveContainer from '../components/Containers/MoveContainer';
 
 export default function Move({ route }) {
   const { name } = route.params;

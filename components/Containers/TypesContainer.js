@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { Card, CardHeader } from '..';
 import PokemonSubList from '../Common/PokemonSubList';
-import Types from './Types';
+import Types from '../Types/Types';
 import SubCardMultiple from '../Common/SubCardMultiple';
 
 export default function TypesContainer({ name, typeData, species }) {

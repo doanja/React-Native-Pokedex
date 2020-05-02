@@ -5,7 +5,7 @@ import { globalStyles } from '../styles/global';
 import API from '../services/pokemonAPI';
 import UserAPI from '../services/userAPI';
 
-import PokemonContainer from '../components/Pokemon/PokemonContainer';
+import PokemonContainer from '../components/Containers/PokemonContainer';
 import FavoriteIcon from '../components/Pokemon/FavoriteIcon';
 
 import { useSelector } from 'react-redux';

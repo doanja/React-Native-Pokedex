@@ -14,7 +14,7 @@ export default function Search(props) {
         // onBlur={props.handleBlur('title')}
       />
       {/* <Text style={theme.errorText}>{props.touched.title && props.errors.title}</Text> */}
-
+      {/* TODO: implement search feature */}
       <Button text='Search' onPress={() => Alert.alert('Search Button Pressed')} />
     </View>
   );

@@ -1,14 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import {
-  PokemonSprite,
-  Stats,
-  Evolutions,
-  PokemonForms,
-  Gender,
-  Moveset,
-  Types,
-} from '../Pokemon/';
+import { PokemonSprite, Stats, Evolutions, PokemonForms, Gender, Moveset, Types } from '../Pokemon';
 
 import SubCard from '../Common/SubCard';
 import SubCardMultiple from '../Common/SubCardMultiple';
