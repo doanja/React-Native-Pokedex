@@ -9,13 +9,13 @@ import * as yup from 'yup';
 
 export default function SearchContainer({ search }) {
   const validationSchema = yup.object({
-    pokemon: yup.string().required(),
+    search: yup.string().required(),
   });
 
   return (
     <Card style={styles.card}>
       <Formik
-        initialValues={{ pokemon: '' }}
+        initialValues={{ search: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           search(values);
@@ -24,23 +24,22 @@ export default function SearchContainer({ search }) {
         {props => (
           <View>
             {/* pomemon */}
-            <View style={styles.form}>
+            <View style={[styles.form, { paddingTop: 16 }]}>
               <TextInput
                 style={[globalStyles.input, styles.input]}
-                placeholder='Search Pokemon'
-                onChangeText={props.handleChange('pokemon')}
-                value={props.values.pokemon}
-                onBlur={props.handleBlur('pokemon')}
+                placeholder='Search pokemon'
+                onChangeText={props.handleChange('search')}
+                value={props.values.search}
+                onBlur={props.handleBlur('search')}
               />
-
-              {/* <Text style={globalStyles.errorText}>
-                {props.touched.pokemon && props.errors.pokemon}
-              </Text> */}
 
               <TouchableOpacity style={styles.icons} onPress={props.handleSubmit}>
                 <FontAwesome name='search' size={20} />
               </TouchableOpacity>
             </View>
+            <Text style={[globalStyles.errorText, { paddingTop: 5 }]}>
+              {props.touched.search && props.errors.search}
+            </Text>
           </View>
         )}
       </Formik>

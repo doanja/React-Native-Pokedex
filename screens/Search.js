@@ -13,8 +13,8 @@ export default function Search() {
 
   // TODO: make api call, redirect to the pokemon component
   const search = values => {
-    const { pokemon } = values;
-    console.log('pokemon :>> ', pokemon);
+    const { search } = values;
+    console.log('search :>> ', search);
     // API.getPokemonData(name)
     //   .then(res => console.log('res.data', res.data))
     //   .catch(err => console.log(err));
