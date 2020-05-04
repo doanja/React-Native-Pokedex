@@ -4,6 +4,9 @@ export default {
   getPokemonList: (offset, limit = 20) => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
   },
+  getPokemonListAll: () => {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=2000&offset=0`);
+  },
   getPokemonData: id => {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`);
   },

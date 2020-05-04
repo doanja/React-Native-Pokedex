@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
@@ -9,13 +9,28 @@ import { alertMsg } from '../constants/helper';
 export default function Search() {
   const navigation = useNavigation();
 
-  const search = values => {
-    const { search } = values;
+  const [pokemon, setPokemon] = useState([]);
 
-    API.getPokemonData(search)
+  useEffect(() => {
+    API.getPokemonListAll()
       .then(res => {
-        // TODO: validate pokemon being searched, load search suggestions with pokemon image
+        let arr = [];
 
+        res.data.results.forEach(pokemon =>
+          arr.push({
+            id: pokemon.url.split('/')[pokemon.url.split('/').length - 2],
+            name: pokemon.name,
+          })
+        );
+
+        setPokemon(arr);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const search = pokemonName => {
+    API.getPokemonData(pokemonName)
+      .then(res => {
         navigation.navigate('Pokemon', {
           name: res.data.name,
         });
@@ -26,7 +41,7 @@ export default function Search() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={globalStyles.container}>
-        <SearchContainer search={search} />
+        <SearchContainer search={search} pokemon={pokemon} />
       </View>
     </TouchableWithoutFeedback>
   );

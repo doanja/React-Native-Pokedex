@@ -1,46 +1,44 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { globalStyles } from '../../styles/global';
-import { Card, Text } from '../';
-import { FontAwesome } from '@expo/vector-icons';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+import { Card } from '../';
 
-export default function SearchContainer({ search }) {
-  const validationSchema = yup.object({
-    search: yup.string().required(),
-  });
+import SearchableDropdown from 'react-native-searchable-dropdown';
 
+export default function SearchContainer({ search, pokemon }) {
   return (
     <Card style={styles.card}>
-      <Formik
-        initialValues={{ search: '' }}
-        validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          search(values);
-          actions.resetForm();
-        }}>
-        {props => (
-          <View>
-            <View style={styles.form}>
-              <TextInput
-                style={[globalStyles.input, styles.input]}
-                placeholder='Search pokemon'
-                onChangeText={props.handleChange('search')}
-                value={props.values.search}
-                onBlur={props.handleBlur('search')}
-              />
-
-              <TouchableOpacity style={styles.icons} onPress={props.handleSubmit}>
-                <FontAwesome name='search' size={20} />
-              </TouchableOpacity>
-            </View>
-            <Text style={globalStyles.errorText}>
-              {props.touched.search && props.errors.search}
-            </Text>
-          </View>
-        )}
-      </Formik>
+      <SearchableDropdown
+        onTextChange={text => console.log(text)}
+        onItemSelect={item => search(item.name)}
+        containerStyle={[globalStyles.input, styles.input]}
+        textInputStyle={{
+          padding: 12,
+          borderWidth: 1,
+          borderColor: '#bbb',
+          backgroundColor: '#fff',
+        }}
+        itemStyle={{
+          padding: 8,
+          marginTop: 2,
+          backgroundColor: '#fff',
+          borderColor: '#bbb',
+          borderWidth: 1,
+        }}
+        itemTextStyle={{
+          color: '#000',
+          textTransform: 'capitalize',
+        }}
+        itemsContainerStyle={{
+          maxHeight: '100%',
+        }}
+        items={pokemon}
+        defaultIndex={2}
+        //default selected item index
+        placeholder='Search Pokemon'
+        resetValue={true}
+        underlineColorAndroid='transparent'
+      />
     </Card>
   );
 }
@@ -60,6 +58,7 @@ const styles = StyleSheet.create({
   },
   icons: {
     backgroundColor: 'crimson',
+    height: 50,
     width: 50,
     justifyContent: 'center',
     alignItems: 'center',
