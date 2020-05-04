@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/global';
@@ -9,7 +9,6 @@ import { alertMsg } from '../constants/helper';
 export default function Search() {
   const navigation = useNavigation();
 
-  // TODO: make api call, redirect to the pokemon component
   const search = values => {
     const { search } = values;
 

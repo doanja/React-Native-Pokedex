@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
-
 import { globalStyles } from '../../styles/global';
 import { Card, Text } from '../';
 import { FontAwesome } from '@expo/vector-icons';
