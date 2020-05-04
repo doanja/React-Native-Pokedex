@@ -22,7 +22,7 @@ export default function SearchContainer({ search }) {
         }}>
         {props => (
           <View>
-            <View style={[styles.form, { paddingTop: 16 }]}>
+            <View style={styles.form}>
               <TextInput
                 style={[globalStyles.input, styles.input]}
                 placeholder='Search pokemon'
@@ -35,7 +35,7 @@ export default function SearchContainer({ search }) {
                 <FontAwesome name='search' size={20} />
               </TouchableOpacity>
             </View>
-            <Text style={[globalStyles.errorText, { paddingTop: 5 }]}>
+            <Text style={globalStyles.errorText}>
               {props.touched.search && props.errors.search}
             </Text>
           </View>
@@ -47,7 +47,7 @@ export default function SearchContainer({ search }) {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 15,
+    padding: 12,
     flex: 0,
     backgroundColor: '#f0f0f0',
   },
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   },
   icons: {
     backgroundColor: 'crimson',
-    padding: 12,
     width: 50,
     justifyContent: 'center',
     alignItems: 'center',
